@@ -5,9 +5,9 @@ import DropDown from "../components/DropDown";
 
 // const [baseProduct, setBaseProduct] = useState;
 
-useEffect() {
+// useEffect() {
     
-}
+// }
 
 
 
