@@ -2,12 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import DropDown from "../components/DropDown";
+import API from "../utils/API";
 
 // const [baseProduct, setBaseProduct] = useState;
 
 // useEffect() {
     
 // }
+
+function HandleDropDown(event) {
+    console.log("dropdown clicked")
+    API.getProduct()
+    .then(res => {
+        console.log(res)
+    })
+}
 
 
 
@@ -16,6 +25,7 @@ function Product() {
         <Container>
             <h1 className="text-center">Product Estimate Page (temp text)</h1>
             <DropDown 
+            HandleDropDown={HandleDropDown}
             />
           
          <br></br>

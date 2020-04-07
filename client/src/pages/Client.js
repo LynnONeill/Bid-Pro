@@ -20,7 +20,7 @@ function Clients() {
         </div>
         <Link to="/Login">Temp link back to Login page</Link>
                  <br></br>
-                 <Link to="/Product">Temp link to client page</Link>
+                 <Link to="/Product">Temp link to product page</Link>
                  <br></br>
                  <Link to="/Home">Temp link to home page</Link>
                  <br></br>

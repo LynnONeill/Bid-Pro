@@ -5,10 +5,13 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 
 
-function DropDown() {
+function DropDown( {HandleDropDown} ) {
     return (
         <Dropdown>
-            <Dropdown.Toggle variant="dark" id="dropdown-basic">
+            <Dropdown.Toggle 
+            variant="dark" 
+            id="dropdown-basic"
+            onClick={HandleDropDown}>
                 Select Product
             </Dropdown.Toggle>
 
