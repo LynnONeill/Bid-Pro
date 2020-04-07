@@ -1,5 +1,5 @@
 let mongoose = require("mongoose");
-let db = require("../client/models/mongo_models");
+let db = require("../models/mongo_models");
 
 mongoose.connect("mongodb://localhost/bidpro", {
     useNewUrlParser: true,
