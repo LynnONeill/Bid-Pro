@@ -1,8 +1,11 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -13,6 +16,14 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bidpro", {
+  useNewUrlParser: true,
+  useFindAndModify: false
+})
+
+// let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/bidpro";
+// mongoose.connect(MONGODB_URI)
 
 
 // Start the API server

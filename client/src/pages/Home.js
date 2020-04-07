@@ -10,6 +10,8 @@ function Home() {
              <Link to="/Client">Temp link to client page</Link>
              <br></br>
              <Link to="/Login">Temp link back to Login page</Link>
+             <br></br>
+             <Link to="/Product">Temp link to Product Page</Link>
 
         </div>
        

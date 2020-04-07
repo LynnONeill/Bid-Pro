@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const dbCalls = require("./api");
 
-// Book routes
+// Bid routes
 router.use("/bid", dbCalls);
 
 module.exports = router;

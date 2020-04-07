@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Client from "./pages/Client";
 import Project from "./pages/Project";
+import Product from "./pages/Product";
 import Nav from "./components/Nav";
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route exact path={"/project"}>
             <Project />
+          </Route>
+          <Route exact path={"/product"}>
+            <Product />
           </Route>
         </Switch>
       </div>
