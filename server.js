@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-
+var db = require("./models/sql_models");
 
 
 // Define middleware here
@@ -22,11 +22,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bidpro", {
   useFindAndModify: false
 })
 
-// let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/bidpro";
-// mongoose.connect(MONGODB_URI)
-
 
 // Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+
+db.sequelize.sync({ force: false }).then(function () {
+  app.listen(PORT, function () {
+    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  });
 });
