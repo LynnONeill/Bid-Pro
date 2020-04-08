@@ -15,7 +15,7 @@ router.route("/test").get(function(req,res){
 
 // Mongo Database calls /////
 router
-  .route("/api/products")
+  .route("/products")
   .get(mongoController.findProducts)
 
 
