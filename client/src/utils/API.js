@@ -4,8 +4,8 @@ export default {
   test: function() {
     return axios.get("/api/bid/test");
   },
-  getProduct: function() {
-    return axios.get("/api/product");
+  getProducts: function() {
+    return axios.get("/api/products");
   },
   getBasePrice: function() {
     return axios.get("/api/baseprice");
