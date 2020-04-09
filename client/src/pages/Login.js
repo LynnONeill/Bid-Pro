@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 
 
-
 function Login() {
     
 
@@ -18,6 +17,7 @@ function Login() {
 
     return (
         <div>
+          
             <h1 className="text-center">Login Page</h1>
             <form>
                 <div className="form-group">
@@ -32,16 +32,16 @@ function Login() {
                 <button 
                     type="submit" 
                     className="btn btn-primary">
-                        Submit
+                        Log In
                 </button>
                
             </form>
 
             <Link to="/Home">Temp link to homepage</Link>
-
+           
         </div>
         
     );
 }
 
-export default Login;
+export default Login; 
