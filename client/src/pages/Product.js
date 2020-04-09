@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import DropDown from "../components/DropDown";
 import Container from "react-bootstrap/Container";
@@ -7,24 +7,27 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import API from "../utils/API";
 
-// const [baseProduct, setBaseProduct] = useState;
-
-// useEffect() {
-
-// }
-
-function HandleDropDown(event) {
-    console.log("dropdown clicked")
-    API.getProducts([{}])
-        .then(res => {
-            console.log(res)
-            console.log("is this thing on??")
-        })
-}
-
-
 
 function Product() {
+
+// const [baseProduct, setBaseProduct] = useState;
+
+useEffect(() => {
+
+    API.getProducts()
+        .then(res => {
+            console.log(res)
+        }
+    )
+    .catch(err => console.log(err))
+
+}, []); 
+
+
+
+
+
+
     return (
         <Container>
             <Row className="justify-content-md-center">
@@ -32,7 +35,7 @@ function Product() {
             </Row>
         
             <DropDown
-            HandleDropDown={HandleDropDown}
+            
             />
          <br></br>
             {/* Stack the columns on mobile by making one full-width and the other half-width */}
