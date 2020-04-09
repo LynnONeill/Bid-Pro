@@ -152,6 +152,14 @@ let featuresSeed = [
     {
         design: {
             style: "SD100",
+            size: "Single",
+            price: 0
+        }
+    },
+    {
+        design: {
+            style: "SD100",
+            size: "Double",
             price: 0
         }
     },
