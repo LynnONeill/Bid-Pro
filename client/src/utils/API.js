@@ -7,9 +7,9 @@ export default {
   getProducts: function() {
     return axios.get("/api/products");
   },
-  getBasePrice: function() {
-    console.log("is this working")
-    return axios.get("/api/baseprice");
+  getFeatures: function() {
+    console.log("getFeatures api call is working")
+    return axios.get("/api/features");
   }
 };
 

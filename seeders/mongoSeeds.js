@@ -6,27 +6,37 @@ mongoose.connect("mongodb://localhost/bidpro", {
     useFindAndModify: false
 });
 
-////  Seeds for base security door pricing //////////////////////////////////
+
 let secDoorSeed = [
+{
+    products: [
     {
-        doorBuild: {
-            type: "Single Security Door",
-            price: 1350
-            }
-    },
-    {
-        doorBuild: {
-            type: "Double Security Door",
-            price: 2700
-            }
-    },
-    {
-        doorBuild: {
-            type: "French Security Door",
-            price: 3000
-            }
+        name: "Security Door",
+        type: "Single Security Door",
+        price: 1350
     }
-];
+    ]
+},
+{
+    products: [
+    {
+        name: "Security Door",
+        type: "Double Security Door",
+        price: 2700
+    },
+    ]
+},
+{
+    products: [
+    {
+        name: "Security Door",
+        type: "French Security Door",
+        price: 3000
+    },
+    ]
+}
+]; 
+    
 
 /// Seeds for security door features //////////////////////////////
 let featuresSeed = [
