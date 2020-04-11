@@ -37,7 +37,7 @@ function AddClient() {
         </div>
        
 
-        </Container fluid>
+        </Container >
     );
 }
 export default AddClient;
