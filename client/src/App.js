@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Client from "./pages/Client";
+import AddClient from "./pages/AddClient";
 import Project from "./pages/Project";
 import Product from "./pages/Product";
 import Nav from "./components/Nav";
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route exact path={"/client"}>
             <Client />
+          </Route>
+          <Route exact path={"/addClient"}>
+            <AddClient />
           </Route>
           <Route exact path={"/project"}>
             <Project />

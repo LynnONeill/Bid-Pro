@@ -2,10 +2,14 @@ import axios from "axios";
 
 export default {
   test: function() {
-    return axios.get("/api/bid/test");
+    return axios.get("/api/test");
   },
-  getBasePrice: function() {
-    return axios.get("/api/baseprice")
+  getProducts: function() {
+    return axios.get("/api/products");
+  },
+  getFeatures: function() {
+    console.log("getFeatures api call is working")
+    return axios.get("/api/features");
   }
 };
 
