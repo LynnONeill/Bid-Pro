@@ -66,26 +66,28 @@ function Product() {
             return ans
         }
        
-    // const renderFeatureDrop = (featureState, featureType) => {
-
-    //     let ans;
-    //         if (featureState.length === 0) {
-    //             ans = ""
-    //         }else{
-    //            for ( let i = 0; i < featureState.length; i++) {
-    //                if (featureState[i].type == featureType) {
-    //                ans = featureState.map((el) => {
-    //                    return <a
-    //                            key={featureState._id}
-    //                            className="dropdown-item"
-    //                            href="#">
-    //                                {el.type}
-    //                            </a>
-    //                })
-    //                }
-    //            }
-    //         }
-    // }
+    const renderFeatureDrop = (featureState, featureType) => {
+        console.log(featureState)
+        let ans = [];
+            if (featureState.length === 0) {
+                ans = ""
+            }else{
+               console.log("random")
+               for ( let i = 0; i < featureState.length; i++) {
+                   if (featureState[i][featureType]) {
+                       console.log(featureType)
+                       ans.push( <a
+                               key={featureState[i]._id}
+                               className="dropdown-item"
+                               href="#">
+                                   {featureState[i][featureType].type}
+                               </a>)
+                
+                   }
+               }
+            }
+            return ans;
+    }
             
 
 
@@ -95,12 +97,22 @@ function Product() {
                 <h1 className="text-center">Product Estimate Page (temp text)</h1>
             </Row>
 
+           
             <DropDown
-               products={renderProductDrop(products)}
+               dropDownOpts={renderProductDrop(products)}
             />
-            {/* <DropDown
-                backing={renderFeatureDrop(features, "backing")}
-            /> */}
+             <DropDown
+                dropDownOpts={renderFeatureDrop(features, "design")}
+            />
+            <DropDown
+                dropDownOpts={renderFeatureDrop(features, "backing")}
+            />
+            <DropDown
+                dropDownOpts={renderFeatureDrop(features, "finish")}
+            />
+            <DropDown
+                dropDownOpts={renderFeatureDrop(features, "hardware")}
+            />
             <br></br>
             {/* Stack the columns on mobile by making one full-width and the other half-width */}
             <Container className="justify-content-md-center">

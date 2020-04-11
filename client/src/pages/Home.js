@@ -37,7 +37,7 @@ function AddClient() {
         </div>
        
 
-        </Container >
+        </Container>
     );
 }
 export default AddClient;
