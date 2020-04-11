@@ -3,10 +3,11 @@ import React from "react";
 function Nav() {
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a className="navbar-brand" href="/">
+            <a className="navbar-brand" href="/home">
                 Bid-Pro
             </a>
-        </nav>
+            <a className="navbar-brand" href="#/login">Logout</a>
+        </nav> 
 
     );
 }

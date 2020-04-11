@@ -20,8 +20,6 @@ function AddClient() {
 </form>
 
        </div>
-
-        
         
         <div>
              <h1 className="text-center">Home Page(temp text)</h1>
@@ -34,10 +32,11 @@ function AddClient() {
              <Link to="/Product">Temp link to Product Page</Link>
              <br></br>
              <Link to="/AddClient">Temp link to Add Client page</Link>
-        </div>
-       
+             <br></br>
+             <Link to="/Admin">Temp link to Admin page</Link>        
+          </div>
 
-        </Container>
+        </ Container >
     );
 }
 export default AddClient;
