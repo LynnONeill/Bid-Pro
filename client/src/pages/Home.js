@@ -5,7 +5,7 @@ import {Form, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, 
 import { FaPlus } from "react-icons/fa";
 function AddClient() {
     return(
-        <Container fluid>
+        <Container>
       
             <div>
                 
@@ -37,7 +37,7 @@ function AddClient() {
         </div>
        
 
-        </Container fluid>
+        </Container>
     );
 }
 export default AddClient;

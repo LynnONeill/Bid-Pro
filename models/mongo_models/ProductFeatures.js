@@ -24,9 +24,6 @@ const FeaturesSchema = new Schema({
                     type: {
                         type: String
                     },
-                    color: {
-                        type: String
-                    },
                     size: {
                         type: String
                     },

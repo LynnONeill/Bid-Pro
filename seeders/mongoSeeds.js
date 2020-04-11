@@ -84,32 +84,28 @@ let featuresSeed = [
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Black",
+            type: "Powder Coat - Black",
             size: "Single",
             price: 0
         }
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Textured Brown",
+            type: "Powder Coat - Textured Brown",
             size: "Single",
             price: 0
         }
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Copper Bronze Faux",
+            type: "Powder Coat - Copper Bronze Faux",
             size: "Single",
             price: 150
         }
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Black",
+            type: "Powder Coat - Black",
             size: "Double",
             price: 0
 
@@ -117,31 +113,27 @@ let featuresSeed = [
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Textured Brown",
+            type: "Powder Coat - Textured Brown",
             size: "Double",
             price: 0
         }
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Copper Bronze Faux",
+            type: "Powder Coat - Copper Bronze Faux",
             size: "Double",
             price: 300
         }
     },
     {
         hardware: {
-            type: "Lever and Dead Bolt",
-            finish: "Venitian Bronze",
+            type: "Lever and Dead Bolt - Venitian Bronze",
             price: 0
         }
     },
     {
         hardware: {
-            type: "Lever and Dead Bolt",
-            finish: "Antique Brass",
+            type: "Lever and Dead Bolt - Antique Brass",
             price: 0,
         }
     },
@@ -161,42 +153,42 @@ let featuresSeed = [
     },
     {
         design: {
-            style: "SD100",
+            type: "SD100",
             size: "Single",
             price: 0
         }
     },
     {
         design: {
-            style: "SD100",
+            type: "SD100",
             size: "Double",
             price: 0
         }
     },
     {
         design: {
-            style: "SD400",
+            type: "SD400",
             size: "Single",
             price: 300
         }
     },
     {
         design: {
-            style: "SD400",
+            type: "SD400",
             size: "Double",
             price: 600
         }
     },
     {
         design: {
-            style: "SD700",
+            type: "SD700",
             size: "Single",
             price: 300
         }
     },
     {
         design: {
-            style: "SD700",
+            type: "SD700",
             size: "Double",
             price: 600
 
@@ -204,14 +196,14 @@ let featuresSeed = [
     },
     {
         design: {
-            style: "SD900",
+            type: "SD900",
             size: "Single",
             price: 300
         }
     },
     {
         design: {
-            sytle: "SD900",
+            type: "SD900",
             size: "Double",
             price: 600
         }
