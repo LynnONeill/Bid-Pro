@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Dropdown from "react-bootstrap/DropDown";
 import DropDown from "../components/DropDown";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -12,12 +11,11 @@ import API from "../utils/API";
 function Product() {
 
     const [products, setProducts] = useState([]);
-    const [featuresObj, setFeaturesObj] = useState({});
-    const [productItems, setProductItems] = useState([])
+    const [features, setFeatures] = useState({});
 
     
    
-                let menuItems;
+    let menuItems;
     useEffect(() => {
         // Api call to get product and feature data //
         API.getProducts()
@@ -26,29 +24,15 @@ function Product() {
 
                 // Set State for products
                 setProducts(res.data)
-                    console.log("testttt")
+                    console.log("test")
                     console.log(products)
-                getMenuItems(products)
-                setProductItems(menuItems)
-                function getMenuItems(products) {
-                    for( let i = 0, j = 0; i < products.length; i++ ){
-                        console.log("testing")
-                        console.log(products[i].products[j].type)
-                        menuItems.push([{
-                            label: products[i].products[j].type,
-                            value: products[i].products[j].type
-                        }]);
-                        console.log(menuItems)
-                }
-                }
-
-                getMenuItems(products)
+               
 
 
             // Api call to get product feature data //
                 API.getFeatures()
                     .then(res => {
-                        setFeaturesObj(res);
+                        setFeatures(res.data);
                     })
             }
             )
@@ -60,42 +44,12 @@ function Product() {
     console.log("below should be array of products object")
     console.log(products);
     console.log("below should be features object")
-    console.log(featuresObj);
-    console.log(productItems);
+    console.log(features);
 
 
 
-    // This function will run the map (in jsx - products.map(renderDropDownItems)) but separates the two arrays ///
-    // function renderDropDownItems(input, key) {
-    //     console.log(products)
-    //     let outputArray = [];
-    //     for (let i = 0; i < input.length; i++)
-    //         outputArray.push(input[i][key]);
-    //     return outputArray
-    // }
-    // let productList = renderDropDownItems(products);
-    // console.log(productList)
-    // let productKey = renderDropDownItems(products, "_id");
-    // console.log(productKey)
-
-
-
-    // This function returns literal string in ui///     
-    // const renderDrop1 = (product) => {
-    //     console.log(product)
-    //     for (let i = 0; i < product.length; i++)
-    //         return (
-    //         `<a 
-    //         key=${product[i]._id} 
-    //         className="dropdown-item" 
-    //         href="#">
-    //         ${product[i].type}
-    //         </a>`
-    //         )
-    // }
-
-    // This function will stop after first element (because of the return) and renders outside of dropdown ///
-    const renderDrop2 = (product) => {
+    // Function to pull product names/id's from products state and set to dropdown items //
+    const renderProductDrop = (product) => {
         let ans;
             if (product.length === 0){
                 ans = ""
@@ -110,24 +64,29 @@ function Product() {
                         })
             }
             return ans
-    
         }
-            
-    
-    function renderProductDrop(products) {
        
+    // const renderFeatureDrop = (featureState, featureType) => {
 
-        for ( let i = 0; i < products.length; i++){
-        console.log(products[i])
-        return(
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a key={products[i].id} className="products.type" href="#">{products[i].products[0].type}</a>
-            </div>
-        )}
-    }
-
-    
-
+    //     let ans;
+    //         if (featureState.length === 0) {
+    //             ans = ""
+    //         }else{
+    //            for ( let i = 0; i < featureState.length; i++) {
+    //                if (featureState[i].type == featureType) {
+    //                ans = featureState.map((el) => {
+    //                    return <a
+    //                            key={featureState._id}
+    //                            className="dropdown-item"
+    //                            href="#">
+    //                                {el.type}
+    //                            </a>
+    //                })
+    //                }
+    //            }
+    //         }
+    // }
+            
 
 
     return (
@@ -137,8 +96,11 @@ function Product() {
             </Row>
 
             <DropDown
-               products={renderDrop2(products)}
+               products={renderProductDrop(products)}
             />
+            {/* <DropDown
+                backing={renderFeatureDrop(features, "backing")}
+            /> */}
             <br></br>
             {/* Stack the columns on mobile by making one full-width and the other half-width */}
             <Container className="justify-content-md-center">

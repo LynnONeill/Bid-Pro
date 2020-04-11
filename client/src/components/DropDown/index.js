@@ -1,5 +1,4 @@
 import React from "react";
-import Dropdown from "react-bootstrap/DropDown";
 
 
 function DropDown(products) {
@@ -14,6 +13,8 @@ function DropDown(products) {
                     {products.products}
                 </div>
         </div>
+        
+
       
     )
 };
