@@ -5,7 +5,7 @@ import {Form, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, 
 import { FaPlus } from "react-icons/fa";
 function AddClient() {
     return(
-        <Container>
+        <Container fluid>
       
             <div>
                 
