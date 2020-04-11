@@ -1,15 +1,11 @@
 // Creating our customer model
 module.exports = function (sequelize, DataTypes) {
   var Customer = sequelize.define("Customer", {
-    firstName: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    company: {
+    businessName: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -25,7 +21,34 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         isEmail: true
       }
-    }
+      
+
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    addressTwo: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      
+    },
+    zip: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    notes: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
   });
 
   return Customer;

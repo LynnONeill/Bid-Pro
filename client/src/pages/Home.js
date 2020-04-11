@@ -37,7 +37,11 @@ function AddClient() {
         </div>
        
 
+<<<<<<< HEAD
         </Container>
+=======
+        </Container >
+>>>>>>> 316393361559f1bc8e4bd7b7e52615c5a7a3b620
     );
 }
 export default AddClient;
