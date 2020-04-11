@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/DropDown";
 import DropDown from "../components/DropDown";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -31,7 +32,7 @@ function Product() {
                 // Set State for products
                 setProducts(res.data);
 
-                
+                getMenuItems(products)
 
 
             // Api call to get product feature data //
@@ -57,15 +58,17 @@ function Product() {
         for( let i = 0, j = 0; i < products.length; i++ ){
             console.log("testing")
             console.log(products[i].products[j].type)
-            menuItems.push([{
+            menuItems = [{
+                key: products[i].products[0]._id,
                 label: products[i].products[j].type,
                 value: products[i].products[j].type
-            }]);
+            }];
             console.log(menuItems)
     }
-    }
-    getMenuItems(products)
     setProductItems(menuItems)
+    }
+    
+    
         
        
 
@@ -112,14 +115,17 @@ function Product() {
                 </a>
             )
     }
-    function renderProductDrop(products) {
-       
+  
 
+    function renderProductDrop(products) {
+       console.log(products)
+        console.log("productdrop test")
         for ( let i = 0; i < products.length; i++)
+        console.log(products[i].products[0].type)
         return(
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a key={products[i].id} className="products.type" href="#">{products[i].type}</a>
-            </div>
+            <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+            </Dropdown.Menu>
         )
     }
 
@@ -134,7 +140,7 @@ function Product() {
             </Row>
 
             <DropDown
-               products={renderProductDrop(products)}
+               products={products.map(renderProductDrop)}
             />
             <br></br>
             {/* Stack the columns on mobile by making one full-width and the other half-width */}
