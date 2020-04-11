@@ -15,6 +15,8 @@ function Clients() {
             <li>email</li>
         </ul>
 
+        
+
         <p>Maybe also add a note field??</p>
         <p>Here would be a list of projects (open and closed) for this client</p>
         </div>
