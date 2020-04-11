@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const dbCalls = require("./api");
+const apiRoutes = require("./api");
 
 
 // Bid routes
-router.use("/", dbCalls);
+router.use("/", apiRoutes);
 
 module.exports = router;

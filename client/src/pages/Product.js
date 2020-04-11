@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DropDown from "../components/DropDown";
 import Container from "react-bootstrap/Container";
@@ -7,122 +7,189 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import API from "../utils/API";
 
-// const [baseProduct, setBaseProduct] = useState;
-
-// useEffect() {
-
-// }
-
-function HandleDropDown(event) {
-    console.log("dropdown clicked")
-    API.getProducts([{}])
-        .then(res => {
-            console.log(res)
-            console.log("is this thing on??")
-        })
-}
-
-
 
 function Product() {
+
+    const [products, setProducts] = useState([]);
+    const [features, setFeatures] = useState({});
+
+    
+   
+    let menuItems;
+    useEffect(() => {
+        // Api call to get product and feature data //
+        API.getProducts()
+            .then(res => {
+                console.log(res.data)
+
+                // Set State for products
+                setProducts(res.data)
+                    console.log("test")
+                    console.log(products)
+               
+
+
+            // Api call to get product feature data //
+                API.getFeatures()
+                    .then(res => {
+                        setFeatures(res.data);
+                    })
+            }
+            )
+            .catch(err => console.log(err))
+           
+    }, []);
+
+
+    console.log("below should be array of products object")
+    console.log(products);
+    console.log("below should be features object")
+    console.log(features);
+
+
+
+    // Function to pull product names/id's from products state and set to dropdown items //
+    const renderProductDrop = (product) => {
+        let ans;
+            if (product.length === 0){
+                ans = ""
+            }else{
+                 ans =  product.map((product)=>{
+                        return <a
+                                key={product._id}
+                                className="dropdown-item"
+                                href="#">
+                                {product.products[0].type}
+                            </a>
+                        })
+            }
+            return ans
+        }
+       
+    // const renderFeatureDrop = (featureState, featureType) => {
+
+    //     let ans;
+    //         if (featureState.length === 0) {
+    //             ans = ""
+    //         }else{
+    //            for ( let i = 0; i < featureState.length; i++) {
+    //                if (featureState[i].type == featureType) {
+    //                ans = featureState.map((el) => {
+    //                    return <a
+    //                            key={featureState._id}
+    //                            className="dropdown-item"
+    //                            href="#">
+    //                                {el.type}
+    //                            </a>
+    //                })
+    //                }
+    //            }
+    //         }
+    // }
+            
+
+
     return (
         <Container>
             <Row className="justify-content-md-center">
                 <h1 className="text-center">Product Estimate Page (temp text)</h1>
             </Row>
-        
+
             <DropDown
-            HandleDropDown={HandleDropDown}
+               products={renderProductDrop(products)}
             />
-         <br></br>
+            {/* <DropDown
+                backing={renderFeatureDrop(features, "backing")}
+            /> */}
+            <br></br>
             {/* Stack the columns on mobile by making one full-width and the other half-width */}
-        <Container className="justify-content-md-center">
-            <Container className="border border-secondary rounded-lg w-75">
-            <Row className="justify-content-md-center my-4">
-                <Col  xs={3} md={3}>
-                <span>
-                    Style Number Here
+            <Container className="justify-content-md-center">
+                <Container className="border border-secondary rounded-lg w-75">
+                    <Row className="justify-content-md-center my-4">
+                        <Col xs={3} md={3}>
+                            <span>
+                                Style Number Here
                 </span>
-                </Col>
-                <Col xs={3} md={3}>
-                    <span className="block-example border border-light p-2">
-                    Base Price Here
+                        </Col>
+                        <Col xs={3} md={3}>
+                            <span className="block-example border border-light p-2">
+                                Base Price Here
                     </span>
-                </Col>
-            </Row>
-            <Row className="justify-content-md-center my-4">
-                <Col xs={3} md={3}>
-                    <span>
-                    Backing Choice Here
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center my-4">
+                        <Col xs={3} md={3}>
+                            <span>
+                                Backing Choice Here
                     </span>
-                </Col>
-                <Col xs={3} md={3}>
-                <span className="block-example border border-light p-2">
-                   $
-                </span>  
-                </Col>
-            </Row >
-            <Row className="justify-content-md-center my-4">
-                <Col xs={3} md={3}>
-                <span>
-                    Finish Choice Here
+                        </Col>
+                        <Col xs={3} md={3}>
+                            <span className="block-example border border-light p-2">
+                                $
                 </span>
-                </Col>
-                <Col xs={3} md={3}>
-                <span className="block-example border border-light p-2">
-                    $
+                        </Col>
+                    </Row >
+                    <Row className="justify-content-md-center my-4">
+                        <Col xs={3} md={3}>
+                            <span>
+                                Finish Choice Here
                 </span>
-                </Col>
-            </Row>
-            <Row className="justify-content-md-center mb-4">
-                <Col  xs={3} md={3}>
-                <span>
-                    Hardware Choice Here
+                        </Col>
+                        <Col xs={3} md={3}>
+                            <span className="block-example border border-light p-2">
+                                $
                 </span>
-                </Col>
-                <Col xs={3} md={3}>
-                    <span className="block-example border border-light p-2">
-                    $
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center mb-4">
+                        <Col xs={3} md={3}>
+                            <span>
+                                Hardware Choice Here
+                </span>
+                        </Col>
+                        <Col xs={3} md={3}>
+                            <span className="block-example border border-light p-2">
+                                $
                     </span>
-                </Col>
-            </Row>
-            <Row className="justify-content-md-center mb-4">
-                <Col  xs={8} md={3}>
-                <span>
-                    Total:
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center mb-4">
+                        <Col xs={8} md={3}>
+                            <span>
+                                Total:
                 </span>
-                </Col>
-              
-            </Row >
-            <Row className="justify-content-md-center mb-4">
-                <Button variant="warning" size="lg" >Submit</Button>
-            </Row>
-           </Container>
+                        </Col>
 
-        </Container>
-            
+                    </Row >
+                    <Row className="justify-content-md-center mb-4">
+                        <Button variant="warning" size="lg" >Submit</Button>
+                    </Row>
+                </Container>
+
+            </Container>
 
 
-           
+
+
             {/* Columns are always 50% wide, on mobile and desktop */}
-           
-         
 
-<div>
-    <Link to="/Login">Temp link back to Login page</Link>
-    <br></br>
-    <Link to="/Client">Temp link to client page</Link>
-    <br></br>
-    <Link to="/Home">Temp link to home page</Link>
-    <br></br>
-    <Link to="/Project">Temp link to project page</Link>
-</div>
+
+
+            <div>
+                <Link to="/Login">Temp link back to Login page</Link>
+                <br></br>
+                <Link to="/Client">Temp link to client page</Link>
+                <br></br>
+                <Link to="/Home">Temp link to home page</Link>
+                <br></br>
+                <Link to="/Project">Temp link to project page</Link>
+            </div>
         </Container>
 
-        
-        
 
-       
+
+
+
 
     );
 }
