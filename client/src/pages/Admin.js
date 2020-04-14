@@ -2,9 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import {Form, Col, FormControl, FormGroup, ControlLabel, Button} from "react-bootstrap";
-
+import API from '../utils/API';
 
 function Admin() {
+    // users state
+
+    // handle users submit
+
     return(
         
         <div>
