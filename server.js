@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bidpro", {
 
 // Start the API server
 
-db.sequelize.sync({ force: false }).then(function () {
+db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, function () {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
   });

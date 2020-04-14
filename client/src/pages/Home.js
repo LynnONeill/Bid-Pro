@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import {Form, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, Button} from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
+import axios from "axios";
 function AddClient() {
     return(
         <Container fluid>
