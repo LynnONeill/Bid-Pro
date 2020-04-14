@@ -14,11 +14,11 @@ function QuoteDropDown({productDrop, designDrop, backingDrop, finishDrop, hardwa
             as="select" 
             id="dropdown" 
             onChange={handleMenuSelect}>
-            {productDrop}
             {designDrop}
             {backingDrop}
             {finishDrop}
             {hardwareDrop}
+            {productDrop}
         </Form.Control>
         </div> 
     )

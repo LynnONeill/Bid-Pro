@@ -89,7 +89,7 @@ function Product() {
     }
 
     const handleMenuSelect = event => {
-    event.preventDefault();
+       event.preventDefault();
        console.log("handleMenuSelect is working")
        console.log(event.target.value)
     }
@@ -109,7 +109,6 @@ function Product() {
                 finishDrop={renderFeatureDrop(features, "finish")}
                 hardwareDrop={renderFeatureDrop(features, "hardware")}
                 handleMenuSelect={handleMenuSelect}
-
             />
 
             <div>
