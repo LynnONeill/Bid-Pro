@@ -4,16 +4,16 @@ import Row from "react-bootstrap/Row";
 import QuotePriceField from "../QuotePriceField";
 import QuoteTotal from "../QuoteTotal";
 import QuoteSubmitBtn from "../QuoteSubmitBtn";
-import DropDown from "../QuoteDropDown";
+import QuoteDropDown from "../QuoteDropDown";
 
-function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleProductSelect}) {
+function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleMenuSelect}) {
 
     return (
         <form>
              <Row className="justify-content-md-center">
                 <Col xs={3} md={3}>
-                    <DropDown
-                        onChange={handleProductSelect}
+                    <QuoteDropDown
+                        handleMenuSelect={handleMenuSelect}
                         productDrop={productDrop} 
                      />
                 </Col>
@@ -23,7 +23,7 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs={3} md={3}>
-                    <DropDown
+                    <QuoteDropDown
                         designDrop={designDrop} 
                      />
                 </Col>
@@ -33,7 +33,7 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs={3} md={3}>
-                    <DropDown
+                    <QuoteDropDown
                         backingDrop={backingDrop} 
                      />
                 </Col>
@@ -44,7 +44,7 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs={3} md={3}>
-                    <DropDown
+                    <QuoteDropDown
                         finishDrop={finishDrop} 
                      />
                 </Col>
@@ -54,7 +54,7 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs={3} md={3}>
-                    <DropDown
+                    <QuoteDropDown
                         hardwareDrop={hardwareDrop} 
                      />
                 </Col>

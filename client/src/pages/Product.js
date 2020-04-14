@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import Dropdown from "react-bootstrap/Dropdown";
+
 import Row from "react-bootstrap/Row";
 import QuoteContainer from "../components/QuoteContainer";
 import API from "../utils/API";
@@ -50,12 +52,13 @@ function Product() {
                 ans = ""
             }else{
                  ans =  product.map((product)=>{
-                        return <a
+                        return <option
                                 key={product._id}
                                 className="dropdown-item"
-                                href="#">
+                                value={product.products[0].type}
+                                >
                                 {product.products[0].type}
-                            </a>
+                                </option>
                         })
             }
             return ans
@@ -69,23 +72,26 @@ function Product() {
                 ans = ""
             }else{
                console.log("random")
-               for ( let i = 0; i < featureState.length; i++) {
+               for ( let i = 0, j = 1; i < featureState.length; i++, j++) {
                    if (featureState[i][featureType]) {
                        console.log(featureType)
-                       ans.push( <a
+                       ans.push( <option
                                key={featureState[i]._id}
                                className="dropdown-item"
-                               href="#">
+                               value={featureState[i][featureType].type}
+                               >
                                    {featureState[i][featureType].type}
-                               </a>)
+                               </option>)
                    } 
                }
             }
             return ans;
     }
 
-    function handleProductSelect(event) {
-       console.log("handleproductSelect is working")
+    const handleMenuSelect = event => {
+    event.preventDefault();
+       console.log("handleMenuSelect is working")
+       console.log(event.target.value)
     }
             
 
@@ -102,7 +108,8 @@ function Product() {
                 backingDrop={renderFeatureDrop(features, "backing")}
                 finishDrop={renderFeatureDrop(features, "finish")}
                 hardwareDrop={renderFeatureDrop(features, "hardware")}
-                handleProductSelect={handleProductSelect}
+                handleMenuSelect={handleMenuSelect}
+
             />
 
             <div>
@@ -127,3 +134,16 @@ function Product() {
 export default Product;
 
 
+            
+// for ( let i = 0; i < featureState.length; i++) {
+//     if (featureState[i][featureType]) {
+//         console.log(featureType)
+//         ans.push( <a
+//                 key={featureState[i]._id}
+//                 className="dropdown-item"
+//                 value={featureState[i][featureType].type}
+//                 href="#">
+//                     {featureState[i][featureType].type}
+//                 </a>)
+//     } 
+// }
