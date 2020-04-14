@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
+import ClientContext from "../utils/GlobalState"
 
 
 function Clients() {
+    const [client,setClient] = useState({});
+
     return(
         <Container fluid>
             <div>

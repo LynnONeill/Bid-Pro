@@ -1,6 +1,6 @@
-import React, { createContext, useReducer, useContext } from "react";
+import React from "react";
 
-const ClientContext = createContext({
+const ClientContext = React.createContext({
     id: "",
     name: "",
     businessName:"",
@@ -12,3 +12,5 @@ const ClientContext = createContext({
     zip:"",
     notes:""
   });
+
+  export default ClientContext;
