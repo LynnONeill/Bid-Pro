@@ -80,7 +80,7 @@ function Product() {
                                className="dropdown-item"
                                value={featureState[i][featureType].type}
                                >
-                                   {featureState[i][featureType].type}
+                                {featureState[i][featureType].type}
                                </option>)
                    } 
                }

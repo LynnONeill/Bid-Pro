@@ -1,5 +1,7 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
 
 
 function QuoteDropDown({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleMenuSelect}) {
@@ -8,37 +10,40 @@ function QuoteDropDown({productDrop, designDrop, backingDrop, finishDrop, hardwa
     return (
       
         <div className="dropdown p-2 my-2">
-                <input
-                className="form-control mr-sm-2"
-                placeholder="test input"
-                type="text"
-                aria-label="test"
-                onChange={handleMenuSelect}>
-                </input>
-            <button className="btn btn-secondary dropdown-toggle" 
-                type="button"   
-                id="dropdownMenuButton" 
-                onChange={handleMenuSelect}
-                data-toggle="dropdown" 
-                // aria-haspopup="true" 
-                // aria-expanded="false"
-            >
-                Select 
-            </button>
-        <div className="dropdown-menu" 
-            id="dropdown"
-            onChange={handleMenuSelect}
-            aria-labelledby="dropdownMenuButton"
-            >
+        <Form.Control 
+            as="select" 
+            id="dropdown" 
+            onChange={handleMenuSelect}>
             {productDrop}
             {designDrop}
             {backingDrop}
             {finishDrop}
             {hardwareDrop}
-        </div>
-</div> 
+        </Form.Control>
+        </div> 
     )
 };
 
 export default QuoteDropDown;
 
+{/* <button className="btn btn-secondary dropdown-toggle" 
+type="button"   
+id="dropdownMenuButton" 
+onChange={handleMenuSelect}
+data-toggle="dropdown" 
+// aria-haspopup="true" 
+// aria-expanded="false"
+>
+Select 
+</button>
+<div className="dropdown-menu" 
+id="dropdown"
+onChange={handleMenuSelect}
+aria-labelledby="dropdownMenuButton"
+>
+{productDrop}
+{designDrop}
+{backingDrop}
+{finishDrop}
+{hardwareDrop}
+</div> */}

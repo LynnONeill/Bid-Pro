@@ -13,6 +13,12 @@ router.route("/test").get(function(req,res){
   res.send("this is a test")
 })
 
+// SQL database calls
+
+router
+  .route("/users")
+  .get()
+
 // Mongo Database calls /////
 router
   .route("/products")
