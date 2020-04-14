@@ -10,6 +10,10 @@ export default {
   getFeatures: function() {
     console.log("getFeatures api call is working")
     return axios.get("/api/features");
+  },
+  getUsers: function() {
+    console.log("getUsers api call is working")
+    return axios.get("/api/users")
   }
 };
 
