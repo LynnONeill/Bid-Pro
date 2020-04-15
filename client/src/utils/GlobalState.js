@@ -10,7 +10,8 @@ const ClientContext = React.createContext({
     city:"",
     state:"",
     zip:"",
-    notes:""
+    notes:"",
+    handleClick: () => {}
   });
 
   export default ClientContext;
