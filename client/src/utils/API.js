@@ -30,13 +30,12 @@ export default {
     console.log ('show all existing clients')
     return axios.get ('/api/client')
 
+  },
   getUsers: function() {
     console.log("getUsers api call is working")
     return axios.get("/api/users")
   }
-
-
-};
+}
 
 
 
