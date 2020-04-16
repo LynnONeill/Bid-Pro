@@ -101,18 +101,35 @@ function Product() {
            }
        }
 
-    const handleFeatureSelect = event => {
+    
+
+       const handleFeatureSelect = function(event) {
         event.preventDefault();
+        console.log(features[4].backing.type)
+        
         console.log("handleFeatureSelect is working!");
-        console.log(event.target.value);
-        console.log(features[0])
+        let featureSelected = event.target.value;
+        console.log(featureSelected);
+        console.log("#5 The selected size is " + selectedSize);
+        let backingArray = []
         for( let i = 0; i < features.length; i++) {
-            if(event.target.value == features[i].backing) {
-                console.log("hi")
-            }
+           if(features[i].backing) {
+               backingArray.push(features[i].backing);
+               }
+            
+           } 
+                
         }
-     
-    }
+        console.log(backingArray)
+
+    
+
+
+   
+// if(((features[i].backing  || {}).type  || {}).featureSelected) {
+//     console.log(features)        
+
+    
 
     return (
         <Container>
