@@ -14,6 +14,10 @@ function Product() {
     const [selectedProduct, setSelectedProduct] = useState();
     const [selectedProductPX, setSelectedProductPX] = useState();
     const [selectedSize, setSelectedSize] = useState();
+    const [backingPrice, setBackingPrice] = useState();
+    const [finishPrice, setFinishPrice] = useState();
+    const [designPrice, setDesignPrice] = useState();
+    const [hardwarePrice, setHardwarePrice] = useState();
 
    
     useEffect(() => {
@@ -115,32 +119,49 @@ function Product() {
        }
     }
 
-
-    const handleFeatureSelect = function(event) {
+// Event listener to handle selection of product features///////////////////////////////////
+    const handleFeatureSelect = function(event, type) {
         event.preventDefault();
-        console.log(features[4].backing.type)
-        
+        console.log(type);
         console.log("handleFeatureSelect is working!");
         let featureSelected = event.target.value;
         console.log(featureSelected);
         console.log("#5 The selected size is " + selectedSize);
-        let backingArray = []
+        let featureTypeArray = []
+        let featurePriceArray = [];
         for( let i = 0; i < features.length; i++) {
-           if(features[i].backing) {
-               backingArray.push(features[i].backing);
+           if(features[i][type]) {
+               featureTypeArray.push(features[i][type]);
+               };
+            }
+        console.log(featureTypeArray)
+
+        for(let j = 0; j < featureTypeArray.length; j++) {
+            if(featureTypeArray[j].type == featureSelected && selectedSize == "Double") {
+                console.log(featureTypeArray[j]);
+                featurePriceArray.push(featureTypeArray[j].price)
+                   };
                }
-            
-           } 
-                
+        console.log(featurePriceArray)
+        let featurePrice = Math.max.apply(Math,featurePriceArray);
+        console.log(featurePrice)
+
+        switch(type) {
+            case "backing":
+                setBackingPrice(featurePrice);
+                break;
+            case "finish":
+                setFinishPrice(featurePrice);
+                break;
+            case "hardware":
+                setHardwarePrice(featurePrice);
+            case "design":
+                setDesignPrice(featurePrice);
+                break;
         }
-        // console.log(backingArray)
-
-    
-
-
-   
-// if(((features[i].backing  || {}).type  || {}).featureSelected) {
-//     console.log(features)        
+    } 
+            
+        
 
     
 
@@ -160,6 +181,10 @@ function Product() {
                 selectedProductPX={selectedProductPX}
                 handleProductSelect={handleProductSelect}
                 handleFeatureSelect={handleFeatureSelect}
+                backingPrice={backingPrice}
+                finishPrice={finishPrice}
+                designPrice={designPrice}
+                hardwarePrice={hardwarePrice}
             />
 
             <div>

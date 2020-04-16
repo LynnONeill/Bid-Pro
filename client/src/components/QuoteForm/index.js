@@ -7,7 +7,7 @@ import QuoteSubmitBtn from "../QuoteSubmitBtn";
 import QuoteProductDropDown from "../QuoteProductDropDown";
 import QuoteFeatureDropDown from "../QuoteFeatureDropDown";
 
-function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleProductSelect, handleFeatureSelect, selectedProductPX}) {
+function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleProductSelect, handleFeatureSelect, selectedProductPX, backingPrice, finishPrice, designPrice, hardwarePrice}) {
 
     return (
         <form>
@@ -27,46 +27,55 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
             <Row className="justify-content-md-center">
                 <Col xs={6} md={6}>
                     <QuoteFeatureDropDown
-                        handleFeatureSelect={handleFeatureSelect}
+                        handleFeatureSelect={(e) =>handleFeatureSelect(e, "design")}
                         designDrop={designDrop}
                         
                      />
                 </Col>
                 <Col xs={3} md={3}>
-                    <QuotePriceField />
+                    <QuotePriceField 
+                        designPrice={designPrice}
+                    />
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs={6} md={6}>
                     <QuoteFeatureDropDown
-                        handleFeatureSelect={handleFeatureSelect}
+                        handleFeatureSelect={(e) =>handleFeatureSelect(e, "backing")}
                         backingDrop={backingDrop} 
                      />
                 </Col>
                 <Col xs={3} md={3}>
-                    <QuotePriceField />
+                    <QuotePriceField 
+                        backingPrice={backingPrice}
+                    />
 
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs={6} md={6}>
                     <QuoteFeatureDropDown
-                        handleFeatureSelect={handleFeatureSelect}
+                        handleFeatureSelect={(e) =>handleFeatureSelect(e, "finish")}
                         finishDrop={finishDrop} 
                      />
                 </Col>
                 <Col xs={3} md={3}>
-                    <QuotePriceField />
+                    <QuotePriceField
+                    finishPrice={finishPrice}
+                    />
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs={6} md={6}>
                     <QuoteFeatureDropDown
+                        handleFeatureSelect={(e) =>handleFeatureSelect(e, "hardware")}
                         hardwareDrop={hardwareDrop} 
                      />
                 </Col>
                 <Col xs={3} md={3}>
-                    <QuotePriceField />
+                    <QuotePriceField 
+                        hardwarePrice={hardwarePrice}
+                    />
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
