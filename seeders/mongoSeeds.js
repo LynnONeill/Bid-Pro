@@ -128,12 +128,14 @@ let featuresSeed = [
     {
         hardware: {
             type: "Lever and Dead Bolt - Venitian Bronze",
+            size: "Single",
             price: 0
         }
     },
     {
         hardware: {
             type: "Lever and Dead Bolt - Antique Brass",
+            size: "Double",
             price: 0,
         }
     },
