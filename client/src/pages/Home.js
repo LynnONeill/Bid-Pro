@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import {Form, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, Button} from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
+import Wrapper from '../components/Wrapper';
+
 function AddClient() {
     return(
+
+      <Wrapper>
+
         <Container fluid>
       
             <div>
@@ -37,6 +42,7 @@ function AddClient() {
           </div>
 
         </ Container >
+        </Wrapper>
     );
 }
 export default AddClient;

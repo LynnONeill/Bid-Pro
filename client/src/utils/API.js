@@ -13,18 +13,18 @@ export default {
   },
   // user calls 
   getUsers: function() {
-    console.log('getUsers api call is workin')
+    //console.log('getUsers api call is workin')
     return axios.get('/api/users');
   },
 
   addUsers: function() {
     console.log('addUsers api call is workin')
-    return axios.post('/api/adduser')
+    return axios.post('/api/adduser');
   },
 
-  deleteUsers: function() {
+  deleteUsers: function(id) {
     console.log('deleteUsers api call is workin')
-    return axios.delete('/api/deleteuser')
+    return axios.delete(`/api/deleteusers/${id}`);
   }
 };
 

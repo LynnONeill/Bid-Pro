@@ -1,10 +1,10 @@
 const db = require("../models/sql_models");
 
 module.exports = {
+    
     // GET route
     getUsers: function(req, res) {
-        console.log("getUsers api request is firing!")
-        db.users.findAll({})
+        db.User.findAll({})
         .then(users => {
             console.log(users)
             res.json(users)
@@ -13,10 +13,11 @@ module.exports = {
             res.status(404).json(err);
         });
     },
+
     // POST route for new user
     addUsers: function(req, res) {
         console.log("addUsers api request is firing!")
-        db.users.create({
+        db.User.create({
             email: req.body.email,
             password: req.body.password,
             isadmin: req.body.isadmin
@@ -25,16 +26,17 @@ module.exports = {
             res.json(users)
         })
     },
+
     // DELETE route for deleting a user
     deleteUsers: function(req,res) {
         console.log('deleteUsers api request is firing')
-        db.users.destroy({
+        db.User.destroy({
             where: {
                 id: req.params.id
             }
         })
-        .then(users => {
-            res.json(users);
+        .then(deleteUsers => {
+            res.json(deleteUsers);
         })
     }
 

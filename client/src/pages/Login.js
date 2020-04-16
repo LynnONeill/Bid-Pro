@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
-
+import Wrapper from '../components/Wrapper';
 
 
 function Login() {
@@ -17,6 +17,7 @@ function Login() {
       loadTest();
 
     return (
+        <Wrapper>
         <div>
           
             <h1 className="text-center">Login Page</h1>
@@ -41,7 +42,7 @@ function Login() {
             <Link to="/Home">Temp link to homepage</Link>
            
         </div>
-        
+        </Wrapper>
     );
 }
 

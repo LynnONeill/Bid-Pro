@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
+import Wrapper from '../components/Wrapper';
 
 
 function Clients() {
     return(
+        <Wrapper>
         <Container fluid>
             <div>
             <h1>Client Page</h1>
@@ -26,9 +28,7 @@ function Clients() {
                  <br></br>
                  <Link to="/Project">Temp link to project page</Link>
         </Container>
-        
-        
-
+        </Wrapper>
     );
 }
 

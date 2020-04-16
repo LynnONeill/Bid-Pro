@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import API from "../utils/API";
+import Wrapper from '../components/Wrapper';
 
 
 function Product() {
@@ -92,6 +93,7 @@ function Product() {
 
 
     return (
+        <Wrapper>
         <Container>
             <Row className="justify-content-md-center">
                 <h1 className="text-center">Product Estimate Page (temp text)</h1>
@@ -198,9 +200,7 @@ function Product() {
             </div>
         </Container>
 
-
-
-
+        </Wrapper>
 
 
     );
