@@ -21,6 +21,6 @@ const SecDoorSchema = new Schema({
 
 const SecDoor = mongoose.model("SecDoor", SecDoorSchema, "SecDoor");
 
-module.exports = SecDoor;
 
+module.exports=SecDoor;
 

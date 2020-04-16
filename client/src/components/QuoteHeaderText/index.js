@@ -1,11 +1,14 @@
 import React from "react";
 
-function QuoteHeaderText() {
+function QuoteHeaderText( {selectedProduct}) {
 
     return (
-        <h1>
-            Temp QuoteHeaderText
-        </h1>
+        <div className="my-2">
+            <h3>
+            {selectedProduct} 
+            </h3>
+        </div>
+       
     )
 };
 

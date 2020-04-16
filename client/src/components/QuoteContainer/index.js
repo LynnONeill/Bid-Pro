@@ -5,13 +5,15 @@ import QuoteHeaderText from "../QuoteHeaderText";
 
 
 
-function QuoteContainer({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleMenuSelect}) {
+function QuoteContainer({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, selectedProduct, selectedProductPX, handleProductSelect, handleFeatureSelect}) {
 
     return (
 
         <div className="jumbotron card-container">
             <Row className="justify-content-md-center">
-                <QuoteHeaderText />
+                <QuoteHeaderText 
+                    selectedProduct={selectedProduct}
+                />
                
             </Row>
             <QuoteForm
@@ -20,7 +22,9 @@ function QuoteContainer({productDrop, designDrop, backingDrop, finishDrop, hardw
                 backingDrop={backingDrop}
                 finishDrop={finishDrop}
                 hardwareDrop={hardwareDrop}
-                handleMenuSelect={handleMenuSelect}
+                selectedProductPX={selectedProductPX}
+                handleProductSelect={handleProductSelect}
+                handleFeatureSelect={handleFeatureSelect}
             />
            
 

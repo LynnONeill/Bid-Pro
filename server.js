@@ -21,15 +21,15 @@ const msg = {
 }
 
 
-sgMail
-  .send(msg)
-  .then(() => {}, error => {
-    console.error(error);
+// sgMail
+//   .send(msg)
+//   .then(() => {}, error => {
+//     console.error(error);
 
-    if (error.response) {
-      console.error(error.response.body)
-    }
-   });
+//     if (error.response) {
+//       console.error(error.response.body)
+//     }
+//    });
 
 
 

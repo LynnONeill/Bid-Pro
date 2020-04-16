@@ -4,27 +4,32 @@ import Row from "react-bootstrap/Row";
 import QuotePriceField from "../QuotePriceField";
 import QuoteTotal from "../QuoteTotal";
 import QuoteSubmitBtn from "../QuoteSubmitBtn";
-import QuoteDropDown from "../QuoteDropDown";
+import QuoteProductDropDown from "../QuoteProductDropDown";
+import QuoteFeatureDropDown from "../QuoteFeatureDropDown";
 
-function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleMenuSelect}) {
+function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleProductSelect, handleFeatureSelect, selectedProductPX}) {
 
     return (
         <form>
              <Row className="justify-content-md-center">
-                <Col xs={3} md={3}>
-                    <QuoteDropDown
-                        handleMenuSelect={handleMenuSelect}
+                <Col xs={6} md={6}>
+                    <QuoteProductDropDown
+                        handleProductSelect={handleProductSelect}
                         productDrop={productDrop} 
                      />
                 </Col>
                 <Col xs={3} md={3}>
-                    <QuotePriceField />
+                    <QuotePriceField 
+                        selectedProductPX={selectedProductPX}
+                    />
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={3} md={3}>
-                    <QuoteDropDown
-                        designDrop={designDrop} 
+                <Col xs={6} md={6}>
+                    <QuoteFeatureDropDown
+                        handleFeatureSelect={handleFeatureSelect}
+                        designDrop={designDrop}
+                        
                      />
                 </Col>
                 <Col xs={3} md={3}>
@@ -32,8 +37,9 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={3} md={3}>
-                    <QuoteDropDown
+                <Col xs={6} md={6}>
+                    <QuoteFeatureDropDown
+                        handleFeatureSelect={handleFeatureSelect}
                         backingDrop={backingDrop} 
                      />
                 </Col>
@@ -43,8 +49,9 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={3} md={3}>
-                    <QuoteDropDown
+                <Col xs={6} md={6}>
+                    <QuoteFeatureDropDown
+                        handleFeatureSelect={handleFeatureSelect}
                         finishDrop={finishDrop} 
                      />
                 </Col>
@@ -53,8 +60,8 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={3} md={3}>
-                    <QuoteDropDown
+                <Col xs={6} md={6}>
+                    <QuoteFeatureDropDown
                         hardwareDrop={hardwareDrop} 
                      />
                 </Col>
@@ -63,7 +70,8 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={3} md={3}>
+                <Col xs={6
+                } md={6}>
                     <QuoteTotal />
                 </Col>
             </Row>
