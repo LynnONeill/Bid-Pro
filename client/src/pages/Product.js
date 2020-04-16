@@ -13,6 +13,7 @@ function Product() {
     const [currentProduct, setCurrentProduct] = useState();
     const [selectedProduct, setSelectedProduct] = useState();
     const [selectedProductPX, setSelectedProductPX] = useState();
+    const [selectedSize, setSelectedSize] = useState();
 
    
     useEffect(() => {
@@ -40,6 +41,7 @@ function Product() {
     console.log(features);
     console.log(selectedProduct);
     console.log(selectedProductPX);
+    console.log(selectedSize);
 
 
 
@@ -69,7 +71,7 @@ function Product() {
                 ans = ""
             }else{
                for ( let i = 0; i < featureState.length; i++) {
-                   if (featureState[i][featureType]) {
+                   if (featureState[i][featureType] && featureState[i][featureType].size == selectedSize) {
                        console.log(featureType)
                        ans.push( <option
                                key={featureState[i]._id}
@@ -86,6 +88,7 @@ function Product() {
 
     const handleProductSelect = event => {
        event.preventDefault();
+       let sizeSelected;
        console.log("handleProductSelect is working")
        console.log(event.target.value)
        for ( let i = 0; i < products.length; i++) {
@@ -97,27 +100,48 @@ function Product() {
             setSelectedProductPX(curProdPX);
             console.log(selectedProduct)
             console.log(selectedProductPX);
+            
+            if (selectedProduct === "Single Security Door") {
+                sizeSelected = "Single";
+                setSelectedSize(sizeSelected);
+                console.log("The size selected shoule be single here: " + selectedSize)
+                }
+            if (selectedProduct === "Double Security Door" || selectedProduct === "French Security Door") {
+                sizeSelected = "Double";
+                setSelectedSize(sizeSelected);
+                console.log("The size selected should be double here: " + selectedSize);
             }
-           }
        }
-
-    const handleFeatureSelect = event => {
-        event.preventDefault();
-        console.log("handleFeatureSelect is working!");
-        console.log(event.target.value);
-        console.log(features[0])
-        for( let i = 0; i < features.length; i++) {
-            if(event.target.value == features[i].backing) {
-                console.log("hi")
-            }
-        }
-     
+    }
     }
 
 
-  
-    
+    const handleFeatureSelect = function(event) {
+        event.preventDefault();
+        console.log(features[4].backing.type)
+        
+        console.log("handleFeatureSelect is working!");
+        let featureSelected = event.target.value;
+        console.log(featureSelected);
+        console.log("#5 The selected size is " + selectedSize);
+        let backingObj = {}
+        for( let i = 0; i < features.length; i++) {
+           if(features[i].backing) {
+                  
+               }
+               backingArray.push(features[i].backing);
             
+           } 
+                
+        }
+        // console.log(backingArray[0].type)
+
+    }
+
+
+   
+// if(((features[i].backing  || {}).type  || {}).featureSelected) {
+//     console.log(features)        
 
 
     return (
@@ -162,15 +186,3 @@ export default Product;
 
 
             
-// for ( let i = 0; i < featureState.length; i++) {
-//     if (featureState[i][featureType]) {
-//         console.log(featureType)
-//         ans.push( <a
-//                 key={featureState[i]._id}
-//                 className="dropdown-item"
-//                 value={featureState[i][featureType].type}
-//                 href="#">
-//                     {featureState[i][featureType].type}
-//                 </a>)
-//     } 
-// }
