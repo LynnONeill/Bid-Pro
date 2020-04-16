@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Dropdown from "react-bootstrap/Dropdown";
-
 import Row from "react-bootstrap/Row";
 import QuoteContainer from "../components/QuoteContainer";
 import API from "../utils/API";
@@ -13,8 +11,9 @@ function Product() {
     const [products, setProducts] = useState([]);
     const [features, setFeatures] = useState({});
     const [currentProduct, setCurrentProduct] = useState();
+    const [selectedProduct, setSelectedProduct] = useState();
+    const [selectedProductPX, setSelectedProductPX] = useState();
 
-    let buildProduct = {};
    
     useEffect(() => {
         // Api call to get product and feature data //
@@ -32,16 +31,15 @@ function Product() {
                     .then(res => {
                         setFeatures(res.data);
                     })
-            }
-            )
+            })
             .catch(err => console.log(err))
     }, []);
 
 
-    console.log("below should be array of products object")
     console.log(products);
-    console.log("below should be features object")
     console.log(features);
+    console.log(selectedProduct);
+    console.log(selectedProductPX);
 
 
 
@@ -61,18 +59,16 @@ function Product() {
                                 </option>
                         })
             }
-            return ans
+            return ans;
         }
        
     const renderFeatureDrop = (featureState, featureType) => {
         console.log(featureState)
-        let price;
         let ans = [];
             if (featureState.length === 0) {
                 ans = ""
             }else{
-               console.log("random")
-               for ( let i = 0, j = 1; i < featureState.length; i++, j++) {
+               for ( let i = 0; i < featureState.length; i++) {
                    if (featureState[i][featureType]) {
                        console.log(featureType)
                        ans.push( <option
@@ -88,18 +84,46 @@ function Product() {
             return ans;
     }
 
-    const handleMenuSelect = event => {
+    const handleProductSelect = event => {
        event.preventDefault();
-       console.log("handleMenuSelect is working")
+       console.log("handleProductSelect is working")
        console.log(event.target.value)
+       for ( let i = 0; i < products.length; i++) {
+           console.log(products[0].products[0].type)
+        if (event.target.value == products[i].products[0].type) {
+            let curProd = event.target.value;
+            setSelectedProduct(curProd);
+            let curProdPX = products[i].products[0].price
+            setSelectedProductPX(curProdPX);
+            console.log(selectedProduct)
+            console.log(selectedProductPX);
+            }
+           }
+       }
+
+    const handleFeatureSelect = event => {
+        event.preventDefault();
+        console.log("handleFeatureSelect is working!");
+        console.log(event.target.value);
+        console.log(features[0])
+        for( let i = 0; i < features.length; i++) {
+            if(event.target.value == features[i].backing) {
+                console.log("hi")
+            }
+        }
+     
     }
+
+
+  
+    
             
 
 
     return (
         <Container>
             <Row className="justify-content-md-center">
-                <h1 className="text-center">Product Estimate Page (temp text)</h1>
+                <h1 className="text-center">Signature IronWorks</h1>
             </Row>
 
             <QuoteContainer 
@@ -108,7 +132,11 @@ function Product() {
                 backingDrop={renderFeatureDrop(features, "backing")}
                 finishDrop={renderFeatureDrop(features, "finish")}
                 hardwareDrop={renderFeatureDrop(features, "hardware")}
-                handleMenuSelect={handleMenuSelect}
+                selectedProduct={selectedProduct}
+                selectedProductPX={selectedProductPX}
+                handleProductSelect={handleProductSelect}
+                handleFeatureSelect={handleFeatureSelect}
+
             />
 
             <div>

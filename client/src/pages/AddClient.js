@@ -1,10 +1,16 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import {Form, Col, FormControl, FormGroup, ControlLabel, Button} from "react-bootstrap";
 
 
 function AddClient() {
+    const [clients, setClients] = useState ([]);
+
+    let clientList;
+    //     useEffect(
+
+
     return(
         
         <div>
