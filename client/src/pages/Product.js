@@ -112,7 +112,7 @@ function Product() {
                 console.log("The size selected should be double here: " + selectedSize);
             }
        }
-    }
+       }
     }
 
 
@@ -124,19 +124,16 @@ function Product() {
         let featureSelected = event.target.value;
         console.log(featureSelected);
         console.log("#5 The selected size is " + selectedSize);
-        let backingObj = {}
+        let backingArray = {}
         for( let i = 0; i < features.length; i++) {
            if(features[i].backing) {
+               backingArray.push(features[i].backing);
                   
                }
-               backingArray.push(features[i].backing);
-            
            } 
-                
         }
         // console.log(backingArray[0].type)
-
-    }
+    
 
 
    
@@ -173,12 +170,6 @@ function Product() {
                 <Link to="/Project">Temp link to project page</Link>
             </div>
         </Container>
-
-
-
-
-
-
     );
 }
 
