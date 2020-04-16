@@ -11,7 +11,7 @@ function QuoteSubmitBtn(){
                     type="button"
                     // onClick={props.handleClick}
                 >
-                    Submit Quote
+                    Add Product
                 </button>
         </Row>
     )

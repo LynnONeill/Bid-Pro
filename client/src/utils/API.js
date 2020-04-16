@@ -29,8 +29,9 @@ export default {
   getAllClients: function (){
     console.log ('show all existing clients')
     return axios.get ('/api/client')
+  },
 
-  getUsers: function() {
+  getUsers: function () {
     console.log("getUsers api call is working")
     return axios.get("/api/users")
   }

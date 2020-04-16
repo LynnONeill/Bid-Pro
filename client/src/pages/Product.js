@@ -114,12 +114,6 @@ function Product() {
      
     }
 
-
-  
-    
-            
-
-
     return (
         <Container>
             <Row className="justify-content-md-center">
@@ -136,7 +130,6 @@ function Product() {
                 selectedProductPX={selectedProductPX}
                 handleProductSelect={handleProductSelect}
                 handleFeatureSelect={handleFeatureSelect}
-
             />
 
             <div>
@@ -149,12 +142,6 @@ function Product() {
                 <Link to="/Project">Temp link to project page</Link>
             </div>
         </Container>
-
-
-
-
-
-
     );
 }
 
@@ -162,15 +149,3 @@ export default Product;
 
 
             
-// for ( let i = 0; i < featureState.length; i++) {
-//     if (featureState[i][featureType]) {
-//         console.log(featureType)
-//         ans.push( <a
-//                 key={featureState[i]._id}
-//                 className="dropdown-item"
-//                 value={featureState[i][featureType].type}
-//                 href="#">
-//                     {featureState[i][featureType].type}
-//                 </a>)
-//     } 
-// }
