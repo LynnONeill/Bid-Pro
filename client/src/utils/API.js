@@ -31,13 +31,12 @@ export default {
     return axios.get ('/api/client')
   },
 
-  getUsers: function () {
+
+  getUsers: function() {
     console.log("getUsers api call is working")
     return axios.get("/api/users")
   }
-
-
-};
+}
 
 
 
