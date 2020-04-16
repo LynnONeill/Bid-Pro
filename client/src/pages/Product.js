@@ -13,6 +13,7 @@ function Product() {
     const [currentProduct, setCurrentProduct] = useState();
     const [selectedProduct, setSelectedProduct] = useState();
     const [selectedProductPX, setSelectedProductPX] = useState();
+    const [selectedSize, setSelectedSize] = useState();
 
    
     useEffect(() => {
@@ -133,7 +134,7 @@ function Product() {
            } 
                 
         }
-        console.log(backingArray)
+        // console.log(backingArray)
 
     
 
