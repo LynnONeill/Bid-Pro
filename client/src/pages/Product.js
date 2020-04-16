@@ -85,21 +85,34 @@ function Product() {
     }
 
     const handleProductSelect = event => {
-       event.preventDefault();
-       console.log("handleProductSelect is working")
-       console.log(event.target.value)
-       for ( let i = 0; i < products.length; i++) {
-           console.log(products[0].products[0].type)
-        if (event.target.value == products[i].products[0].type) {
-            let curProd = event.target.value;
-            setSelectedProduct(curProd);
-            let curProdPX = products[i].products[0].price
-            setSelectedProductPX(curProdPX);
-            console.log(selectedProduct)
-            console.log(selectedProductPX);
-            }
-           }
-       }
+        event.preventDefault();
+        let sizeSelected;
+        console.log("handleProductSelect is working")
+        console.log(event.target.value)
+        for ( let i = 0; i < products.length; i++) {
+            console.log(products[0].products[0].type)
+         if (event.target.value == products[i].products[0].type) {
+             let curProd = event.target.value;
+             setSelectedProduct(curProd);
+             let curProdPX = products[i].products[0].price
+             setSelectedProductPX(curProdPX);
+             console.log(selectedProduct)
+             console.log(selectedProductPX);
+             
+             if (selectedProduct === "Single Security Door") {
+                 sizeSelected = "Single";
+                 setSelectedSize(sizeSelected);
+                 console.log("The size selected shoule be single here: " + selectedSize)
+                 }
+             if (selectedProduct === "Double Security Door" || selectedProduct === "French Security Door") {
+                 sizeSelected = "Double";
+                 setSelectedSize(sizeSelected);
+                 console.log("The size selected should be double here: " + selectedSize);
+             }
+        }
+     }
+     }
+ 
 
     
 
