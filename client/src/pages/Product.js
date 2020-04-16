@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import DropDown from "../components/DropDown";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+import QuoteContainer from "../components/QuoteContainer";
 import API from "../utils/API";
 
 
@@ -12,10 +10,11 @@ function Product() {
 
     const [products, setProducts] = useState([]);
     const [features, setFeatures] = useState({});
+    const [currentProduct, setCurrentProduct] = useState();
+    const [selectedProduct, setSelectedProduct] = useState();
+    const [selectedProductPX, setSelectedProductPX] = useState();
 
-    
    
-    let menuItems;
     useEffect(() => {
         // Api call to get product and feature data //
         API.getProducts()
@@ -26,25 +25,21 @@ function Product() {
                 setProducts(res.data)
                     console.log("test")
                     console.log(products)
-               
-
 
             // Api call to get product feature data //
                 API.getFeatures()
                     .then(res => {
                         setFeatures(res.data);
                     })
-            }
-            )
+            })
             .catch(err => console.log(err))
-           
     }, []);
 
 
-    console.log("below should be array of products object")
     console.log(products);
-    console.log("below should be features object")
     console.log(features);
+    console.log(selectedProduct);
+    console.log(selectedProductPX);
 
 
 
@@ -55,125 +50,94 @@ function Product() {
                 ans = ""
             }else{
                  ans =  product.map((product)=>{
-                        return <a
+                        return <option
                                 key={product._id}
                                 className="dropdown-item"
-                                href="#">
+                                value={product.products[0].type}
+                                >
                                 {product.products[0].type}
-                            </a>
+                                </option>
                         })
             }
-            return ans
+            return ans;
         }
        
-    // const renderFeatureDrop = (featureState, featureType) => {
+    const renderFeatureDrop = (featureState, featureType) => {
+        console.log(featureState)
+        let ans = [];
+            if (featureState.length === 0) {
+                ans = ""
+            }else{
+               for ( let i = 0; i < featureState.length; i++) {
+                   if (featureState[i][featureType]) {
+                       console.log(featureType)
+                       ans.push( <option
+                               key={featureState[i]._id}
+                               className="dropdown-item"
+                               value={featureState[i][featureType].type}
+                               >
+                                {featureState[i][featureType].type}
+                               </option>)
+                   } 
+               }
+            }
+            return ans;
+    }
 
-    //     let ans;
-    //         if (featureState.length === 0) {
-    //             ans = ""
-    //         }else{
-    //            for ( let i = 0; i < featureState.length; i++) {
-    //                if (featureState[i].type == featureType) {
-    //                ans = featureState.map((el) => {
-    //                    return <a
-    //                            key={featureState._id}
-    //                            className="dropdown-item"
-    //                            href="#">
-    //                                {el.type}
-    //                            </a>
-    //                })
-    //                }
-    //            }
-    //         }
-    // }
+    const handleProductSelect = event => {
+       event.preventDefault();
+       console.log("handleProductSelect is working")
+       console.log(event.target.value)
+       for ( let i = 0; i < products.length; i++) {
+           console.log(products[0].products[0].type)
+        if (event.target.value == products[i].products[0].type) {
+            let curProd = event.target.value;
+            setSelectedProduct(curProd);
+            let curProdPX = products[i].products[0].price
+            setSelectedProductPX(curProdPX);
+            console.log(selectedProduct)
+            console.log(selectedProductPX);
+            }
+           }
+       }
+
+    const handleFeatureSelect = event => {
+        event.preventDefault();
+        console.log("handleFeatureSelect is working!");
+        console.log(event.target.value);
+        console.log(features[0])
+        for( let i = 0; i < features.length; i++) {
+            if(event.target.value == features[i].backing) {
+                console.log("hi")
+            }
+        }
+     
+    }
+
+
+  
+    
             
 
 
     return (
         <Container>
             <Row className="justify-content-md-center">
-                <h1 className="text-center">Product Estimate Page (temp text)</h1>
+                <h1 className="text-center">Signature IronWorks</h1>
             </Row>
 
-            <DropDown
-               products={renderProductDrop(products)}
+            <QuoteContainer 
+                productDrop={renderProductDrop(products)}
+                designDrop={renderFeatureDrop(features, "design")}
+                backingDrop={renderFeatureDrop(features, "backing")}
+                finishDrop={renderFeatureDrop(features, "finish")}
+                hardwareDrop={renderFeatureDrop(features, "hardware")}
+                selectedProduct={selectedProduct}
+                selectedProductPX={selectedProductPX}
+                handleProductSelect={handleProductSelect}
+                handleFeatureSelect={handleFeatureSelect}
+
             />
-            {/* <DropDown
-                backing={renderFeatureDrop(features, "backing")}
-            /> */}
-            <br></br>
-            {/* Stack the columns on mobile by making one full-width and the other half-width */}
-            <Container className="justify-content-md-center">
-                <Container className="border border-secondary rounded-lg w-75">
-                    <Row className="justify-content-md-center my-4">
-                        <Col xs={3} md={3}>
-                            <span>
-                                Style Number Here
-                </span>
-                        </Col>
-                        <Col xs={3} md={3}>
-                            <span className="block-example border border-light p-2">
-                                Base Price Here
-                    </span>
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-md-center my-4">
-                        <Col xs={3} md={3}>
-                            <span>
-                                Backing Choice Here
-                    </span>
-                        </Col>
-                        <Col xs={3} md={3}>
-                            <span className="block-example border border-light p-2">
-                                $
-                </span>
-                        </Col>
-                    </Row >
-                    <Row className="justify-content-md-center my-4">
-                        <Col xs={3} md={3}>
-                            <span>
-                                Finish Choice Here
-                </span>
-                        </Col>
-                        <Col xs={3} md={3}>
-                            <span className="block-example border border-light p-2">
-                                $
-                </span>
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-md-center mb-4">
-                        <Col xs={3} md={3}>
-                            <span>
-                                Hardware Choice Here
-                </span>
-                        </Col>
-                        <Col xs={3} md={3}>
-                            <span className="block-example border border-light p-2">
-                                $
-                    </span>
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-md-center mb-4">
-                        <Col xs={8} md={3}>
-                            <span>
-                                Total:
-                </span>
-                        </Col>
-
-                    </Row >
-                    <Row className="justify-content-md-center mb-4">
-                        <Button variant="warning" size="lg" >Submit</Button>
-                    </Row>
-                </Container>
-
-            </Container>
-
-
-
-
-            {/* Columns are always 50% wide, on mobile and desktop */}
-
-
 
             <div>
                 <Link to="/Login">Temp link back to Login page</Link>
@@ -197,3 +161,16 @@ function Product() {
 export default Product;
 
 
+            
+// for ( let i = 0; i < featureState.length; i++) {
+//     if (featureState[i][featureType]) {
+//         console.log(featureType)
+//         ans.push( <a
+//                 key={featureState[i]._id}
+//                 className="dropdown-item"
+//                 value={featureState[i][featureType].type}
+//                 href="#">
+//                     {featureState[i][featureType].type}
+//                 </a>)
+//     } 
+// }

@@ -4,11 +4,15 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Client from "./pages/Client";
 import AddClient from "./pages/AddClient";
+import Admin from "./pages/Admin";
 import Project from "./pages/Project";
 import Product from "./pages/Product";
 import Nav from "./components/Nav";
 
 function App() {
+
+
+  
   return (
     <Router>
       <div>
@@ -22,6 +26,9 @@ function App() {
           </Route>
           <Route exact path={"/client"}>
             <Client />
+          </Route>
+          <Route exact path={"/admin"}>
+            <Admin />
           </Route>
           <Route exact path={"/addClient"}>
             <AddClient />
