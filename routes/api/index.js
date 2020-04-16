@@ -5,5 +5,5 @@ const clientRoute = require ("../api/clientroute");
 
 // Bid routes
 router.use("/", apiRoutes);
-router.use("/client",clientRoute);
+router.use("/",clientRoute);
 module.exports = router;

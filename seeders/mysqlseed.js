@@ -1,5 +1,5 @@
 const db = require("../models/sql_models");
-const customers = [
+const Clients = [
     { name:"Joey Tribiani",
     businessName: null,
      phoneNumber:222,
@@ -75,11 +75,11 @@ const customers = [
 //          createdAt:new Date(), 
 //          updatedAt:new Date(), 
 // });
-async function insertCustomers(){
-    const createdcustomers = customers.map( customer => db.Customer.create(customer))
-    await Promise.all(createdcustomers)
+async function insertClients(){
+    const createdClients = Clients.map( Client => db.Client.create(Client))
+    await Promise.all(createdClients)
 };
-insertCustomers()
+insertClients()
 // insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Joey Tribiani", null, "5555555555", "joey@test.com", "a", "b", "c", "d", 6, "f", NOW(), NOW() );
 // insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Rachel Green", null, "5555555555", "rachel@test.com",  "a", "b", "c", "d", 5, "f", NOW(), NOW());
 // insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Ross Geller", null, "5555555555", "ross@test.com",  "a", "b", "c", "d", 4, "f", NOW(), NOW());

@@ -8,7 +8,7 @@ function AddClient() {
     const [clients, setClients] = useState ([]);
 
     let clientList;
-        useEffect(())
+    //     useEffect(
 
 
     return(
