@@ -6,32 +6,53 @@ import API from '../utils/API';
 import Wrapper from '../components/Wrapper';
 
 function Admin() {
+    // grab users from db
     const [users, setUsers] = useState([]);
+    
+    // add new user
+    const initialForm = {email: '', password: '', isadmin: false}
+    const  [newUser, setNewUser] = useState(initialForm);
+    
     
     useEffect(() => { 
         // api call to retrieve users
         API.getUsers()
             .then(res => {
-                console.log('users from db')
-                console.log(res.data)
-
                 setUsers(res.data)
-                    //console.log(users)
             })
             .catch(err => console.log(err))
 
     }, []);
 
+    // add user functions
+    const handleInputChange = event => {
+        if (typeof event === 'boolean') {
+            setNewUser({ ...newUser, isadmin: event })
+            return
+        }
+        const { name, value } = event.target
+        console.log(name)
+        console.log(value)
+        setNewUser({ ...newUser, [name]: value })
+      }
+
+    const addUser = (event) => {
+        console.log('LOGGING')
+        console.log(newUser)
+        API.addUsers(newUser)
+        .then(res => {
+            console.log(res)
+        })
+    }    
+
+    // delete users
     const deleteUser = (id) => {
-        console.log('click')
         API.deleteUsers(id)
         .then (res => {
-            console.log(res.data)
             let filterusers = users.filter(user => user.id !== id)
             setUsers(filterusers)
         })  
     };
-
 
 
     return(
@@ -46,37 +67,55 @@ function Admin() {
             <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control 
+                    type="email" 
+                    placeholder="Enter email" 
+                    value={newUser.email}
+                    onChange={handleInputChange}
+                    name="email"
+                     />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control 
+                        type="password" 
+                        placeholder="Password" 
+                        value={newUser.password} 
+                        onChange={handleInputChange}
+                        name='password'
+                        />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Is Admin?</Form.Label>
-                <ToggleButtonGroup type="radio" name="options" defaultValue={false}>
-                    <ToggleButton value={true}>Yes</ToggleButton>
-                    <ToggleButton value={false}>No</ToggleButton>
-                </ToggleButtonGroup>
+                    <Form.Label>Is Admin?</Form.Label>
+                    <ToggleButtonGroup type="radio" defaultValue={newUser.isadmin} onChange={handleInputChange} name='isadmin'>
+                        <ToggleButton value={true}>Yes</ToggleButton>
+                        <ToggleButton value={false}>No</ToggleButton>
+                    </ToggleButtonGroup>
                 </Form.Group>
             </Form.Row>
 
-            <Button variant="primary" type="submit" >
-                Submit
+            <Button variant="primary" type="button" onClick={() => addUser()}>
+                Add User
             </Button>
      
         </form>
 
         <Container fluid>
             <h3>Current Users</h3>
+            <Row className="justify-content-md-center my-4 adminTable">
+                <Col>Email</Col>
+                <Col>Password</Col>
+                <Col>Is Admin</Col>
+                <Col>Remove</Col>
+            </Row>
             {users.map(users => (
-                <Row className="justify-content-md-center my-4">
-                    <Col>Email: {users.email}</Col>
-                    <Col>Password: {users.password}</Col>
-                    <Col>Is Admin?: {users.isadmin}</Col>
-                    <button type="button" value="delete" onClick={() => deleteUser(users.id)}>Delete</button>
+                <Row className="justify-content-md-center my-4 dbUsers">
+                    <Col>{users.email}</Col>
+                    <Col>{users.password}</Col>
+                    <Col>{users.isadmin.toString()}</Col>
+                    <Button type="button" value="delete" onClick={() => deleteUser(users.id)}>Delete</Button>
                 </Row>
             ))}
 

@@ -11,15 +11,16 @@ export default {
     console.log("getFeatures api call is working")
     return axios.get("/api/features");
   },
+
   // user calls 
   getUsers: function() {
     //console.log('getUsers api call is workin')
     return axios.get('/api/users');
   },
 
-  addUsers: function() {
+  addUsers: function(user) {
     console.log('addUsers api call is workin')
-    return axios.post('/api/adduser');
+    return axios.post('/api/addusers', user);
   },
 
   deleteUsers: function(id) {

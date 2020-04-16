@@ -32,8 +32,8 @@ router
   .delete(sequelizeController.deleteUsers)
 
 router 
-  .route('/adduser') 
-  .delete(sequelizeController.addUsers)  
+  .route('/addusers') 
+  .post(sequelizeController.addUsers)  
 
 
 module.exports = router;

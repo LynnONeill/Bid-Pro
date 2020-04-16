@@ -14,7 +14,7 @@ body {
 .wrapper {
     display: block;
     position: relative;
-    width: 90%;
+    width: 80%;
     margin: 80px auto;
 }
 
@@ -33,6 +33,7 @@ h2, h3 {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 800;
+    margin: 30px auto 15px auto;
 }
 
 p {
@@ -53,4 +54,16 @@ label {
     line-height: 1em;
     font-size: 1em;
     margin: 10px 0;
+}
+
+/* ADMIN PAGE */
+.adminTable {
+    background-color: #ccc;
+    text-align: center;
+    padding: 1em;
+}
+
+.dbUsers {
+    border-bottom: 1px solid black;
+    padding: 0px 0px 20px 0;
 }
