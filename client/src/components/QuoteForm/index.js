@@ -7,7 +7,7 @@ import QuoteSubmitBtn from "../QuoteSubmitBtn";
 import QuoteProductDropDown from "../QuoteProductDropDown";
 import QuoteFeatureDropDown from "../QuoteFeatureDropDown";
 
-function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleProductSelect, handleFeatureSelect, selectedProductPX, backingPrice, finishPrice, designPrice, hardwarePrice}) {
+function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleProductSelect, handleFeatureSelect, selectedProductPX, backingPrice, finishPrice, designPrice, hardwarePrice, totalPrice, addProduct}) {
 
     return (
         <form>
@@ -81,11 +81,15 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
             <Row className="justify-content-md-center">
                 <Col xs={6
                 } md={6}>
-                    <QuoteTotal />
+                    <QuoteTotal 
+                        totalPrice={totalPrice}
+                    />
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <QuoteSubmitBtn />
+                <QuoteSubmitBtn 
+                    addProduct={addProduct}
+                />
             </Row>
 
 

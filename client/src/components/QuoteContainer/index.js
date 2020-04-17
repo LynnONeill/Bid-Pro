@@ -5,7 +5,7 @@ import QuoteHeaderText from "../QuoteHeaderText";
 
 
 
-function QuoteContainer({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, selectedProduct, selectedProductPX, handleProductSelect, handleFeatureSelect, backingPrice, finishPrice, designPrice, hardwarePrice}) {
+function QuoteContainer({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, selectedProduct, selectedProductPX, handleProductSelect, handleFeatureSelect, backingPrice, finishPrice, designPrice, hardwarePrice, totalPrice, addProduct}) {
 
     return (
 
@@ -29,6 +29,8 @@ function QuoteContainer({productDrop, designDrop, backingDrop, finishDrop, hardw
                 finishPrice={finishPrice}
                 designPrice={designPrice}
                 hardwarePrice={hardwarePrice}
+                totalPrice={totalPrice}
+                addProduct={addProduct}
             />
            
 

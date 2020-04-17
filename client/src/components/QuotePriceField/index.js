@@ -6,9 +6,9 @@ function QuotePriceField( {selectedProductPX, backingPrice, finishPrice, designP
        <div  
         className="block-example bg-light border border-light my-2 p-2">
         ${selectedProductPX}
+        {designPrice}
         {backingPrice}
         {finishPrice}
-        {designPrice}
         {hardwarePrice}
         
         </div> 
