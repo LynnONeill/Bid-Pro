@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import {Form, Col, Button} from "react-bootstrap";
@@ -6,6 +6,12 @@ import Wrapper from '../components/Wrapper';
 
 
 function AddClient() {
+    const [clients, setClients] = useState ([]);
+
+    let clientList;
+    //     useEffect(
+
+
     return(
         <Wrapper>
         <div>

@@ -1,9 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import {Form, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, Button} from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import Wrapper from '../components/Wrapper';
+import ClientContext from "../utils/GlobalState"
+import API from "../utils/API";
+import React, { useEffect, useState, useContext } from "react";
+import ClientList from "../components/ClientList";
 
 function AddClient() {
     return(
@@ -37,10 +40,6 @@ function AddClient() {
              <Link to="/Product">Temp link to Product Page</Link>
              <br></br>
              <Link to="/AddClient">Temp link to Add Client page</Link>
-             <br></br>
-             <Link to="/Admin">Temp link to Admin page</Link>        
-          </div>
-
         </ Container >
         </Wrapper>
     );

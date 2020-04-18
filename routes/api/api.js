@@ -13,11 +13,17 @@ router.route("/test").get(function(req,res){
   res.send("this is a test")
 })
 
-// Mongo Database calls //
+// SQL database calls
+
+
+// Mongo Database calls /////
+
+//api call to pull all base products
 router
   .route("/products")
   .get(mongoController.findProducts)
 
+//api call to pull all available features///
 router
   .route("/features")
   .get(mongoController.findFeatures)
@@ -26,6 +32,16 @@ router
  router
   .route('/users')
   .get(sequelizeController.getUsers)
+ //api call to create a new project 
+router
+  .route("/project")
+  .post(mongoController.createProject)
+
+//api call to add new product quote to existing project
+router
+  .route("/addProduct/:projectID")
+  .post(mongoController.addProduct)
+
 
 router 
   .route('/deleteusers/:id') 

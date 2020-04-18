@@ -8,7 +8,8 @@
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "seeds1": "node seeders/mongoSeeds.js",
+    "seeds": "node seeders/mysqlseed.js && npm run seeds2",
+    "seeds2":"node seeders/mongoSeeds.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
@@ -20,15 +21,19 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.0.0",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
+    "jspdf-react": "^1.0.11",
     "mongoose": "^5.9.7",
     "mysql2": "^2.1.0",
     "passport": "^0.4.1",
     "react-bootstrap": "^1.0.0",
+    "sendgrid": "^5.2.3",
     "sequelize": "^5.21.6"
   }
 }

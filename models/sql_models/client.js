@@ -1,6 +1,6 @@
 // Creating our customer model
 module.exports = function (sequelize, DataTypes) {
-  var Customer = sequelize.define("Customer", {
+  var Client = sequelize.define("Client", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
     },
     phoneNumber: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
    
@@ -51,6 +51,6 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
 
-  return Customer;
+  return Client;
 };
 
