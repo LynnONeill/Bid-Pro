@@ -23,6 +23,12 @@ export default {
     return axios.post('/api/addusers', user);
   },
 
+  // validate user for login
+  valUsers: function(user) {
+    console.log('valUsers api call is working')
+    return axios.post('/api/valusers');
+  },
+
   deleteUsers: function(id) {
     console.log('deleteUsers api call is workin')
     return axios.delete(`/api/deleteusers/${id}`);

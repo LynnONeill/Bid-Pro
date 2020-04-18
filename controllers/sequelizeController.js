@@ -2,7 +2,7 @@ const db = require("../models/sql_models");
 
 module.exports = {
     
-    // GET route
+    // GET route for retrieving all users
     getUsers: function(req, res) {
         db.User.findAll({})
         .then(users => {
@@ -25,6 +25,22 @@ module.exports = {
         .then(users => {
             return res.json(users)
         })
+    },
+
+    // POST route for authenticating login
+    valUsers: function(req,res) {
+        console.log('valUsers api request is firing')
+        console.log(req)
+        db.User.findOne({
+            email:  //req.email...
+            password: //
+        })
+        .then(users => {
+            res.json(users)
+        })
+        .catch(err => {
+            res.status(404).json(err);
+        });
     },
 
     // DELETE route for deleting a user

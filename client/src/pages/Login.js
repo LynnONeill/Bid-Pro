@@ -7,14 +7,25 @@ import Wrapper from '../components/Wrapper';
 function Login() {
     
 
-    function loadTest() {
-        API.test()
-          .then(res => 
-            console.log(res)
-          )
-          .catch(err => console.log(err));
-      };
-      loadTest();
+    // function loadTest() {
+    //     API.test()
+    //       .then(res => 
+    //         console.log(res)
+    //       )
+    //       .catch(err => console.log(err));
+    //   };
+    //   loadTest();
+
+      function validateUser(email,password) {
+          console.log('click')
+          API.valUsers()
+          .then(function() {
+            
+            window.location.replace('/home')
+          }  
+        )
+        .catch(err => console.log(err))
+      }
 
     return (
         <Wrapper>
@@ -32,8 +43,9 @@ function Login() {
                 </div>
                
                 <button 
-                    type="submit" 
-                    className="btn btn-primary">
+                    type="button" 
+                    className="btn btn-primary"
+                    onClick={() => validateUser()}>
                         Log In
                 </button>
                
