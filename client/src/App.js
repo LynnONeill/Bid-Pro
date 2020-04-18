@@ -31,9 +31,8 @@ function App() {
         <Route exact path={["/", "/login"]}>
             <Login />
           </Route>
-          <Route exact path={"/home"}>
-            <Home />
-          </Route>
+          <Route exact path={"/home"} component={Home}/>
+          
           <Route exact path={"/client"}>
             <Client />
           </Route>

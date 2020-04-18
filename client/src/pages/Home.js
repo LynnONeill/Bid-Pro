@@ -8,40 +8,54 @@ import API from "../utils/API";
 import React, { useEffect, useState, useContext } from "react";
 import ClientList from "../components/ClientList";
 
-function AddClient() {
-    return(
+function Home(props) {
+  const [clients, setClients] = useState([]);
+  useEffect(() => {
+    // Api call to get product and feature data //
+    API.getAllClients()
+      .then((res) => {
+        console.log(res);
+        setClients(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
+  function goToClient() {
+    props.history.push("/AddClient");
+  }
+
+  return (
       <Wrapper>
+    <Container fluid>
+      <div>
+        <form>
+          <div style={{ textAlign: "right" }}>
+            <button onClick={goToClient} style={{ background: "#6DAC64", padding:10, color:"#fff", borderRadius:5}}>
+              {" "}
+              <FaPlus /> Client{" "}
+            </button>
+          </div>
+          <label>
+            {clients.map((client) => {
+              return <ClientList value={client} key={client.id} />;
+            })}
+          </label>
+        </form>
+      </div>
 
-        <Container fluid>
-      
-            <div>
-                
-            <h1 style= {{textAlign: "right"}}>  Add New Client <FaPlus/>  </h1>
-            
-            <form>
-  <label>
-    existing clients go here
-    <input type="text" name="name" />
-  </label>
- 
-</form>
-
-       </div>
-        
-        <div>
-             <h1 className="text-center">Home Page(temp text)</h1>
-             <Link to="/Project">Temp link to project page</Link>
-             <br></br>
-             <Link to="/Client">Temp link to client page</Link>
-             <br></br>
-             <Link to="/Login">Temp link back to Login page</Link>
-             <br></br>
-             <Link to="/Product">Temp link to Product Page</Link>
-             <br></br>
-             <Link to="/AddClient">Temp link to Add Client page</Link>
-        </ Container >
+      <div>
+        <Link to="/Project">Temp link to project page</Link>
+        <br></br>
+        <Link to="/Client">Temp link to client page</Link>
+        <br></br>
+        <Link to="/Login">Temp link back to Login page</Link>
+        <br></br>
+        <Link to="/Product">Temp link to Product Page</Link>
+        <br></br>
+        <Link to="/AddClient">Temp link to Add Client page</Link>
+      </div>
+    </Container>
         </Wrapper>
-    );
+  );
 }
-export default AddClient;
+export default Home;
