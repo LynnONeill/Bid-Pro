@@ -49,7 +49,39 @@ module.exports = {
         .catch(err => {
             res.status(404).json(err);
         });
-    }
+    },
+    
+    createProject: function(req, res) {
+        console.log("add project api request is firing!")
+        let clientID = req.body
+        console.log(clientID)
+        
+        MongoDB.Project.create(clientID)
+        .then (project => {
+            console.log(project);
+            res.json(project);
+        })
+        .catch(err => {
+            res.status(404).json(err)
+        })
+    },
 
+    addProduct: function(req, res) {
+        console.log("add product api request is firing!")
+        let newProduct = req.body;
+        console.log(newProduct);
+        let projectID = req.params.projectID;
+        console.log(projectID);
+        
+        MongoDB.ClientProduct.create(newProduct)
+            .then(({_id}) => MongoDB.Project.findOneAndUpdate({}, { $push: {products: _id} }, { new: true}))
+            .then(project => {
+                console.log(project);
+                res.json(project);
+            })
+            .catch(err => {
+                res.status(400).json(err)
+            })
+    },
 
 }

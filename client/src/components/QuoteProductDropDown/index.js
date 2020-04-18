@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 
 function QuoteProductDropDown({productDrop, handleProductSelect}) {
   
+ 
 
     return (
       
@@ -12,6 +13,7 @@ function QuoteProductDropDown({productDrop, handleProductSelect}) {
             as="select" 
             id="dropdown" 
             onChange={handleProductSelect}>
+            
             {productDrop}
         </Form.Control>
         </div> 

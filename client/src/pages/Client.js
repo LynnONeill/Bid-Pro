@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Container from "../components/Grid";
 import ClientCard from "../components/ClientCard";
 import API from "../utils/API";
+import Wrapper from '../components/Wrapper';
 import ClientContext from "../utils/GlobalState"
+import Row from "react-bootstrap/row";
+import API from "../utils/API";
 
 
 function Clients() {
@@ -29,8 +32,20 @@ function Clients() {
             setProjects(res.data)
         }).catch(err => console.log(err))
   }
+//   function handleNewProjectClick(event) {
+//     console.log("click is working");
+//     API.createProject({clientid: clientID})
+//         .then(res => {
+//             console.log(res.data)
+//         })
+//         .catch(err => console.log(err))
+//        /// ***Need code to redirect to product page - this isn't working /// 
+//        return <Redirect to='/product' />
+//        /// Also, will need to set project id number in global state 
+// }
 
     return (
+        <Wrapper>
         <Container fluid>
             <div>
                 <h1>Client Page</h1>
@@ -54,6 +69,7 @@ function Clients() {
             <br></br>
             <Link to="/Project">Temp link to project page</Link>
         </Container>
+        </Wrapper>
 
 
 
