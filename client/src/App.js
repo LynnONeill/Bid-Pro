@@ -15,8 +15,9 @@ function App() {
 
   function handleClick(event) {
     // Get the title of the clicked button
+    console.log(event.target.closest(".clientLink").getAttribute("data-value"))
     if (event){
-    const info = JSON.parse(event.target.parentElement.getAttribute("data-value"));
+    const info = JSON.parse(event.target.closest(".clientLink").getAttribute("data-value"));
     console.log(info)
       setSelectedClient({...selectedClient,...info})
     }
@@ -31,9 +32,8 @@ function App() {
         <Route exact path={["/", "/login"]}>
             <Login />
           </Route>
-          <Route exact path={"/home"}>
-            <Home />
-          </Route>
+          <Route exact path={"/home"} component={Home}/>
+          
           <Route exact path={"/client"}>
             <Client />
           </Route>
