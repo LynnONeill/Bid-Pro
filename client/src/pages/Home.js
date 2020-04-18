@@ -1,18 +1,11 @@
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
-import {
-  Form,
-  FormControl,
-  FormGroup,
-  ControlLabel,
-  HelpBlock,
-  Checkbox,
-  Radio,
-  Button,
-} from "react-bootstrap";
+import {Form, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, Button} from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
+import Wrapper from '../components/Wrapper';
+import ClientContext from "../utils/GlobalState"
 import API from "../utils/API";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ClientList from "../components/ClientList";
 
 function Home(props) {
@@ -32,6 +25,7 @@ function Home(props) {
   }
 
   return (
+      <Wrapper>
     <Container fluid>
       <div>
         <form>
@@ -61,6 +55,7 @@ function Home(props) {
         <Link to="/AddClient">Temp link to Add Client page</Link>
       </div>
     </Container>
+        </Wrapper>
   );
 }
 export default Home;
