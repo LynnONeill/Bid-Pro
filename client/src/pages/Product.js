@@ -25,6 +25,41 @@ function Product() {
     const [totalPrice, setTotalPrice] = useState();
     const [defaultValue, setDefaultValue] = useState();
 
+    let clientNo = 123456;
+
+    let newProduct = {
+
+        product:
+            {
+                name: {selectedProduct},
+                price: {selectedProductPX}
+            },
+        features: [
+            {
+                name: "design",
+                type: {selectedDesign},
+                price: {backingPrice}
+            },
+            {
+                name: "backing",
+                type: {selectedBacking},
+                price: {backingPrice}
+            },
+            {
+                name: "finish",
+                type: {selectedFinish},
+                price: {finishPrice}
+            },
+            {
+                name: "hardware",
+                type: {selectedHardware},
+                price: {hardwarePrice},
+            }
+        ],
+        total: {
+            price: {totalPrice}
+        } 
+    }
    
     useEffect(() => {
         // Api call to get product and feature data //
@@ -100,7 +135,7 @@ function Product() {
                 ans = ""
             }else{
                for ( let i = 0; i < featureState.length; i++) {
-                   if (featureState[i][featureType] && featureState[i][featureType].size == selectedSize) {
+                   if (featureState[i][featureType] && featureState[i][featureType].size === selectedSize) {
                        console.log(featureType)
                        ans.push( <option
                                key={featureState[i]._id}
@@ -111,7 +146,6 @@ function Product() {
                                </option>)
                    } 
                }
-               
             }
             ans.unshift(selectValue)
             return ans;
@@ -126,18 +160,18 @@ function Product() {
        setSelectedProduct(event.target.value)
 
         for ( let i = 0; i < products.length; i++) {
-         if (event.target.value == products[i].products[0].type) {
+         if (event.target.value === products[i].products[0].type) {
              let curProdPX = products[i].products[0].price;
              console.log(curProdPX);
              setSelectedProductPX(curProdPX);
              setTotalPrice(curProdPX + backingPrice + finishPrice + designPrice + hardwarePrice)
             }
         }
-            if (curProd == "Single Security Door") {
+            if (curProd === "Single Security Door") {
                 sizeSelected = "Single";
                 setSelectedSize(sizeSelected);
                 }
-            if (curProd == "Double Security Door" || curProd === "French Security Door") {
+            if (curProd === "Double Security Door" || curProd === "French Security Door") {
                 sizeSelected = "Double";
                 setSelectedSize(sizeSelected);
             }
@@ -165,12 +199,12 @@ function Product() {
         // for loop to determine if size is double or single and filter correct feature price ////////
         let featurePrice;
         for(let j = 0; j < featureTypeArray.length; j++) {
-            if(featureTypeArray[j].type == featureSelected && selectedSize == "Double") {
+            if(featureTypeArray[j].type === featureSelected && selectedSize === "Double") {
                 console.log(featureTypeArray[j]);
                 featurePriceArray.push(featureTypeArray[j].price)
                 console.log(featurePriceArray)
                 featurePrice = Math.max.apply(Math,featurePriceArray);
-                } else if (featureTypeArray[j].type == featureSelected && selectedSize == "Single") {
+                } else if (featureTypeArray[j].type === featureSelected && selectedSize === "Single") {
                     console.log(featureTypeArray[j]);
                     featurePriceArray.push(featureTypeArray[j].price)
                     console.log(featurePriceArray)
@@ -194,34 +228,31 @@ function Product() {
                 console.log("hardware triggered")
                 setHardwarePrice(featurePrice);
                 setSelectedHardware(featureSelected);
+                break;
             case "design":
                 console.log("design triggered")
                 setDesignPrice(featurePrice);
                 setSelectedDesign(featureSelected);
                 break;
         }
-        
+        setTotalPrice(selectedProductPX + backingPrice + finishPrice + designPrice + hardwarePrice)
     };
 
-
+    
+let projectID = "5e9b176c1a7ea014b4e2403c";
 // Event listener to add new product to database ///
     const addProduct = event => {
-        let newProduct = {
-            name: selectedProduct,
-            design: selectedDesign,
-            backing: selectedBacking,
-            finish: selectedFinish,
-            hardware: selectedHardware
-        }
-        setCurrentProduct(newProduct)
+        console.log("add product has been clicked!")
         console.log(currentProduct)
-    }
 
-    
-        const total = function () {
-            setTotalPrice(selectedProductPX + backingPrice + finishPrice + designPrice + hardwarePrice)
-        }   
-    
+
+        API.addProduct(projectID, {newProduct})
+        .then(res => {
+            console.log(res.data)
+        })
+
+       
+    }
 
     return (
         <Container>

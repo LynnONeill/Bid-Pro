@@ -20,13 +20,26 @@ router
   .get()
 
 // Mongo Database calls /////
+
+//api call to pull all base products
 router
   .route("/products")
   .get(mongoController.findProducts)
 
+//api call to pull all available features///
 router
   .route("/features")
   .get(mongoController.findFeatures)
+
+ //api call to create a new project 
+router
+  .route("/project")
+  .post(mongoController.createProject)
+
+//api call to add new product quote to existing project
+router
+  .route("/addProduct/:projectID")
+  .post(mongoController.addProduct)
 
 
  
