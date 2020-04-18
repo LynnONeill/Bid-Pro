@@ -5,7 +5,7 @@ const sequelizeController = require('../../controllers/sequelizeController.js');
 console.log("api route hit")
 
 
-router.route("/").get(function(req,res){
+router.route("/").get(function (req, res) {
   res.send("")
 })
 
@@ -19,6 +19,14 @@ router.route("/test").get(function(req,res){
 // Mongo Database calls /////
 
 //api call to pull all base products
+router
+  .route("/projects/:id")
+  .get(mongoController.findProjects)
+
+router
+  .route("/projects/:id")
+  .post(mongoController.newProducts)
+
 router
   .route("/products")
   .get(mongoController.findProducts)

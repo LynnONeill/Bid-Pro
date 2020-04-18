@@ -1,26 +1,30 @@
 import axios from "axios";
 
 export default {
-  test: function () {
-    return axios.get("/api/test");
-  },
-  getAllClients: function (){
-    console.log ('show all existing clients')
-    return axios.get ('/api/client')
-  },
 
 
   /// MongoDB calls /////
   getProducts: function () {
     return axios.get("/api/products");
   },
-  createProject: function (clientID) {
-    console.log("create project api call is working")
-    return axios.post("/api/project", clientID);
+  addProduct: function (projectID, {product}) {
+    return axios.post("/api/addProduct/" + projectID, {product})
   },
   getFeatures: function () {
     console.log("getFeatures api call is working")
     return axios.get("/api/features");
+  },
+  getAllProjects: function (id){
+    console.log ('show all existing projects')
+    return axios.get ('/api/projects/'+id)
+  },
+  createProject: function (clientID) {
+    console.log("create project api call is working")
+    return axios.post("/api/project", clientID);
+  },
+  addNewProject: function (id){
+    console.log ('add new project')
+    return axios.post ('/api/projects/'+id)
   },
 
 
@@ -40,14 +44,14 @@ export default {
     console.log('valUsers api call is working')
     return axios.post('/api/valusers');
   },
+  getAllClients: function (){
+    console.log ('show all existing clients')
+    return axios.get ('/api/client')
+  },
 
   deleteUsers: function(id) {
     console.log('deleteUsers api call is workin')
     return axios.delete(`/api/deleteusers/${id}`);
-  },
-  addProduct: function (projectID, {product}) {
-    return axios.post("/api/addProduct/" + projectID, {product})
-
   }
 }
 

@@ -5,28 +5,27 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ClientProductSchema = new Schema({
-  
-        project: 
-        {
-            product: 
-              {
-                name: String,
-                price: Number
-              },
-            features: [
-              {
-                name: String,
-                type: String,
-                price: Number
-              },
-              
-            ],
-            total: {
-                price: Number
-            },
-          }
-          
-    });
+
+  project_id: {
+    type: String
+  },
+  product:
+  {
+    name: String,
+    price: Number
+  },
+  features: [
+    {
+      name: String,
+      type: String,
+      price: Number
+    },
+
+  ],
+  total: {
+    price: Number
+  },
+});
 
 const ClientProduct = mongoose.model("ClientProduct", ClientProductSchema);
 

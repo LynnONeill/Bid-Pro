@@ -15,8 +15,9 @@ function App() {
 
   function handleClick(event) {
     // Get the title of the clicked button
+    console.log(event.target.closest(".clientLink").getAttribute("data-value"))
     if (event){
-    const info = JSON.parse(event.target.getAttribute("data-value"));
+    const info = JSON.parse(event.target.closest(".clientLink").getAttribute("data-value"));
     console.log(info)
       setSelectedClient({...selectedClient,...info})
     }

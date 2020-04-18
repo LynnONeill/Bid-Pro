@@ -9,7 +9,7 @@
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "seeds": "node seeders/mysqlseed.js && npm run seeds2",
-    "seeds2":"node seeders/mongoSeeds.js",
+    "seeds2": "node seeders/mongoSeeds.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
