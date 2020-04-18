@@ -10,11 +10,56 @@ function Product() {
 
     const [products, setProducts] = useState([]);
     const [features, setFeatures] = useState({});
-    const [currentProduct, setCurrentProduct] = useState();
+    const [currentProduct, setCurrentProduct] = useState({});
     const [selectedProduct, setSelectedProduct] = useState();
     const [selectedProductPX, setSelectedProductPX] = useState();
     const [selectedSize, setSelectedSize] = useState();
+    const [selectedBacking, setSelectedBacking] = useState();
+    const [selectedDesign, setSelectedDesign] = useState();
+    const [selectedFinish, setSelectedFinish] = useState();
+    const [selectedHardware, setSelectedHardware] = useState();
+    const [backingPrice, setBackingPrice] = useState();
+    const [finishPrice, setFinishPrice] = useState();
+    const [designPrice, setDesignPrice] = useState();
+    const [hardwarePrice, setHardwarePrice] = useState();
+    const [totalPrice, setTotalPrice] = useState();
+    const [defaultValue, setDefaultValue] = useState();
 
+    let clientNo = 123456;
+
+    let newProduct = {
+
+        product:
+            {
+                name: {selectedProduct},
+                price: {selectedProductPX}
+            },
+        features: [
+            {
+                name: "design",
+                type: {selectedDesign},
+                price: {backingPrice}
+            },
+            {
+                name: "backing",
+                type: {selectedBacking},
+                price: {backingPrice}
+            },
+            {
+                name: "finish",
+                type: {selectedFinish},
+                price: {finishPrice}
+            },
+            {
+                name: "hardware",
+                type: {selectedHardware},
+                price: {hardwarePrice},
+            }
+        ],
+        total: {
+            price: {totalPrice}
+        } 
+    }
    
     useEffect(() => {
         // Api call to get product and feature data //
@@ -24,7 +69,6 @@ function Product() {
 
                 // Set State for products
                 setProducts(res.data)
-                    console.log("test")
                     console.log(products)
 
             // Api call to get product feature data //
@@ -34,22 +78,36 @@ function Product() {
                     })
             })
             .catch(err => console.log(err))
+
+            setSelectedProductPX(0);
+            setBackingPrice(0);
+            setDesignPrice(0);
+            setHardwarePrice(0);
+            setFinishPrice(0);
+            setTotalPrice(0);
+            setDefaultValue("Select")
+
     }, []);
 
 
-    console.log(products);
-    console.log(features);
+    // console.log(features);
     console.log(selectedProduct);
     console.log(selectedProductPX);
     console.log(selectedSize);
-
-
+    
+    
 
     // Function to pull product names/id's from products state and set to dropdown items //
     const renderProductDrop = (product) => {
         let ans;
+        let selectValue = <option
+            className="dropdown-item"
+            value={defaultValue}
+            >
+            {defaultValue + " Product"}
+        </option>
             if (product.length === 0){
-                ans = ""
+                ans = []
             }else{
                  ans =  product.map((product)=>{
                         return <option
@@ -61,17 +119,23 @@ function Product() {
                                 </option>
                         })
             }
+            ans.unshift(selectValue)
             return ans;
         }
-       
+    // This function is called in JSX and will populate dropdown menus for feature options////   
     const renderFeatureDrop = (featureState, featureType) => {
-        console.log(featureState)
         let ans = [];
+        let selectValue = <option
+            className="dropdown-item"
+            value={defaultValue}
+            >
+            {defaultValue + " " + featureType + " type"}
+        </option>
             if (featureState.length === 0) {
                 ans = ""
             }else{
                for ( let i = 0; i < featureState.length; i++) {
-                   if (featureState[i][featureType] && featureState[i][featureType].size == selectedSize) {
+                   if (featureState[i][featureType] && featureState[i][featureType].size === selectedSize) {
                        console.log(featureType)
                        ans.push( <option
                                key={featureState[i]._id}
@@ -83,63 +147,112 @@ function Product() {
                    } 
                }
             }
+            ans.unshift(selectValue)
             return ans;
     }
-
+// Event listener for product dropdown = used to isolate base product name and price ////
     const handleProductSelect = event => {
-       event.preventDefault();
+        
        let sizeSelected;
        console.log("handleProductSelect is working")
-       console.log(event.target.value)
-       for ( let i = 0; i < products.length; i++) {
-           console.log(products[0].products[0].type)
-        if (event.target.value == products[i].products[0].type) {
-            let curProd = event.target.value;
-            setSelectedProduct(curProd);
-            let curProdPX = products[i].products[0].price
-            setSelectedProductPX(curProdPX);
-            console.log(selectedProduct)
-            console.log(selectedProductPX);
-            
-            if (selectedProduct === "Single Security Door") {
+       let curProd = event.target.value;
+       console.log(curProd)
+       setSelectedProduct(event.target.value)
+
+        for ( let i = 0; i < products.length; i++) {
+         if (event.target.value === products[i].products[0].type) {
+             let curProdPX = products[i].products[0].price;
+             console.log(curProdPX);
+             setSelectedProductPX(curProdPX);
+             setTotalPrice(curProdPX + backingPrice + finishPrice + designPrice + hardwarePrice)
+            }
+        }
+            if (curProd === "Single Security Door") {
                 sizeSelected = "Single";
                 setSelectedSize(sizeSelected);
-                console.log("The size selected shoule be single here: " + selectedSize)
                 }
-            if (selectedProduct === "Double Security Door" || selectedProduct === "French Security Door") {
+            if (curProd === "Double Security Door" || curProd === "French Security Door") {
                 sizeSelected = "Double";
                 setSelectedSize(sizeSelected);
-                console.log("The size selected should be double here: " + selectedSize);
             }
-       }
-       }
     }
 
-
-    const handleFeatureSelect = function(event) {
-        event.preventDefault();
-        console.log(features[4].backing.type)
-        
+// Event listener to handle selection of product features///////////////////////////////////
+    const handleFeatureSelect = function(event, type) {
+        console.log(type);
         console.log("handleFeatureSelect is working!");
         let featureSelected = event.target.value;
         console.log(featureSelected);
-        console.log("#5 The selected size is " + selectedSize);
-        let backingArray = {}
+        console.log("The selected size is " + selectedSize);
+
+        let featureTypeArray = []
+        let featurePriceArray = [];
+        
+        // This for loop will filter all of the options for the named features. ie all backings, all finishes, etc. ///
         for( let i = 0; i < features.length; i++) {
-           if(features[i].backing) {
-               backingArray.push(features[i].backing);
-                  
+           if(features[i][type]) {
+               featureTypeArray.push(features[i][type]);
+               };
+            }
+        console.log(featureTypeArray)
+        
+        // for loop to determine if size is double or single and filter correct feature price ////////
+        let featurePrice;
+        for(let j = 0; j < featureTypeArray.length; j++) {
+            if(featureTypeArray[j].type === featureSelected && selectedSize === "Double") {
+                console.log(featureTypeArray[j]);
+                featurePriceArray.push(featureTypeArray[j].price)
+                console.log(featurePriceArray)
+                featurePrice = Math.max.apply(Math,featurePriceArray);
+                } else if (featureTypeArray[j].type === featureSelected && selectedSize === "Single") {
+                    console.log(featureTypeArray[j]);
+                    featurePriceArray.push(featureTypeArray[j].price)
+                    console.log(featurePriceArray)
+                    featurePrice = Math.min.apply(Math,featurePriceArray); 
+                }
+                setTotalPrice(selectedProductPX + backingPrice + finishPrice + designPrice + hardwarePrice)
                }
-           } 
+        // Switch case used to determine which feature needs to be set ///
+        switch(type) {
+            case "backing":
+                console.log("backing triggered")
+                setBackingPrice(featurePrice);
+                setSelectedBacking(featureSelected);
+                break;
+            case "finish":
+                console.log("finish triggered")
+                setFinishPrice(featurePrice);
+                setSelectedFinish(featureSelected);
+                break;
+            case "hardware":
+                console.log("hardware triggered")
+                setHardwarePrice(featurePrice);
+                setSelectedHardware(featureSelected);
+                break;
+            case "design":
+                console.log("design triggered")
+                setDesignPrice(featurePrice);
+                setSelectedDesign(featureSelected);
+                break;
         }
-        // console.log(backingArray[0].type)
+        setTotalPrice(selectedProductPX + backingPrice + finishPrice + designPrice + hardwarePrice)
+    };
+
     
+let projectID = "5e9b176c1a7ea014b4e2403c";
+// Event listener to add new product to database ///
+    const addProduct = event => {
+        console.log("add product has been clicked!")
+        console.log(currentProduct)
 
 
-   
-// if(((features[i].backing  || {}).type  || {}).featureSelected) {
-//     console.log(features)        
+        API.addProduct(projectID, {newProduct})
+        .then(res => {
+            console.log(res.data)
+        })
 
+       
+    }
 
     return (
         <Container>
@@ -157,7 +270,12 @@ function Product() {
                 selectedProductPX={selectedProductPX}
                 handleProductSelect={handleProductSelect}
                 handleFeatureSelect={handleFeatureSelect}
-
+                backingPrice={backingPrice}
+                finishPrice={finishPrice}
+                designPrice={designPrice}
+                hardwarePrice={hardwarePrice}
+                totalPrice={totalPrice}
+                addProduct={addProduct}
             />
 
             <div>
