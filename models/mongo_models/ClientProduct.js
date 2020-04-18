@@ -25,9 +25,7 @@ const ClientProductSchema = new Schema({
   total: {
     price: Number
   },
-}
-          
-    });
+});
 
 const ClientProduct = mongoose.model("ClientProduct", ClientProductSchema);
 

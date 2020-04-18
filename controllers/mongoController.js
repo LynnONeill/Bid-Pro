@@ -44,7 +44,7 @@ module.exports = {
             MongoDB.Projects.create({client_id:req.params.id})
             .then(stuff => {
                 console.log(stuff)
-                this.findProducts(req,res)
+                this.findProjects(req,res)
             })
         .catch(err => {
             res.status(404).json(err);

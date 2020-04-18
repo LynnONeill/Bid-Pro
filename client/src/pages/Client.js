@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Container from "../components/Grid";
 import ClientCard from "../components/ClientCard";
-import API from "../utils/API";
 import Wrapper from '../components/Wrapper';
 import ClientContext from "../utils/GlobalState"
 import Row from "react-bootstrap/row";

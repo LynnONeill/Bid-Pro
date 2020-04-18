@@ -32,8 +32,8 @@ module.exports = {
         console.log('valUsers api request is firing')
         console.log(req)
         db.User.findOne({
-            email:  //req.email...
-            password: //
+            // email:  //req.email...
+            // password: //
         })
         .then(users => {
             res.json(users)
