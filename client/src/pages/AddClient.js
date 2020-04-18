@@ -1,7 +1,8 @@
 import React,{useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
-import {Form, Col, FormControl, FormGroup, ControlLabel, Button} from "react-bootstrap";
+import {Form, Col, Button} from "react-bootstrap";
+import Wrapper from '../components/Wrapper';
 
 
 function AddClient() {
@@ -12,7 +13,7 @@ function AddClient() {
 
 
     return(
-        
+        <Wrapper>
         <div>
         <Container>
         
@@ -95,7 +96,7 @@ function AddClient() {
         
         </Container>
         </div>
-
+        </Wrapper>
     );
 }
 

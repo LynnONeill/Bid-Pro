@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import QuoteContainer from "../components/QuoteContainer";
 import API from "../utils/API";
+import Wrapper from '../components/Wrapper';
 
 
 function Product() {
@@ -255,6 +256,7 @@ let projectID = "5e9b176c1a7ea014b4e2403c";
     }
 
     return (
+        <Wrapper>
         <Container>
             <Row className="justify-content-md-center">
                 <h1 className="text-center">Signature IronWorks</h1>
@@ -288,6 +290,10 @@ let projectID = "5e9b176c1a7ea014b4e2403c";
                 <Link to="/Project">Temp link to project page</Link>
             </div>
         </Container>
+
+        </Wrapper>
+
+
     );
 }
 

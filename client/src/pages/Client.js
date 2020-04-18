@@ -1,6 +1,7 @@
 import React, { useContext, useEffect} from "react";
 import { Link, Redirect } from "react-router-dom";
 import Container from "../components/Grid";
+import Wrapper from '../components/Wrapper';
 import ClientContext from "../utils/GlobalState"
 import Row from "react-bootstrap/row";
 import API from "../utils/API";
@@ -29,6 +30,7 @@ function Clients() {
    
 
     return(
+        <Wrapper>
         <Container fluid>
             <div>
             <h1>Client Page</h1>
@@ -62,9 +64,7 @@ function Clients() {
                  <br></br>
                  <Link to="/Project">Temp link to project page</Link>
         </Container>
-        
-        
-
+        </Wrapper>
     );
 }
 
