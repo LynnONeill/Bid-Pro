@@ -25,6 +25,30 @@ module.exports = {
         .catch(err => {
             res.status(404).json(err)
         });
+    },
+
+    findProjects: function(req, res) {
+        MongoDB.Projects.find({client_id:req.params.id})
+        .then(products => {
+            console.log("list of available projects below")
+            console.log(products)
+            res.json(products)
+        })
+        .catch(err => {
+            res.status(404).json(err);
+        });
+    },
+    
+    newProducts: function(req, res) {
+        console.log("create is firing!")
+            MongoDB.Projects.create({client_id:req.params.id})
+            .then(stuff => {
+                console.log(stuff)
+                this.findProducts(req,res)
+            })
+        .catch(err => {
+            res.status(404).json(err);
+        });
     }
 
 

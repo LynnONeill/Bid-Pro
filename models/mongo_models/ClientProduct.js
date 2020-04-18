@@ -6,6 +6,10 @@ const Schema = mongoose.Schema;
 
 const ClientProductSchema = new Schema({
 
+    project_id:{
+      type:String
+    },
+
     product: 
         {
             // Id will need to link to project collection as foreign key

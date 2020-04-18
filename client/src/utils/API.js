@@ -4,6 +4,14 @@ export default {
   test: function () {
     return axios.get("/api/test");
   },
+  getAllProjects: function (id){
+    console.log ('show all existing projects')
+    return axios.get ('/api/projects/'+id)
+  },
+  addNewProject: function (id){
+    console.log ('add new project')
+    return axios.post ('/api/projects/'+id)
+  },
   getProducts: function () {
     return axios.get("/api/products");
   },
@@ -11,7 +19,6 @@ export default {
     console.log("getFeatures api call is working")
     return axios.get("/api/features");
   },
-
   getUsers: function () {
     console.log('getUsers api call is workin')
     return axios.get('/api/users');
@@ -25,15 +32,9 @@ export default {
     return axios.delete('/api/deleteuser')
 
   },
-  
   getAllClients: function (){
     console.log ('show all existing clients')
     return axios.get ('/api/client')
-
-  },
-  getUsers: function() {
-    console.log("getUsers api call is working")
-    return axios.get("/api/users")
   }
 }
 
