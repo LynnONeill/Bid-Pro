@@ -30,8 +30,10 @@ function Login() {
     return (
         <Wrapper>
         <div>
-          
-            <h1 className="text-center">Login Page</h1>
+            <div className="logo">
+                <img src="logo.png" />
+            </div>
+            <h1 className="text-center">Welcome</h1>
             <form>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Username</label>

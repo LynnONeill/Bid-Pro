@@ -1,13 +1,39 @@
-/* font families 
-font-family: 'Noto Serif', serif;
-font-family: 'Open Sans', sans-serif;
-*/
 
 body {
     padding: 0;
     margin: 0;
     width: 100%;
     height: 100%;
+}
+
+/* NAV */
+.navbar {
+    background-color: #000 !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* LOGIN */
+.logo {
+    display: block;
+    width: 60%;
+    margin: 0 auto 50px auto;
+}
+
+.logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+button {
+    background: linear-gradient(180deg, rgba(219,183,124,1) 0%, rgba(168,140,95,1) 100%) !important;
+    color: white; 
+    border: none !important;
+    margin: 0 auto;
+    display: block !important;
+    font-size: 1.15em !important;
+    padding: .5em 1.15em !important;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* WRAPPER */
@@ -19,7 +45,10 @@ body {
 }
 
 h1 {
-    font-family: 'Noto Serif', serif;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     font-size: 2.5em;
     line-height: 1em;
     text-align: center;
@@ -28,7 +57,7 @@ h1 {
 
 h2, h3 {
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.5em;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -37,7 +66,7 @@ h2, h3 {
 }
 
 p {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.15em;
 }
 
@@ -50,7 +79,7 @@ form {
 
 label {
     display: block;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1em;
     font-size: 1em;
     margin: 10px 0;
