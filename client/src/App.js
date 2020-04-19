@@ -8,7 +8,7 @@ import Admin from "./pages/Admin";
 import Project from "./pages/Project";
 import Product from "./pages/Product";
 import Nav from "./components/Nav";
-import ClientContext from "./utils/GlobalState"
+import ClientContext from "./utils/GlobalState";
 
 function App() {
   const [selectedClient,setSelectedClient] = useState({});
