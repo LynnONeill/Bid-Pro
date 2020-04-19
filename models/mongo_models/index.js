@@ -5,5 +5,4 @@ module.exports = {
     Features: require("./ProductFeatures.js"),
     Projects: require("./ClientProject"),
     ClientProduct: require("./ClientProduct.js"),
-    Project: require("./Project.js")
 };

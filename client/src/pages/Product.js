@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import QuoteContainer from "../components/QuoteContainer";
 import API from "../utils/API";
 import Wrapper from '../components/Wrapper';
+import QuoteSummary from "../components/QuoteSummary";
+import ClientContext from "../utils/GlobalState";
 
 
 function Product() {
 
     const [products, setProducts] = useState([]);
     const [features, setFeatures] = useState({});
-    const [currentProduct, setCurrentProduct] = useState({});
     const [selectedProduct, setSelectedProduct] = useState();
     const [selectedProductPX, setSelectedProductPX] = useState();
     const [selectedSize, setSelectedSize] = useState();
@@ -25,6 +27,8 @@ function Product() {
     const [hardwarePrice, setHardwarePrice] = useState();
     const [totalPrice, setTotalPrice] = useState();
     const [defaultValue, setDefaultValue] = useState();
+
+    const { selectedClient } = useContext(ClientContext);
 
     let clientNo = 123456;
 
@@ -178,6 +182,8 @@ function Product() {
             }
     }
 
+
+
 // Event listener to handle selection of product features///////////////////////////////////
     const handleFeatureSelect = function(event, type) {
         console.log(type);
@@ -240,19 +246,27 @@ function Product() {
     };
 
     
-let projectID = "5e9b176c1a7ea014b4e2403c";
+let projectID = "5e9bbe3e2bfe7f0214964a21";
 // Event listener to add new product to database ///
     const addProduct = event => {
         console.log("add product has been clicked!")
-        console.log(currentProduct)
+        console.log(newProduct)
 
 
         API.addProduct(projectID, {newProduct})
         .then(res => {
             console.log(res.data)
         })
+    }
 
-       
+    const sendPDF = event =>  {
+        console.log("sendPDF click is working!")
+        console.log(selectedClient);
+        
+        API.sendPDF(projectID, selectedClient)
+            .then(res => {
+                alert(res.data)
+            })
     }
 
     return (
@@ -261,24 +275,35 @@ let projectID = "5e9b176c1a7ea014b4e2403c";
             <Row className="justify-content-md-center">
                 <h1 className="text-center">Signature IronWorks</h1>
             </Row>
-
-            <QuoteContainer 
-                productDrop={renderProductDrop(products)}
-                designDrop={renderFeatureDrop(features, "design")}
-                backingDrop={renderFeatureDrop(features, "backing")}
-                finishDrop={renderFeatureDrop(features, "finish")}
-                hardwareDrop={renderFeatureDrop(features, "hardware")}
-                selectedProduct={selectedProduct}
-                selectedProductPX={selectedProductPX}
-                handleProductSelect={handleProductSelect}
-                handleFeatureSelect={handleFeatureSelect}
-                backingPrice={backingPrice}
-                finishPrice={finishPrice}
-                designPrice={designPrice}
-                hardwarePrice={hardwarePrice}
-                totalPrice={totalPrice}
-                addProduct={addProduct}
-            />
+        <Row className="justify-content-md-center">
+            <Col xs={8} md={8}>
+                <QuoteContainer 
+                            productDrop={renderProductDrop(products)}
+                            designDrop={renderFeatureDrop(features, "design")}
+                            backingDrop={renderFeatureDrop(features, "backing")}
+                            finishDrop={renderFeatureDrop(features, "finish")}
+                            hardwareDrop={renderFeatureDrop(features, "hardware")}
+                            selectedProduct={selectedProduct}
+                            selectedProductPX={selectedProductPX}
+                            handleProductSelect={handleProductSelect}
+                            handleFeatureSelect={handleFeatureSelect}
+                            backingPrice={backingPrice}
+                            finishPrice={finishPrice}
+                            designPrice={designPrice}
+                            hardwarePrice={hardwarePrice}
+                            totalPrice={totalPrice}
+                            addProduct={addProduct}
+                            
+                        />
+            </Col>
+            <Col xs={4} md={4}>
+                <QuoteSummary
+                    sendPDF={sendPDF}
+                />
+            </Col>
+                
+        </Row>
+            
 
             <div>
                 <Link to="/Login">Temp link back to Login page</Link>

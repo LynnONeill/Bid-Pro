@@ -3,12 +3,11 @@ import Row from "react-bootstrap/Row";
 import QuoteForm from "../QuoteForm";
 import QuoteHeaderText from "../QuoteHeaderText";
 import ClientCard from "../ClientCard";
-import ClientContext from "../../utils/API";
 
 
 
 function QuoteContainer({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, selectedProduct, selectedProductPX, handleProductSelect, handleFeatureSelect, backingPrice, finishPrice, designPrice, hardwarePrice, totalPrice, addProduct}) {
-    const { selectedClient } = useContext(ClientContext);
+   
     return (
 
         <div className="jumbotron card-container">
@@ -36,6 +35,7 @@ function QuoteContainer({productDrop, designDrop, backingDrop, finishDrop, hardw
                 hardwarePrice={hardwarePrice}
                 totalPrice={totalPrice}
                 addProduct={addProduct}
+                
             />
            
 

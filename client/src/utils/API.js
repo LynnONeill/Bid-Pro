@@ -18,13 +18,15 @@ export default {
     console.log ('show all existing projects')
     return axios.get ('/api/projects/'+id)
   },
-  createProject: function (clientID) {
-    console.log("create project api call is working")
-    return axios.post("/api/project", clientID);
-  },
   addNewProject: function (id){
     console.log ('add new project')
     return axios.post ('/api/projects/'+id)
+  },
+  sendPDF: function (projectID, selectedClient) {
+    console.log(selectedClient)
+    selectedClient["projectID"] = projectID
+    console.log(selectedClient)
+    return axios.get("/api/pdf/", selectedClient)
   },
 
 

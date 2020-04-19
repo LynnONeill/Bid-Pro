@@ -21,6 +21,6 @@ const ProjectSchema = new Schema({
     ]
 });
 
-const Project = mongoose.model("bidpro", ProjectSchema);
+const Project = mongoose.model("projects", ProjectSchema);
 
 module.exports = Project;
