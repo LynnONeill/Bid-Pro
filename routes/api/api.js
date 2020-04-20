@@ -40,7 +40,7 @@ router
 //api call to create Quote pdf ///
 router
   .route("/pdf")
-  .get(mongoController.createPDF)
+  .post(mongoController.createPDF)
 
 // MySQL Database calls //
  router
@@ -57,7 +57,7 @@ router
 
 //api call to add new product quote to existing project
 router
-  .route("/addProduct/:projectID")
+  .route("/addProduct")
   .post(mongoController.addProduct)
 
 

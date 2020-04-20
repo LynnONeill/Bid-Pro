@@ -7,9 +7,6 @@ export default {
   getProducts: function () {
     return axios.get("/api/products");
   },
-  addProduct: function (projectID, {product}) {
-    return axios.post("/api/addProduct/" + projectID, {product})
-  },
   getFeatures: function () {
     console.log("getFeatures api call is working")
     return axios.get("/api/features");
@@ -22,11 +19,15 @@ export default {
     console.log ('add new project')
     return axios.post ('/api/projects/'+id)
   },
+  addProduct: function (productObj) {
+    console.log(productObj)
+    return axios.post("/api/addProduct", productObj)
+  },
   sendPDF: function (projectID, selectedClient) {
     console.log(selectedClient)
     selectedClient["projectID"] = projectID
     console.log(selectedClient)
-    return axios.get("/api/pdf/", selectedClient)
+    return axios.post("/api/pdf/", selectedClient)
   },
 
 

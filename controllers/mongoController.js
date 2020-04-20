@@ -41,7 +41,7 @@ module.exports = {
     
     newProjects: function(req, res) {
         console.log("create is firing!")
-            MongoDB.Projects.create({client_id:req.params.id})
+            MongoDB.ClientProject.create({client_id:req.params.id})
             .then(stuff => {
                 console.log(stuff)
                 res.json(stuff)
@@ -54,17 +54,14 @@ module.exports = {
     
     addProduct: function(req, res) {
         console.log("add product api request is firing!")
-        console.log(req);
         let newProduct = req.body;
         console.log(newProduct);
-        let projectID = req.params.projectID;
-        console.log(projectID);
         
         MongoDB.ClientProduct.create(newProduct)
-            .then(({_id}) => MongoDB.Project.findOneAndUpdate({}, { $push: {products: _id} }, { new: true}))
-            .then(project => {
-                console.log(project);
-                res.json(project);
+            
+            .then(newProduct => {
+                console.log(newProduct);
+                res.json(newProduct);
             })
             .catch(err => {
                 res.status(400).json(err)

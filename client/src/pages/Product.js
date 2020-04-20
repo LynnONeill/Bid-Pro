@@ -30,40 +30,43 @@ function Product() {
 
     const { selectedClient } = useContext(ClientContext);
 
-    let clientNo = 123456;
 
     let newProduct = {
 
+        project_id: {
+            id: "5e9cebf9c4cdf9328cbde473"
+        },
+
         product:
             {
-                name: {selectedProduct},
-                price: {selectedProductPX}
+                name: selectedProduct,
+                price: selectedProductPX
             },
         features: [
             {
                 name: "design",
-                type: {selectedDesign},
-                price: {backingPrice}
+                type: selectedDesign,
+                price: designPrice
             },
             {
                 name: "backing",
-                type: {selectedBacking},
-                price: {backingPrice}
+                type: selectedBacking,
+                price: backingPrice
             },
             {
                 name: "finish",
-                type: {selectedFinish},
-                price: {finishPrice}
+                type: selectedFinish,
+                price: finishPrice
             },
             {
                 name: "hardware",
-                type: {selectedHardware},
-                price: {hardwarePrice},
+                type: selectedHardware,
+                price: hardwarePrice,
             }
         ],
         total: {
-            price: {totalPrice}
-        } 
+            price: totalPrice
+        },
     }
    
     useEffect(() => {
@@ -99,6 +102,7 @@ function Product() {
     console.log(selectedProduct);
     console.log(selectedProductPX);
     console.log(selectedSize);
+    console.log(backingPrice);
     
     
 
@@ -246,14 +250,13 @@ function Product() {
     };
 
     
-let projectID = "5e9bbe3e2bfe7f0214964a21";
-// Event listener to add new product to database ///
+// Event listener to add new product to existing project ///
     const addProduct = event => {
         console.log("add product has been clicked!")
         console.log(newProduct)
 
 
-        API.addProduct(projectID, {newProduct})
+        API.addProduct(newProduct)
         .then(res => {
             console.log(res.data)
         })
@@ -262,6 +265,8 @@ let projectID = "5e9bbe3e2bfe7f0214964a21";
     const sendPDF = event =>  {
         console.log("sendPDF click is working!")
         console.log(selectedClient);
+        // use global project id once it's set up ////
+        let projectID = "5e9cebf9c4cdf9328cbde473";
         
         API.sendPDF(projectID, selectedClient)
             .then(res => {
