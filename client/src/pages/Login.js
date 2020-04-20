@@ -1,21 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
+import Wrapper from '../components/Wrapper';
 
 
 function Login() {
     
 
-    function loadTest() {
-        API.test()
-          .then(res => 
-            console.log(res)
-          )
-          .catch(err => console.log(err));
-      };
-      loadTest();
+    // function loadTest() {
+    //     API.test()
+    //       .then(res => 
+    //         console.log(res)
+    //       )
+    //       .catch(err => console.log(err));
+    //   };
+    //   loadTest();
+
+      function validateUser(email,password) {
+          console.log('click')
+          API.valUsers()
+          .then(function() {
+            
+            window.location.replace('/home')
+          }  
+        )
+        .catch(err => console.log(err))
+      }
 
     return (
+        <Wrapper>
         <div>
           
             <h1 className="text-center">Login Page</h1>
@@ -30,8 +43,9 @@ function Login() {
                 </div>
                
                 <button 
-                    type="submit" 
-                    className="btn btn-primary">
+                    type="button" 
+                    className="btn btn-primary"
+                    onClick={() => validateUser()}>
                         Log In
                 </button>
                
@@ -40,7 +54,7 @@ function Login() {
             <Link to="/Home">Temp link to homepage</Link>
            
         </div>
-        
+        </Wrapper>
     );
 }
 

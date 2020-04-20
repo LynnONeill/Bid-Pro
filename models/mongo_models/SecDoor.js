@@ -4,18 +4,23 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const SecDoorSchema = new Schema({
-
-    doorBuild: [
+    
+        products: [
         {
+            name: {
+                type: String,
+            },
             type: {
-                type: String
+                type: String,
             },
             price: {
-                type: Number
+                type: Number,
             }
         }]
-});
+    });
 
-const SecDoor = mongoose.model("SecDoor", SecDoorSchema);
+const SecDoor = mongoose.model("SecDoor", SecDoorSchema, "SecDoor");
 
-module.exports = SecDoor;
+
+module.exports=SecDoor;
+

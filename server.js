@@ -1,9 +1,36 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const sgMail = require("@sendgrid/mail");
+require("dotenv").config();
 
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+var db = require("./models/sql_models");
+
+
+// set up sendgrid ////
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+const msg = {
+  to: process.env.TO_EMAIL,
+  from: process.env.FROM_EMAIL,
+  subject: 'Testing email with SendGrid',
+  text: 'Testing 123',
+  html: '<strong>Is this thing working???</strong>',
+}
+
+
+// sgMail
+//   .send(msg)
+//   .then(() => {}, error => {
+//     console.error(error);
+
+//     if (error.response) {
+//       console.error(error.response.body)
+//     }
+//    });
+
 
 
 
@@ -22,11 +49,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bidpro", {
   useFindAndModify: false
 })
 
-// let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/bidpro";
-// mongoose.connect(MONGODB_URI)
-
 
 // Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+
+db.sequelize.sync({ force: false }).then(function () {
+  app.listen(PORT, function () {
+    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  });
 });

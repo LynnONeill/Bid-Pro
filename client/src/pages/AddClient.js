@@ -1,12 +1,19 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
-import {Form, Col, FormControl, FormGroup, ControlLabel, Button} from "react-bootstrap";
+import {Form, Col, Button} from "react-bootstrap";
+import Wrapper from '../components/Wrapper';
 
 
 function AddClient() {
+    const [clients, setClients] = useState ([]);
+
+    let clientList;
+    //     useEffect(
+
+
     return(
-        
+        <Wrapper>
         <div>
         <Container>
         
@@ -84,10 +91,12 @@ function AddClient() {
         <Link to="/Home">Temp link to home page</Link>
         <br></br>
         <Link to="/Project">Temp link to project page</Link>
+        <br></br>
+        <Link to="/Admin">Temp link to admin page</Link>
         
         </Container>
         </div>
-
+        </Wrapper>
     );
 }
 

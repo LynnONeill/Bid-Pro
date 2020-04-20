@@ -6,44 +6,27 @@ const Schema = mongoose.Schema;
 
 const ClientProductSchema = new Schema({
 
-    product: 
-        {
-            // Id will need to link to project collection as foreign key
-            // This field will be for build type: single/double/french security door
-            build: 
-              {
-                type: String,
-                price: Number
-              },
-            design:
-              {
-                type: String,
-                price: Number
-              },
-        
-            features: [
-              {
-                type: String,
-                backing: String,
-                price: Number
-              },
-              {
-                type: String,
-                finish: String,
-                price: Number
-              },
-              {
-                type: String,
-                hardware: String,
-                price: Number
-                }
-            ],
-            total: {
-                type: Number
-            },
-        }
-    });
+  project_id: {
+    type: String
+  },
+  product:
+  {
+    name: String,
+    price: Number
+  },
+  features: [
+    {
+      name: String,
+      type: String,
+      price: Number
+    },
 
-const ClientProduct = mongoose.model("bidpro", ClientProductSchema);
+  ],
+  total: {
+    price: Number
+  },
+});
+
+const ClientProduct = mongoose.model("ClientProduct", ClientProductSchema);
 
 module.exports = ClientProduct;

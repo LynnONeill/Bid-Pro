@@ -6,27 +6,37 @@ mongoose.connect("mongodb://localhost/bidpro", {
     useFindAndModify: false
 });
 
-////  Seeds for base security door pricing //////////////////////////////////
+
 let secDoorSeed = [
+{
+    products: [
     {
-        doorBuild: {
-            type: "Single Security Door",
-            price: 1350
-            }
-    },
-    {
-        doorBuild: {
-            type: "Double Security Door",
-            price: 2700
-            }
-    },
-    {
-        doorBuild: {
-            type: "French Security Door",
-            price: 3000
-            }
+        name: "Security Door",
+        type: "Single Security Door",
+        price: 1350
     }
-];
+    ]
+},
+{
+    products: [
+    {
+        name: "Security Door",
+        type: "Double Security Door",
+        price: 2700
+    },
+    ]
+},
+{
+    products: [
+    {
+        name: "Security Door",
+        type: "French Security Door",
+        price: 3000
+    },
+    ]
+}
+]; 
+    
 
 /// Seeds for security door features //////////////////////////////
 let featuresSeed = [
@@ -74,32 +84,28 @@ let featuresSeed = [
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Black",
+            type: "Powder Coat - Black",
             size: "Single",
             price: 0
         }
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Textured Brown",
+            type: "Powder Coat - Textured Brown",
             size: "Single",
             price: 0
         }
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Copper Bronze Faux",
+            type: "Powder Coat - Copper Bronze Faux",
             size: "Single",
             price: 150
         }
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Black",
+            type: "Powder Coat - Black",
             size: "Double",
             price: 0
 
@@ -107,31 +113,29 @@ let featuresSeed = [
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Textured Brown",
+            type: "Powder Coat - Textured Brown",
             size: "Double",
             price: 0
         }
     },
     {
         finish: {
-            type: "Powder Coat",
-            color: "Copper Bronze Faux",
+            type: "Powder Coat - Copper Bronze Faux",
             size: "Double",
             price: 300
         }
     },
     {
         hardware: {
-            type: "Lever and Dead Bolt",
-            finish: "Venitian Bronze",
+            type: "Lever and Dead Bolt - Venitian Bronze",
+            size: "Single",
             price: 0
         }
     },
     {
         hardware: {
-            type: "Lever and Dead Bolt",
-            finish: "Antique Brass",
+            type: "Lever and Dead Bolt - Antique Brass",
+            size: "Double",
             price: 0,
         }
     },
@@ -151,34 +155,42 @@ let featuresSeed = [
     },
     {
         design: {
-            style: "SD100",
+            type: "SD100",
+            size: "Single",
             price: 0
         }
     },
     {
         design: {
-            style: "SD400",
+            type: "SD100",
+            size: "Double",
+            price: 0
+        }
+    },
+    {
+        design: {
+            type: "SD400",
             size: "Single",
             price: 300
         }
     },
     {
         design: {
-            style: "SD400",
+            type: "SD400",
             size: "Double",
             price: 600
         }
     },
     {
         design: {
-            style: "SD700",
+            type: "SD700",
             size: "Single",
             price: 300
         }
     },
     {
         design: {
-            style: "SD700",
+            type: "SD700",
             size: "Double",
             price: 600
 
@@ -186,14 +198,14 @@ let featuresSeed = [
     },
     {
         design: {
-            style: "SD900",
+            type: "SD900",
             size: "Single",
             price: 300
         }
     },
     {
         design: {
-            sytle: "SD900",
+            type: "SD900",
             size: "Double",
             price: 600
         }
