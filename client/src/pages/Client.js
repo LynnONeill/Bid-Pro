@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Container from "../components/Grid";
 import ClientCard from "../components/ClientCard";
+import ProjectCard from "../components/ProjectCard";
 import Wrapper from '../components/Wrapper';
 import ClientContext from "../utils/GlobalState"
 import Row from "react-bootstrap/row";
@@ -50,8 +51,13 @@ function Clients() {
                 <h1>Client Page</h1>
                 <ClientCard />
 
-
-                <p>Here would be a list of projects (open and closed) for this client</p>
+                {projects.map(project=>{
+                    return(
+                <ProjectCard 
+                value ={project}
+                key= {project._id} 
+                />
+                )})}
                 <button
                     onClick={newProject}
                 >Add New Project</button>

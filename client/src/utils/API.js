@@ -26,6 +26,10 @@ export default {
     console.log ('add new project')
     return axios.post ('/api/projects/'+id)
   },
+  getClientProjects: function(id){
+    console.log ("getting array of products")
+    return axios.get("api/projectProducts/"+id)
+  }
 
 
   // user calls 

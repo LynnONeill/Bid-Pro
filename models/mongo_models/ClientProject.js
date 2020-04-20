@@ -9,16 +9,9 @@ const ProjectSchema = new Schema({
         type:String
     },
 
-    products: [
-        {
-            name: {
-                type: String
-            },
-            price: {
-                type: Number
-            }
-        }
-    ]
+    name:{
+        type:String
+    }
 });
 
 const Project = mongoose.model("bidpro", ProjectSchema);

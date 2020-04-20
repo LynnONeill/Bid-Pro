@@ -4,7 +4,7 @@ import React, { useState, useContext } from "react";
 import { FaEye } from "react-icons/fa";
 
 
-function ClientList(props) {
+function ClientsProjects(props) {
     const { handleClick } = useContext(ClientContext);
     props.value.phoneNumber = 1234567890
     console.log(props)
@@ -38,4 +38,4 @@ function ClientList(props) {
     )
 };
 
-export default ClientList;
+export default ClientsProjects;
