@@ -11,8 +11,9 @@ function Project(props) {
 
     const [projects, setProjects] = useState([]);
     useEffect(() => {
+    console.log(selectedClient.projectID)
         // Api call to get product and feature data //
-        API.getClientProducts(selectedClient.projectsID)
+        API.getClientProducts(selectedClient.projectID)
             .then((res) => {
                 console.log(res);
                 setProjects(res.data);

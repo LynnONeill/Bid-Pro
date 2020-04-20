@@ -27,6 +27,11 @@ router
   .route("/projects/:id")
   .post(mongoController.newProject)
 
+  router
+    .route("/projectProducts/:id")
+    .get(mongoController.projectProducts)
+
+//api call to pull all available products//
 router
   .route("/products")
   .get(mongoController.findProducts)
@@ -35,6 +40,11 @@ router
 router
   .route("/features")
   .get(mongoController.findFeatures)
+
+//api call to create Quote pdf ///
+router
+  .route("/pdf")
+  .post(mongoController.createPDF)
 
 // MySQL Database calls //
  router
@@ -47,7 +57,7 @@ router
 
 //api call to add new product quote to existing project
 router
-  .route("/addProduct/:projectID")
+  .route("/addProduct")
   .post(mongoController.addProduct)
 
 

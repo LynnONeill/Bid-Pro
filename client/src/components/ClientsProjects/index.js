@@ -1,4 +1,4 @@
-import ClientContext from "../../utils/GlobalState"
+import ClientContext from "../../utils/GlobalState";
 import { Link } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import { FaEye } from "react-icons/fa";
@@ -6,7 +6,6 @@ import { FaEye } from "react-icons/fa";
 
 function ClientsProjects(props) {
     const { handleClick } = useContext(ClientContext);
-    props.value.phoneNumber = 1234567890
     console.log(props)
     const user = JSON.stringify(props.value)
 
