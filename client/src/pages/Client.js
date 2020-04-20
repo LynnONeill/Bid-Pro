@@ -12,6 +12,10 @@ function Clients() {
 
     const { selectedClient } = useContext(ClientContext);
     const [projects, setProjects] = useState([]);
+
+    console.log(selectedClient);
+    console.log(selectedClient.id);
+
     useEffect(() => {
         // Api call to get product and feature data //
         getProjects();

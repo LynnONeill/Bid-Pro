@@ -8,19 +8,11 @@ const ProjectSchema = new Schema({
     client_id:{
         type:String
     },
-
-    products: [
-        {
-            name: {
-                type: String
-            },
-            price: {
-                type: Number
-            }
-        }
-    ]
+    name:{
+       type:String
+    }
 });
 
-const Project = mongoose.model("bidpro", ProjectSchema);
+const ClientProject = mongoose.model("ClientProject", ProjectSchema);
 
-module.exports = Project;
+module.exports = ClientProject;
