@@ -35,6 +35,12 @@ export default {
     return axios.post('/api/addusers', user);
   },
 
+  // add clients
+  addClient: function(client) {
+    console.log('addUsers api call is workin')
+    return axios.post('/api/addClient', client);
+  },
+
   // validate user for login
   valUsers: function(user) {
     console.log('valUsers api call is working')

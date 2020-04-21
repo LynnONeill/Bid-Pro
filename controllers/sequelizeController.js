@@ -27,13 +27,36 @@ module.exports = {
         })
     },
 
+    // Post route for adding client
+    addClient: function(req,res) {
+        console.log("add clients reques is working")
+        console.log(req)
+        db.Client.create({
+            name: req.body.name,
+            businessName: req.body.businessName,
+            phoneNumber: req.body.phoneNumber,
+            email: req.body.email,
+            address: req.body.address,
+            addressTwo: req.body.addressTwo,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            notes: req.body.notes,
+            password: req.body.password
+
+        })
+        .then(client => {
+            return res.json(client)
+        })
+    },
+
     // POST route for authenticating login
     valUsers: function(req,res) {
         console.log('valUsers api request is firing')
         console.log(req)
         db.User.findOne({
-            email:  //req.email...
-            password: //
+            email:   req.body.email, 
+            password: req.body.password
         })
         .then(users => {
             res.json(users)

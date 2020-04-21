@@ -51,5 +51,9 @@ router
   .route('/addusers') 
   .post(sequelizeController.addUsers)  
 
+  router
+   .route('/addClient')
+   .post(sequelizeController.addClient)
+
 
 module.exports = router;
