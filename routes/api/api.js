@@ -24,8 +24,12 @@ router
   .get(mongoController.findProjects)
 
 router
-  .route("/projects/:id")
+  .route("/projects")
   .post(mongoController.newProject)
+
+  router
+    .route("/projects/:id")
+    .delete(mongoController.deleteProject)
 
   router
     .route("/projectProducts/:id")

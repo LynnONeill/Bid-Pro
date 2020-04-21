@@ -34,7 +34,7 @@ function Product() {
     let newProduct = {
 
         project_id: {
-            id: "5e9cebf9c4cdf9328cbde473"
+            id: selectedClient.projectID
         },
 
         product:

@@ -25,10 +25,13 @@ function Project(props) {
         <Container>
             <h1 className="text-center">Project Page (temp text)</h1>
             {projects.map(project=>{return(
-            <ClientsProjects value={project} />
+            <ClientsProjects value={project}  key={project._id}/>
             )
             })}
-            <Link to="/Login">Temp link back to Login page</Link>
+
+            <Link to="/Product"><button>
+                    Add New product
+                </button></Link>
             <br></br>
             <Link to="/Client">Temp link to client page</Link>
             <br></br>

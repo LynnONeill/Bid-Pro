@@ -10,7 +10,8 @@ const ProjectSchema = new Schema({
     },
     name:{
        type:String
-    }
+    },
+    date: { type: Date, default: Date.now },
 });
 
 const ClientProject = mongoose.model("ClientProject", ProjectSchema);

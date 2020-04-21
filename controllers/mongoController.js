@@ -40,11 +40,12 @@ module.exports = {
     },
 
     newProject: function (req, res) {
-        console.log("create is firing!")
-        MongoDB.ClientProject.create({ client_id: req.params.id })
+        console.log("test")
+        console.log(req.body)
+        MongoDB.ClientProject.create({ client_id: req.body.id, name: req.body.name })
             .then(stuff => {
                 console.log("stuff")
-                MongoDB.ClientProject.find({ client_id: req.params.id })
+                MongoDB.ClientProject.find({ client_id: req.body.id })
                     .then(products => {
                         console.log("list of available projects below")
                         console.log(products)
@@ -58,12 +59,25 @@ module.exports = {
                 res.status(404).json(err);
             });
     },
-    projectProducts: function(req,res){
+    deleteProject: function (req, res) {
         console.log(req.params)
-        MongoDB.ClientProduct.find({ project_id: req.params.id })
+        MongoDB.ClientProject.deleteOne({ _id: req.params.id })
             .then(products => {
                 console.log("list of available projects below")
                 console.log(products)
+                res.json(products)
+            })
+            .catch(err => {
+                res.status(404).json(err);
+            });
+
+    },
+    projectProducts: function (req, res) {
+        console.log(req.params.id)
+        MongoDB.ClientProduct.find({ project_id:{id:req.params.id}})
+            .then(products => {
+                console.log("list of available products below")
+                console.log(products[0])
                 res.json(products)
             })
             .catch(err => {
