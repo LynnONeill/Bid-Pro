@@ -5,7 +5,7 @@ const sequelizeController = require('../../controllers/sequelizeController.js');
 console.log("api route hit")
 
 
-router.route("/").get(function(req,res){
+router.route("/").get(function (req, res) {
   res.send("")
 })
 
@@ -20,6 +20,23 @@ router.route("/test").get(function(req,res){
 
 //api call to pull all base products
 router
+  .route("/projects/:id")
+  .get(mongoController.findProjects)
+
+router
+  .route("/projects")
+  .post(mongoController.newProject)
+
+  router
+    .route("/projects/:id")
+    .delete(mongoController.deleteProject)
+
+  router
+    .route("/projectProducts/:id")
+    .get(mongoController.projectProducts)
+
+//api call to pull all available products//
+router
   .route("/products")
   .get(mongoController.findProducts)
 
@@ -28,18 +45,23 @@ router
   .route("/features")
   .get(mongoController.findFeatures)
 
+//api call to create Quote pdf ///
+router
+  .route("/pdf")
+  .post(mongoController.createPDF)
+
 // MySQL Database calls //
  router
   .route('/users')
   .get(sequelizeController.getUsers)
  //api call to create a new project 
-router
-  .route("/project")
-  .post(mongoController.createProject)
+// router
+//   .route("/project")
+//   .post(mongoController.createProject)
 
 //api call to add new product quote to existing project
 router
-  .route("/addProduct/:projectID")
+  .route("/addProduct")
   .post(mongoController.addProduct)
 
 

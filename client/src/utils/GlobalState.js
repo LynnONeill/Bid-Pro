@@ -4,6 +4,7 @@ const ClientContext = React.createContext({
     id: "",
     name: "",
     businessName:"",
+    phoneNumber:"",
     email:"",
     address:"",
     addressTwo:"",
@@ -11,6 +12,9 @@ const ClientContext = React.createContext({
     state:"",
     zip:"",
     notes:"",
+    createdAt:"",
+    updatedAt:"",
+    projectID:"",
     handleClick: () => {}
   });
 

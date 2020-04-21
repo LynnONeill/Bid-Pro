@@ -8,7 +8,7 @@ import Admin from "./pages/Admin";
 import Project from "./pages/Project";
 import Product from "./pages/Product";
 import Nav from "./components/Nav";
-import ClientContext from "./utils/GlobalState"
+import ClientContext from "./utils/GlobalState";
 
 function App() {
   const [selectedClient,setSelectedClient] = useState({});
@@ -16,9 +16,15 @@ function App() {
   function handleClick(event) {
     // Get the title of the clicked button
     if (event){
-    const info = JSON.parse(event.target.getAttribute("data-value"));
-    console.log(info)
+    const info = JSON.parse(event.target.closest(".clientLink").getAttribute("data-value"));
+    console.log(!info.clientID)
+    if(!info.clientID){
       setSelectedClient({...selectedClient,...info})
+    }else{
+      
+      setSelectedClient({...selectedClient,info})
+
+    }
     }
   }
 
