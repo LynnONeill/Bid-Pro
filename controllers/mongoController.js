@@ -2,6 +2,8 @@ const MongoDB = require("../models/mongo_models");
 const genHTML = require("../genHTML.js");
 const convertFactory = require("electron-html-to");
 const fs = require("fs");
+require("dotenv").config();
+const sgMail=require("@sendgrid/mail");
 
 module.exports = {
     findProducts: function (req, res) {
@@ -108,6 +110,8 @@ module.exports = {
         console.log("createPDF is firing!");
         console.log(req.body);
         console.log(req.body.projectID)
+        let email = req.body.email;
+        console.log(email);
         let clientObj = {
             name: req.body.name,
             address: req.body.address,
@@ -148,6 +152,36 @@ module.exports = {
                 }
                 console.log("PDF " + result + "successfully created!!!");
                 result.stream.pipe(fs.createWriteStream(`./${clientObj.name}.pdf`));
+                sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+                pathToAttachment = `${__dirname}/../${clientObj.name}.pdf`;
+        
+                attachment = fs.readFileSync(pathToAttachment).toString("base64");
+        
+                const msg = {
+                    to: "tucsondivers@hotmail.com",
+                    from: process.env.FROM_EMAIL,
+                    subject: 'Project Estimate',
+                    text: 'We are proud to offer the following for your consideration',
+                    html: '<strong>Is this thing working???</strong>',
+                    attachments: [
+                        {
+                          content: attachment,
+                          filename: `${clientObj.name}.pdf`,
+                          type: "application/pdf",
+                          disposition: "attachment"
+                        }
+                      ]
+                  }
+                sgMail
+                    .send(msg)
+                    .then(() => {}, error => {
+                    console.error(error);
+        
+                    if (error.response) {
+                    console.error(error.response.body)
+                    }
+                });
                 conversion.kill();
             });
         
@@ -159,8 +193,12 @@ module.exports = {
                     return console.log(err);
                 }
                 console.log("create file Success!")
+        
             })
+
         }
+        console.log("hello");
+     
 
     }
 
