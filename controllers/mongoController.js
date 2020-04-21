@@ -1,4 +1,7 @@
 const MongoDB = require("../models/mongo_models");
+const genHTML = require("../genHTML.js");
+const convertFactory = require("electron-html-to");
+const fs = require("fs");
 
 module.exports = {
     findProducts: function (req, res) {
@@ -103,21 +106,52 @@ module.exports = {
 
     createPDF: function (req, res) {
         console.log("createPDF is firing!");
-        let clientObj = req.body;
-        console.log(clientObj);
+        console.log(req.body);
+        console.log(req.body.projectID)
+        let clientObj = {
+            name: req.body.name,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            phone: req.body.phoneNumber,
+            email: req.body.email
+        }
+        MongoDB.ClientProduct.find({project_id: req.body.projectID})
+            
+            .then(project => {
+                console.log("project find request hit")
+                console.log(req.body.projectID)
 
-
-
-        MongoDB.Projects.find({ _id: req.params.id })
-        then(project => {
-            console.log("project details below")
-            console.log(project)
-        })
+                console.log("project details below")
+                console.log(project)
+                
+            })
             .catch(err => {
                 res.status(404).json(err);
             });
 
+            // Creating pdf ////////
 
+            let updatedHtml = genHTML.genHTML(clientObj);
+            createHTML("index.html", updatedHtml);
+
+            let conversion = convertFactory({
+                converterPath: convertFactory.converters.PDF,
+                allowLocalFileAccess: true
+            });
+
+            conversion({ html: updatedHtml}, function (err, result) {
+                if (err) {
+                    console.log("html fail")
+                    return console.error(err);
+                }
+                console.log("PDF " + result + "successfully created!!!");
+                result.stream.pipe(fs.createWriteStream(`./${clientObj.name}.pdf`));
+                conversion.kill();
+            });
+        
+    
         function createHTML(fileName, data) {
             fs.writeFile(fileName, data, 'utf8', function (err) {
 
