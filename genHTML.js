@@ -22,7 +22,7 @@ function genHTML(clientObj) {
                     <div class="col">
                         <div>
                             <div class="card-body">
-                                <h5 class="card-title">${clientObj.selectedClient}</h5>
+                                <h5 class="card-title">${clientObj.name}</h5>
                                 <p class="card-subtitle mb-2 text-muted">${clientObj.address}</p>
                                 <p class="card-subtitle mb-2 text-muted">${clientObj.city}, ${clientObj.state} ${clientObj.zip}</p>
                                 <p class="card-subtitle mb-2 text-muted">${clientObj.phone}</p>
