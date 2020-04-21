@@ -24,8 +24,16 @@ router
   .get(mongoController.findProjects)
 
 router
-  .route("/projects/:id")
-  .post(mongoController.newProjects)
+  .route("/projects")
+  .post(mongoController.newProject)
+
+  router
+    .route("/projects/:id")
+    .delete(mongoController.deleteProject)
+
+  router
+    .route("/projectProducts/:id")
+    .get(mongoController.projectProducts)
 
 //api call to pull all available products//
 router
@@ -47,13 +55,9 @@ router
   .route('/users')
   .get(sequelizeController.getUsers)
  //api call to create a new project 
-
-
 // router
 //   .route("/project")
 //   .post(mongoController.createProject)
-
-
 
 //api call to add new product quote to existing project
 router

@@ -15,9 +15,17 @@ export default {
     console.log ('show all existing projects')
     return axios.get ('/api/projects/'+id)
   },
-  addNewProject: function (id){
-    console.log ('add new project')
-    return axios.post ('/api/projects/'+id)
+  addNewProject: function (id,name){
+    console.log (name)
+    return axios.post ('/api/projects/',{id:id,name:name})
+  },
+  deleteProject: function (id){
+    console.log (id)
+    return axios.delete ('/api/projects/'+id)
+  },
+  getClientProducts: function(id){
+    console.log (id)
+    return axios.get("api/projectProducts/"+id)
   },
   addProduct: function (productObj) {
     console.log(productObj)

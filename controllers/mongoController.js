@@ -4,64 +4,97 @@ const convertFactory = require("electron-html-to");
 const fs = require("fs");
 
 module.exports = {
-    findProducts: function(req, res) {
+    findProducts: function (req, res) {
         console.log("find products api request is firing!")
         MongoDB.SecDoor.find({})
-        .then(products => {
-            console.log("list of available products below")
-            console.log(products)
-            res.json(products)
-        })
-        .catch(err => {
-            res.status(404).json(err);
-        });
-    },
-    
-    findFeatures: function(req, res) {
-        console.log("find products api request is firing!")
-        MongoDB.Features.find({})
-        .then(features => {
-            console.log("list of features below")
-            console.log(features)
-            res.json(features)
-        })
-        .catch(err => {
-            res.status(404).json(err)
-        });
+            .then(products => {
+                console.log("list of available products below")
+                console.log(products)
+                res.json(products)
+            })
+            .catch(err => {
+                res.status(404).json(err);
+            });
     },
 
-    findProjects: function(req, res) {
-        MongoDB.ClientProject.find({client_id:req.params.id})
-        .then(products => {
-            console.log("list of available projects below")
-            console.log(products)
-            res.json(products)
-        })
-        .catch(err => {
-            res.status(404).json(err);
-        });
-    },
-    
-    newProjects: function(req, res) {
-        console.log("create is firing!")
-            MongoDB.ClientProject.create({client_id:req.params.id})
-            .then(stuff => {
-                console.log(stuff)
-                res.json(stuff)
-                this.findProjects(req,res)
+    findFeatures: function (req, res) {
+        console.log("find products api request is firing!")
+        MongoDB.Features.find({})
+            .then(features => {
+                console.log("list of features below")
+                console.log(features)
+                res.json(features)
             })
-        .catch(err => {
-            res.status(404).json(err);
-        });
+            .catch(err => {
+                res.status(404).json(err)
+            });
     },
-    
-    addProduct: function(req, res) {
+
+    findProjects: function (req, res) {
+        MongoDB.ClientProject.find({ client_id: req.params.id })
+            .then(products => {
+                console.log("list of available projects below")
+                console.log(products)
+                res.json(products)
+            })
+            .catch(err => {
+                res.status(404).json(err);
+            });
+    },
+
+    newProject: function (req, res) {
+        console.log("test")
+        console.log(req.body)
+        MongoDB.ClientProject.create({ client_id: req.body.id, name: req.body.name })
+            .then(stuff => {
+                console.log("stuff")
+                MongoDB.ClientProject.find({ client_id: req.body.id })
+                    .then(products => {
+                        console.log("list of available projects below")
+                        console.log(products)
+                        res.json(products)
+                    })
+                    .catch(err => {
+                        res.status(404).json(err);
+                    });
+            })
+            .catch(err => {
+                res.status(404).json(err);
+            });
+    },
+    deleteProject: function (req, res) {
+        console.log(req.params)
+        MongoDB.ClientProject.deleteOne({ _id: req.params.id })
+            .then(products => {
+                console.log("list of available projects below")
+                console.log(products)
+                res.json(products)
+            })
+            .catch(err => {
+                res.status(404).json(err);
+            });
+
+    },
+    projectProducts: function (req, res) {
+        console.log(req.params.id)
+        MongoDB.ClientProduct.find({ project_id:{id:req.params.id}})
+            .then(products => {
+                console.log("list of available products below")
+                console.log(products[0])
+                res.json(products)
+            })
+            .catch(err => {
+                res.status(404).json(err);
+            });
+    },
+
+    addProduct: function (req, res) {
         console.log("add product api request is firing!")
         let newProduct = req.body;
         console.log(newProduct);
-        
+
         MongoDB.ClientProduct.create(newProduct)
-            
+
             .then(newProduct => {
                 console.log(newProduct);
                 res.json(newProduct);
@@ -71,7 +104,7 @@ module.exports = {
             })
     },
 
-    createPDF: function(req, res) {
+    createPDF: function (req, res) {
         console.log("createPDF is firing!");
         console.log(req.body);
         console.log(req.body.projectID)
@@ -121,14 +154,14 @@ module.exports = {
     
         function createHTML(fileName, data) {
             fs.writeFile(fileName, data, 'utf8', function (err) {
-        
+
                 if (err) {
                     return console.log(err);
                 }
                 console.log("create file Success!")
             })
         }
-    
+
     }
 
 }

@@ -14,6 +14,7 @@ const ClientContext = React.createContext({
     notes:"",
     createdAt:"",
     updatedAt:"",
+    projectID:"",
     handleClick: () => {}
   });
 

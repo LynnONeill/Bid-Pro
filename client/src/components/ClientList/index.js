@@ -5,7 +5,6 @@ import { FaEye } from "react-icons/fa";
 
 
 function ClientList(props) {
-    const [clients, setClients] = useState([]);
     const { handleClick } = useContext(ClientContext);
     props.value.phoneNumber = 1234567890
     console.log(props)
