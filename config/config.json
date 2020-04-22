@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Jangof3tt",
+    "password": "Jang0f3tt",
     "database": "bid_pro",
     "host": "127.0.0.1",
     "dialect": "mysql"

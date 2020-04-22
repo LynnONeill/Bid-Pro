@@ -35,6 +35,11 @@ router
     .route("/projectProducts/:id")
     .get(mongoController.projectProducts)
 
+    
+  router
+  .route("/product/:id")
+  .delete(mongoController.deleteProduct)
+
 //api call to pull all available products//
 router
   .route("/products")
