@@ -29,6 +29,7 @@ function Product() {
 
     const { selectedClient } = useContext(ClientContext);
 
+    console.log(selectedClient.projectID);
 
     let newProduct = {
 
@@ -260,6 +261,7 @@ function Product() {
                 console.log(res.data)
             })
     }
+
 
 
 

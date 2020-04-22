@@ -1,6 +1,6 @@
 import React from "react";
 
-function QuoteSummary({ sendPDF,totalValue }) {
+function QuoteSummary({ queryProducts ,totalValue  }) {
 
     return (
         <div className="card">
@@ -14,7 +14,7 @@ function QuoteSummary({ sendPDF,totalValue }) {
             <button
                 name="name"
                 type="button"
-                onClick={sendPDF}
+                onClick={queryProducts}
             > Send PDF
             </button>
         </div>
