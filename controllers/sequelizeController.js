@@ -25,6 +25,9 @@ module.exports = {
         .then(users => {
             return res.json(users)
         })
+        .catch(err => {
+            res.status(404).json(err)
+        })
     },
 
     // Post route for adding client

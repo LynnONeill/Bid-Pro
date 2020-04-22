@@ -1,6 +1,6 @@
 import React from "react";
 
-function QuoteSummary({ sendPDF }) {
+function QuoteSummary({ queryProducts }) {
 
     return (
         <div className="card">
@@ -14,7 +14,7 @@ function QuoteSummary({ sendPDF }) {
             <button
                 name="name"
                 type="button"
-                onClick={sendPDF}
+                onClick={queryProducts}
             > Send PDF
             </button>
         </div>

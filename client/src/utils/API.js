@@ -31,12 +31,20 @@ export default {
     console.log(productObj)
     return axios.post("/api/addProduct", productObj)
   },
-  sendPDF: function (projectID, selectedClient) {
+  queryProducts: function (projectID, selectedClient) {
     console.log(selectedClient)
     selectedClient["projectID"] = projectID
     console.log(selectedClient)
     return axios.post("/api/pdf/", selectedClient)
   },
+  sendPDF: function(projectID, selectedClient) {
+    console.log("sendPDF called")
+    console.log(selectedClient)
+    selectedClient["projectID"] = projectID
+    console.log(selectedClient)
+    return axios.post("/api/sendPDF/", selectedClient)
+  },
+  
 
 
   // user calls 

@@ -30,6 +30,7 @@ function Product() {
 
     const { selectedClient } = useContext(ClientContext);
 
+    console.log(selectedClient.projectID);
 
     let newProduct = {
 
@@ -262,16 +263,21 @@ function Product() {
         })
     }
 
-    const sendPDF = event =>  {
+    const queryProducts = event =>  {
         console.log("sendPDF click is working!")
         console.log(selectedClient);
-        // use global project id once it's set up ////
-        let projectID = "5e9cebf9c4cdf9328cbde473";
         
-        API.sendPDF(projectID, selectedClient)
+        API.queryProducts(selectedClient.projectID, selectedClient)
             .then(res => {
-                alert(res.data)
+                console.log(res.data)
+
+                API.sendPDF(selectedClient.projectID, selectedClient)
+                .then(res => {
+                    console.log(res.data)
+                    alert("The estimate has been sent to the client!")
+                })
             })
+       
     }
 
     return (
@@ -303,7 +309,7 @@ function Product() {
             </Col>
             <Col xs={4} md={4}>
                 <QuoteSummary
-                    sendPDF={sendPDF}
+                    queryProducts={queryProducts}
                 />
             </Col>
                 
