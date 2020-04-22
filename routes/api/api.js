@@ -13,7 +13,6 @@ router.route("/test").get(function(req,res){
   res.send("this is a test")
 })
 
-// SQL database calls
 
 
 // Mongo Database calls /////
@@ -48,21 +47,26 @@ router
 //api call to create Quote pdf ///
 router
   .route("/pdf")
-  .post(mongoController.createPDF)
+  .post(mongoController.queryProducts)
+
+  //api call to send pdf //
+router
+  .route("/sendPDF")
+  .post(mongoController.sendPDF)
+  //api call to add new product quote to existing project
+
+router
+.route("/addProduct")
+.post(mongoController.addProduct)
+
+
+
+
 
 // MySQL Database calls //
  router
   .route('/users')
   .get(sequelizeController.getUsers)
- //api call to create a new project 
-// router
-//   .route("/project")
-//   .post(mongoController.createProject)
-
-//api call to add new product quote to existing project
-router
-  .route("/addProduct")
-  .post(mongoController.addProduct)
 
 
 router 

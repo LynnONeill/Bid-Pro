@@ -1,6 +1,6 @@
 
 
-function genHTML(clientObj) {
+function genHTML(clientObj, total, sortProducts) {
     return `<!DOCTYPE html>
     <html lang="en">
     
@@ -45,45 +45,14 @@ function genHTML(clientObj) {
             </div>
             <div id="QuoteBox">
                 <div class="row">
-                    <div class="card w-100">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-md-6 font-weight-bold">{ProductSelected}</div>
-                                <div class="col-md-6 text-right font-weight-bold">{ProductSelectedPX}</div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Style: {selectedDesign}</p>
-                            <p class="card-text">Backing Type: {selectedBacking}</p>
-                            <p class="card-text">Finish: {selectedFinish}</p>
-                            <p class="card-text">Hardware: {selectedHardware}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="card w-100">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-md-6 font-weight-bold">{ProductSelected}</div>
-                                <div class="col-md-6 text-right font-weight-bold">{ProductSelectedPX}</div>
-                            </div>
-                        </div>
-                        <div class="card-body w-100">
-                            <p class="card-text">Style: {selectedDesign}.</p>
-                            <p class="card-text">Backing Type: {selectedBacking}</p>
-                            <p class="card-text">Finish: {selectedFinish}</p>
-                            <p class="card-text">Hardware: {selectedHardware}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    ${sortProducts}
             <div id="total">
                 <div class="row">
                     <div class="card w-100">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6 font-weight-bold">Project Total:</div>
-                                <div class="col-md-6 text-right font-weight-bold">{totalPrice}</div>
+                                <div class="col-md-6 text-right font-weight-bold">$${total}.00</div>
                             </div>
                         </div>
                     </div>

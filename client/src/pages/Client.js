@@ -42,17 +42,7 @@ function Clients() {
             setProjects(res.data)
         }).catch(err => console.log(err))
     }
-    //   function handleNewProjectClick(event) {
-    //     console.log("click is working");
-    //     API.createProject({clientid: clientID})
-    //         .then(res => {
-    //             console.log(res.data)
-    //         })
-    //         .catch(err => console.log(err))
-    //        /// ***Need code to redirect to product page - this isn't working /// 
-    //        return <Redirect to='/product' />
-    //        /// Also, will need to set project id number in global state 
-    // }
+   
 
     return (
         <Wrapper>
