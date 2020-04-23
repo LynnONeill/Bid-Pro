@@ -77,7 +77,6 @@ function Clients() {
 
                     </div>
                 </div>
-            </div>
         </Container>
 
         </Wrapper>
