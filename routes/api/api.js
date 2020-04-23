@@ -86,5 +86,9 @@ router
    .route('/addClient')
    .post(sequelizeController.addClient)
 
+   router
+   .route('/client/:id')
+   .delete(sequelizeController.deleteClient)
+
 
 module.exports = router;

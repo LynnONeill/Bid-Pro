@@ -2,6 +2,7 @@ import ClientContext from "../../utils/GlobalState"
 import { Link } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import { FaEye } from "react-icons/fa";
+import API from "../../utils/API";
 
 
 function ClientList(props) {
@@ -9,8 +10,19 @@ function ClientList(props) {
     console.log(props)
     const user = JSON.stringify(props.value)
 
-    return (
+    function deleteClient (e){
+        e.preventDefault()
+        API.deleteClient(props.value.id)
+        .then((res) => {
+            console.log(res);
+            props.setClients(res.data);
+          })
+          .catch((err) => console.log(err));
+      }
+      
 
+    return (
+<>
         <Link to="/Client" className="clientLink" onClick={handleClick} data-value={user}>
             <div className="row" style={{ marginTop: 10, }}>
 
@@ -31,7 +43,8 @@ function ClientList(props) {
             </div>
 
         </Link>
-
+        <button onClick={deleteClient}>Delete Client</button>
+</>
 
 
     )

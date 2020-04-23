@@ -60,6 +60,10 @@ export default {
     console.log('addUsers api call is workin')
     return axios.post('/api/addusers', user);
   },
+  deleteClient: function(id){
+    console.log("deleting client"+id)
+    return axios.delete('/api/client/'+id);
+  },
 
   // add clients
   addClient: function(client) {

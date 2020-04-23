@@ -10,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
     },
     phoneNumber: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
     },
    
@@ -42,7 +42,7 @@ module.exports = function (sequelize, DataTypes) {
       
     },
     zip: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     notes: {
