@@ -3,7 +3,7 @@ const genHTML = require("../genHTML.js");
 const convertFactory = require("electron-html-to");
 const fs = require("fs");
 require("dotenv").config();
-const sgMail=require("@sendgrid/mail");
+const sgMail = require("@sendgrid/mail");
 
 module.exports = {
     findProducts: function (req, res) {
@@ -34,10 +34,31 @@ module.exports = {
 
     findProjects: function (req, res) {
         MongoDB.ClientProject.find({ client_id: req.params.id })
-            .then(products => {
-                console.log("list of available projects below")
-                console.log(products)
-                res.json(products)
+            .then(projects => {
+                let stuff = projects
+                query(stuff, 0)
+                function query(theProject, num) {
+                    let theStuff = theProject
+                    if (num < theStuff.length) {
+                        let id = theStuff[num]._id
+                        console.log(id)
+                        MongoDB.ClientProduct.find({ "project_id": { "id": `${id}` } })
+                            .then(products => {
+                                console.log(products)
+                                if (products.length === 0) {
+                                } else {
+                                    let total = 0;
+                                    products.map(products => total += products.total.price)
+                                    theStuff[num].__v = total
+                                    console.log(theStuff)
+                                }
+                                num++
+                                query(theStuff, num)
+                            })
+                    } if (num == theStuff.length) {
+                        res.json(theStuff)
+                    }
+                }
             })
             .catch(err => {
                 res.status(404).json(err);
@@ -79,10 +100,8 @@ module.exports = {
     },
     projectProducts: function (req, res) {
         console.log(req.params.id)
-        MongoDB.ClientProduct.find({ project_id:{id:req.params.id}})
+        MongoDB.ClientProduct.find({ project_id: { id: req.params.id } })
             .then(products => {
-                console.log("list of available products below")
-                console.log(products[0])
                 res.json(products)
             })
             .catch(err => {
@@ -106,6 +125,18 @@ module.exports = {
             })
     },
 
+    deleteProduct: function(req,res){
+        console.log(req.params.id)
+        MongoDB.ClientProduct.findOneAndDelete({_id:req.params.id})
+            .then(del => {
+                console.log(del)
+                res.json(del)
+            })
+            .catch(err => {
+                res.status(404).json(err);
+            });
+    },
+    
     queryProducts: function (req, res) {
         console.log("queryProducts is firing");
         console.log(req.body);
@@ -214,7 +245,7 @@ module.exports = {
                 attachment = fs.readFileSync(pathToAttachment).toString("base64");
         
                 const msg = {
-                    to: "tucsondivers@hotmail.com",
+                    to: "kodypbishop@gmail.com",
                     from: process.env.FROM_EMAIL,
                     subject: 'Project Estimate',
                     text: 'We are proud to offer the following for your consideration',
@@ -235,7 +266,7 @@ module.exports = {
                     res.send("pdf sent")
         
                     if (error.response) {
-                    console.error(error.response.body)
+                        console.error(error.response.body)
                     }
                 });
             }

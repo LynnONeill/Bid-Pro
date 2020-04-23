@@ -6,6 +6,7 @@ import QuoteTotal from "../QuoteTotal";
 import QuoteSubmitBtn from "../QuoteSubmitBtn";
 import QuoteProductDropDown from "../QuoteProductDropDown";
 import QuoteFeatureDropDown from "../QuoteFeatureDropDown";
+import { Link} from "react-router-dom";
 
 function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDrop, handleProductSelect, handleFeatureSelect, selectedProductPX, backingPrice, finishPrice, designPrice, hardwarePrice, totalPrice, addProduct}) {
 
@@ -87,9 +88,11 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
+                <Link to="/project">
                 <QuoteSubmitBtn 
                     addProduct={addProduct}
                 />
+                </Link>
             </Row>
 
 

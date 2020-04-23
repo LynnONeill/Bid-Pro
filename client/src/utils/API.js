@@ -31,6 +31,9 @@ export default {
     console.log(productObj)
     return axios.post("/api/addProduct", productObj)
   },
+  deleteProduct : function(id){
+  return axios.delete ('/api/product/'+id)
+  },
   queryProducts: function (projectID, selectedClient) {
     console.log(selectedClient)
     selectedClient["projectID"] = projectID
