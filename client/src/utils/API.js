@@ -27,10 +27,10 @@ export default {
     return axios.post ('/api/projects/'+id)
   },
 
-
+  /// MySQL calls /////
   // user calls 
   getUsers: function() {
-    //console.log('getUsers api call is workin')
+    console.log('getUsers api call is workin')
     return axios.get('/api/users');
   },
 
@@ -40,19 +40,22 @@ export default {
   },
 
   // validate user for login
-  valUsers: function(user) {
+  valUsers: function(data) {
     console.log('valUsers api call is working')
-    return axios.post('/api/valusers');
-  },
-  getAllClients: function (){
-    console.log ('show all existing clients')
-    return axios.get ('/api/client')
+    return axios.post('/api/login', data);
   },
 
   deleteUsers: function(id) {
     console.log('deleteUsers api call is workin')
     return axios.delete(`/api/deleteusers/${id}`);
+  },
+
+  // client calls
+  getAllClients: function (){
+    console.log ('show all existing clients')
+    return axios.get ('/api/client')
   }
+
 }
 
 

@@ -42,18 +42,6 @@ function Home(props) {
             </label>
           </form>
         </div>
-
-        <div>
-          <Link to="/Project">Temp link to project page</Link>
-          <br></br>
-          <Link to="/Client">Temp link to client page</Link>
-          <br></br>
-          <Link to="/Login">Temp link back to Login page</Link>
-          <br></br>
-          <Link to="/Product">Temp link to Product Page</Link>
-          <br></br>
-          <Link to="/AddClient">Temp link to Add Client page</Link>
-        </div>
       </Container>
     </Wrapper>
   );
