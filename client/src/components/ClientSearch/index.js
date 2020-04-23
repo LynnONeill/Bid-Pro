@@ -1,16 +1,17 @@
 import React from "react";
 
-function ClientSearch() {
+function ClientSearch(props) {
 
     return (
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
+        <div className="input-group mb-3">
+            <div className="input-group-prepend">
                 <button
                     style={{ background: "dodgerblue", 
                              padding: 10, 
                              color: "#fff", 
                              borderRadius: 5 }} 
+                    
                     className="btn" 
                     name="button"
                     // onClick={props.handleClick}
@@ -19,10 +20,11 @@ function ClientSearch() {
                 </button>
             </div>
             <input 
-               
+                value={props.search}
+                onChange={props.handleSearchChange}
                 type="text" 
                 name="name"
-                class="form-control" 
+                className="form-control" 
                 placeholder="name" 
                 aria-label="Search" 
                 aria-describedby="basic-addon1"
@@ -35,7 +37,3 @@ function ClientSearch() {
 };
 
 export default ClientSearch;
-  {/* style={{padding: 10, borderRadius: 5}}
-                    value={props.search}
-                    onChange={props.handleSearchChange}
-                    className="form-control mr-sm-2" */}
