@@ -113,7 +113,7 @@ const User = [
  ]
 
  async function insertUsers(){
-    const createdUsers = Users.map( Users => db.Users.create(Users))
+    const createdUsers = User.map( Users => db.User.create(Users))
     await Promise.all(createdUsers)
 };
 insertUsers();
