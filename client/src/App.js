@@ -1,5 +1,7 @@
+
 import React, { useState }  from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory, useLocation} from "react-router-dom";
+
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Client from "./pages/Client";
@@ -37,12 +39,35 @@ function App() {
 
   function handleClick(event) {
     // Get the title of the clicked button
-    console.log(event.target.closest(".clientLink").getAttribute("data-value"))
-    if (event){
-    const info = JSON.parse(event.target.closest(".clientLink").getAttribute("data-value"));
-    console.log(info)
-      setSelectedClient({...selectedClient,...info})
+    if (event) {
+      const info = JSON.parse(event.target.closest(".clientLink").getAttribute("data-value"));
+      console.log(info)
+      console.log(!info.clientID)
+      if (!info.clientID) {
+        setSelectedClient({ ...selectedClient, ...info })
+      } else {
+
+        setSelectedClient({ ...selectedClient, info })
+
+      }
     }
+  }
+  function pushClient(event) {
+
+    function addClient(newClient) {
+      console.log('LOGGING')
+      console.log(newClient)
+      API.addClient(newClient)
+        .then(res => {
+          console.log(res)
+          setSelectedClient({ ...selectedClient, ...res.data })
+          console.log(selectedClient)
+        })
+    }
+    const info = JSON.parse(event.target.closest(".clientLink").getAttribute("data-value"));
+    console.log("pushClient hit here")
+    console.log(info)
+    addClient(info)
   }
 
  function PrivateRoute({ children, ...rest }) {
@@ -69,7 +94,7 @@ function App() {
   return (
     <Router>
       <div>
-        <ClientContext.Provider value={{selectedClient,handleClick}}>
+        <ClientContext.Provider value={{selectedClient,handleClick, pushClient }}>
           <AuthContext.Provider value={{isLoggedIn, handleAuth, handleLogout}}>
           <Navbar />
         <Switch>
@@ -96,10 +121,11 @@ function App() {
           </PrivateRoute>
         </Switch>
         </AuthContext.Provider>
+
         </ClientContext.Provider>
       </div>
     </Router>
-   
+
   );
 }
 

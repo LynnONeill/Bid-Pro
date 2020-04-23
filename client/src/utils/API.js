@@ -7,9 +7,6 @@ export default {
   getProducts: function () {
     return axios.get("/api/products");
   },
-  addProduct: function (projectID, {product}) {
-    return axios.post("/api/addProduct/" + projectID, {product})
-  },
   getFeatures: function () {
     console.log("getFeatures api call is working")
     return axios.get("/api/features");
@@ -18,14 +15,39 @@ export default {
     console.log ('show all existing projects')
     return axios.get ('/api/projects/'+id)
   },
-  createProject: function (clientID) {
-    console.log("create project api call is working")
-    return axios.post("/api/project", clientID);
+  addNewProject: function (id,name){
+    console.log (name)
+    return axios.post ('/api/projects/',{id:id,name:name})
   },
-  addNewProject: function (id){
-    console.log ('add new project')
-    return axios.post ('/api/projects/'+id)
+  deleteProject: function (id){
+    console.log (id)
+    return axios.delete ('/api/projects/'+id)
   },
+  getClientProducts: function(id){
+    console.log (id)
+    return axios.get("api/projectProducts/"+id)
+  },
+  addProduct: function (productObj) {
+    console.log(productObj)
+    return axios.post("/api/addProduct", productObj)
+  },
+  deleteProduct : function(id){
+  return axios.delete ('/api/product/'+id)
+  },
+  queryProducts: function (projectID, selectedClient) {
+    console.log(selectedClient)
+    selectedClient["projectID"] = projectID
+    console.log(selectedClient)
+    return axios.post("/api/pdf/", selectedClient)
+  },
+  sendPDF: function(projectID, selectedClient) {
+    console.log("sendPDF called")
+    console.log(selectedClient)
+    selectedClient["projectID"] = projectID
+    console.log(selectedClient)
+    return axios.post("/api/sendPDF/", selectedClient)
+  },
+  
 
   /// MySQL calls /////
   // user calls 
@@ -37,6 +59,16 @@ export default {
   addUsers: function(user) {
     console.log('addUsers api call is workin')
     return axios.post('/api/addusers', user);
+  },
+  deleteClient: function(id){
+    console.log("deleting client"+id)
+    return axios.delete('/api/client/'+id);
+  },
+
+  // add clients
+  addClient: function(client) {
+    console.log('addUsers api call is workin')
+    return axios.post('/api/addClient', client);
   },
 
   // validate user for login

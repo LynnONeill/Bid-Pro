@@ -14,7 +14,9 @@ const ClientContext = React.createContext({
     notes:"",
     createdAt:"",
     updatedAt:"",
-    handleClick: () => {}
+    projectID:"",
+    handleClick: () => {},
+    newClient: () => {},
   });
 
   export default ClientContext;
