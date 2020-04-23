@@ -46,7 +46,7 @@ function Home(props) {
             
             <label>
               {clients.map((client) => {
-                return <ClientList value={client} key={client.id} />;
+                return <ClientList value={client} key={client.id} setClients={setClients}/>;
               })}
             </label>
           </form>

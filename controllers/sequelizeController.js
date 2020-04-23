@@ -1,20 +1,20 @@
 const db = require("../models/sql_models");
 
 module.exports = {
-    
+
     // GET route for retrieving all users
-    getUsers: function(req, res) {
+    getUsers: function (req, res) {
         db.User.findAll({})
-        .then(users => {
-            res.json(users)
-        })
-        .catch(err => {
-            res.status(404).json(err);
-        });
+            .then(users => {
+                res.json(users)
+            })
+            .catch(err => {
+                res.status(404).json(err);
+            });
     },
 
     // POST route for new user
-    addUsers: function(req, res) {
+    addUsers: function (req, res) {
         console.log("addUsers api request is firing!")
         console.log(req)
         db.User.create({
@@ -22,16 +22,31 @@ module.exports = {
             password: req.body.password,
             isadmin: req.body.isadmin
         })
-        .then(users => {
-            return res.json(users)
+            .then(users => {
+                return res.json(users)
+            })
+            .catch(err => {
+                res.status(404).json(err)
+            })
+    },
+
+    deleteClient: function (req, res) {
+        console.log("working"+req.params.id)
+        db.Client.destroy({
+            where: {
+                id: req.params.id
+            }
         })
-        .catch(err => {
-            res.status(404).json(err)
-        })
+            .then(deleteUsers => {
+                db.Client.findAll({})
+                    .then(function (dbPost) {
+                        res.json(dbPost);
+                    });
+            })
     },
 
     // Post route for adding client
-    addClient: function(req,res) {
+    addClient: function (req, res) {
         console.log("add clients reques is working")
         console.log(req)
         console.log("!!!!");
@@ -50,13 +65,13 @@ module.exports = {
             // password: req.body.password
 
         })
-        .then(client => {
-            return res.json(client)
-        })
+            .then(client => {
+                return res.json(client)
+            })
     },
 
     // POST route for authenticating login
-    valUsers: function(req,res) {
+    valUsers: function (req, res) {
         console.log('valUsers api request is firing')
         console.log(req)
         db.User.findOne({
@@ -65,24 +80,24 @@ module.exports = {
             // password: //
 
         })
-        .then(users => {
-            res.json(users)
-        })
-        .catch(err => {
-            res.status(404).json(err);
-        });
+            .then(users => {
+                res.json(users)
+            })
+            .catch(err => {
+                res.status(404).json(err);
+            });
     },
 
     // DELETE route for deleting a user
-    deleteUsers: function(req,res) {
+    deleteUsers: function (req, res) {
         db.User.destroy({
             where: {
                 id: req.params.id
             }
         })
-        .then(deleteUsers => {
-            res.json(deleteUsers);
-        })
+            .then(deleteUsers => {
+                res.json(deleteUsers);
+            })
     }
 
 
