@@ -1,96 +1,95 @@
-import React,{useEffect, useState} from "react";
+import React,{ useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import {Form, Col, Button} from "react-bootstrap";
 import Wrapper from '../components/Wrapper';
-import API from '../utils/API'
+import API from '../utils/API';
+import ClientContext from "../utils/GlobalState";
 
-function AddClient() {
-    const initialForm = {name: '',
-     businessName: '',
-      phoneNumber: 0,
+function AddClient(props) {
+
+    const {  pushClient, handleClick } = useContext(ClientContext);
+
+    const initialForm = {
+    name: '',
+    businessName: '',
+    phoneNumber: 0,
     email:'',
-address:'',
-addressTwo:'',
-city:'',
-state:'',
-zip: 0,
-notes:''}
+    address:'',
+    addressTwo:'',
+    city:'',
+    state:'',
+    zip: 0,
+    notes:''
+    }
+
     const  [newClient, setNewClient] = useState(initialForm);
 
-    let clientList;
+    
+    let added;
 
     const handleInputChange = event => {
         const { name, value } = event.target
         console.log(name)
         console.log(value)
         setNewClient({ ...newClient, [name]: value })
+        console.log(newClient)
+        added = JSON.stringify(newClient)
+        console.log(added)
+        
+       
       }
 
-    //     useEffect(
-
-        const addClient = (event) => {
-            console.log('LOGGING')
-            console.log(newClient)
-            API.addClient(newClient)
-            .then(res => {
-                console.log(res)
-            })
-        }   
+      
 
     return(
         <Wrapper>
-        <div>
         <Container>
         
         <h1>Add Client</h1>
         <form>
-            <Form.Group className="">
-                <Form.Label>
-                    Business Name:
-                    <Form.Control 
-                    type="input" 
-                    placeholder="enter business name" 
-                    value={newClient.businessName}
-                    onChange={handleInputChange}
-                    name="businessName"
-                     />
-                </Form.Label>
-                <Form.Label>
-                    Contact Name:
-                    <Form.Control 
+            <Form.Group>
+                <Form.Label>Client Name:</Form.Label>
+                <Form.Control 
                     type="input" 
                     placeholder="name" 
                     value={newClient.name}
                     onChange={handleInputChange}
                     name="name"
-                     />
-                </Form.Label>
+                />
+                <Form.Label>Business Name:</Form.Label>
+                <Form.Control 
+                    type="input" 
+                    placeholder="enter business name" 
+                    value={newClient.businessName}
+                    onChange={handleInputChange}
+                    name="businessName"
+                />
             </Form.Group>         
-
-            <Form.Row>
-                <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control 
+        <Form.Row>
+            <Form.Group as={Col}  controlId="formGridEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control 
                     type="email" 
                     placeholder="email" 
                     value={newClient.email}
                     onChange={handleInputChange}
                     name="email"
-                     />
-                </Form.Group>
+                />
+            </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Password</Form.Label>
+            <Form.Group as={Col} controlId="formGridPhone">
+                <Form.Label>Phone Number</Form.Label>
                 <Form.Control 
-                    type="input" 
-                    placeholder="password" 
-                    value={newClient.password}
+                    type="phoneNumber" 
+                    placeholder="phone" 
+                    value={newClient.phoneNumber}
                     onChange={handleInputChange}
-                    name="password"
-                     />
-                </Form.Group>
-            </Form.Row>
+                    name="phoneNumber"
+                />
+            </Form.Group>
+        </Form.Row>
+            
 
             <Form.Group controlId="formGridAddress1">
                 <Form.Label>Address</Form.Label>
@@ -103,15 +102,16 @@ notes:''}
                      />
             </Form.Group>
 
-            <Form.Group controlId="formGridAddress2">
+            <Form.Group controlId="formGridAddress1">
                 <Form.Label>Address 2</Form.Label>
                 <Form.Control 
                     type="input" 
-                    placeholder="address two" 
+                    placeholder="address 2" 
                     value={newClient.addressTwo}
                     onChange={handleInputChange}
-                    name="address two"
-                     />            </Form.Group>
+                    name="addressTwo"
+                     />
+            </Form.Group>
 
             <Form.Row>
                 <Form.Group as={Col} controlId="formGridCity">
@@ -126,18 +126,17 @@ notes:''}
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
-                <Form.Label>State</Form.Label>
-                <Form.Control
-                     as="select" 
-                    type="input" 
-                    placeholder="state" 
-                    value={newClient.state}
-                    onChange={handleInputChange}
-                    name="businessName">
-                         <option>Choose...</option>
-                    <option>AZ</option>
+                    <Form.Label>State</Form.Label>
+                    <Form.Control
+                        as="select" 
+                        type="input" 
+                        placeholder="state" 
+                        value={newClient.state}
+                        onChange={handleInputChange}
+                        name="state">
+                            <option>Choose...</option>
+                            <option>AZ</option>
                     </Form.Control>
-                   
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridZip">
@@ -162,25 +161,23 @@ notes:''}
                 name="notes"
                 />
              </Form.Group>
-
-             <Button variant="primary" type="button" onClick={() => addClient()}>
-                Submit
-            </Button>
+             <Link to="/Client" className="clientLink" onClick={pushClient} data-value={JSON.stringify(newClient)}>
+                <Button variant="primary" type="button">
+                    Submit
+                </Button>
+            </Link>
      
         </form>
 
-        <Link to="/Login">Temp link back to Login page</Link>
         <br></br>
         <Link to="/Product">Temp link to client page</Link>
-        <br></br>
-        <Link to="/Home">Temp link to home page</Link>
         <br></br>
         <Link to="/Project">Temp link to project page</Link>
         <br></br>
         <Link to="/Admin">Temp link to admin page</Link>
         
         </Container>
-        </div>
+        
         </Wrapper>
     );
 }

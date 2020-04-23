@@ -34,6 +34,8 @@ module.exports = {
     addClient: function(req,res) {
         console.log("add clients reques is working")
         console.log(req)
+        console.log("!!!!");
+        console.log(req.body);
         db.Client.create({
             name: req.body.name,
             businessName: req.body.businessName,
@@ -44,8 +46,8 @@ module.exports = {
             city: req.body.city,
             state: req.body.state,
             zip: req.body.zip,
-            notes: req.body.notes,
-            password: req.body.password
+            notes: req.body.notes
+            // password: req.body.password
 
         })
         .then(client => {
