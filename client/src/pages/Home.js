@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import { Form, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, Button } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Wrapper from '../components/Wrapper';
 import ClientContext from "../utils/GlobalState"
 import API from "../utils/API";
 import React, { useEffect, useState, useContext } from "react";
 import ClientList from "../components/ClientList";
+import ClientSearch from "../components/ClientSearch";
 
 function Home(props) {
   const [clients, setClients] = useState([]);
@@ -29,12 +32,18 @@ function Home(props) {
       <Container fluid>
         <div>
           <form>
+            <Row>
+              <Col>
+                <ClientSearch />
+              </Col>
             <div style={{ textAlign: "right" }}>
               <button onClick={goToClient} style={{ background: "#6DAC64", padding: 10, color: "#fff", borderRadius: 5 }}>
                 {" "}
                 <FaPlus /> Client{" "}
               </button>
             </div>
+            </Row>
+            
             <label>
               {clients.map((client) => {
                 return <ClientList value={client} key={client.id} />;

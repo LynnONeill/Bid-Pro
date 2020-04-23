@@ -11,14 +11,14 @@ function ClientCard() {
     }
     return (
         <ul>
-            {selectedClient.name === null ? "" : <li>{selectedClient.name}</li>}
-            {selectedClient.businessName === null ? "" : <li>{selectedClient.businessName}</li>}
-            {selectedClient.email === null ? "" : <li>{selectedClient.email}</li>}
-            {selectedClient.phoneNumber === null ? "" : <li> {phone}</li>}
-            {selectedClient.address === null ? "" : <li>{selectedClient.address}</li>}
+            {selectedClient.name === null || selectedClient.name ==="" ? "" : <li>{selectedClient.name}</li>}
+            {selectedClient.businessName === null|| selectedClient.businessName === "" ? "" : <li>{selectedClient.businessName}</li>}
+            {selectedClient.email === null|| "" ? "" : <li>{selectedClient.email}</li>}
+            {selectedClient.phoneNumber === null|| "" ? "" : <li> {phone}</li>}
+            {selectedClient.address === null|| "" ? "" : <li>{selectedClient.address}</li>}
             {selectedClient.city === null && selectedClient.state === null ? "" : <li>{selectedClient.city}, {selectedClient.state}</li>}
-            {selectedClient.zip === null ? "" : <li>{selectedClient.zip}</li>}
-            {selectedClient.notes === null ? "" : <li>{selectedClient.notes}</li>}
+            {selectedClient.zip === null|| "" ? "" : <li>{selectedClient.zip}</li>}
+            {selectedClient.notes === null|| "" ? "" : <li>{selectedClient.notes}</li>}
         </ul>
 
 
