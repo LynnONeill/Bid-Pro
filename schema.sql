@@ -4,13 +4,14 @@ CREATE DATABASE bid_pro;
 
 USE bid_pro;
 SELECT * FROM users;
-
+USE bid_pro;
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
-    fullname VARCHAR(255),
-    username VARCHAR(255),
+    email VARCHAR(255),
     password VARCHAR(255),
     isadmin BOOLEAN, 
+    createdAt DATE,
+    updatedAt DATE,
     PRIMARY KEY (id)
 );
 

@@ -83,7 +83,6 @@ function Home(props) {
             </label>
           </form>
         </div>
-
       </Container>
     </Wrapper>
   );

@@ -17,7 +17,7 @@ module.exports = {
     addUsers: function (req, res) {
         console.log("addUsers api request is firing!")
         console.log(req)
-        db.User.create({
+        db.User.create({ 
             email: req.body.email,
             password: req.body.password,
             isadmin: req.body.isadmin
@@ -73,19 +73,18 @@ module.exports = {
     // POST route for authenticating login
     valUsers: function (req, res) {
         console.log('valUsers api request is firing')
-        console.log(req)
+        console.log(req.body)
         db.User.findOne({
-
-            // email:  //req.email...
-            // password: //
-
+            email:  req.body.email,
+            password: req.body.password
         })
-            .then(users => {
-                res.json(users)
-            })
-            .catch(err => {
-                res.status(404).json(err);
-            });
+        .then(users => {
+            console.log(users)
+            res.json(users)
+        })
+        .catch(err => {
+            res.status(404).json(err);
+        });
     },
 
     // DELETE route for deleting a user
