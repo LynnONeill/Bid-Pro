@@ -226,6 +226,7 @@ module.exports = {
 
     sendPDF: function (req, res) {
         console.log("sendPDF request has hit the server")
+        console.log(process.env.SENDRGID_API_KEY)
         console.log(req.body.name);
         let clientObj = {
             name: req.body.name,
