@@ -16,19 +16,19 @@ function ClientsProjects(props) {
 
     return (
         <>
-            <div className="row" style={{ marginTop: 10, }}>
-
-                <div className="col-8">
-                    <div style={{ display: "flex", alignItems: "center" }}>
+            <div className="row clientProject">
+                <div className="col-12">
+                    <div>
                         <div>
-                            <div> {props.value.product.name} total cost {props.value.total.price} </div>
+                            <h2 className="alignLeft">{props.value.product.name}</h2>
+                            <div><strong>Total Cost: ${props.value.total.price} </strong></div>
                             <div >
                                 {props.value.features.map(each => {
                                     return (
                                         <div>
-                                            {each.name}
-                                            {each.type}
-                                            {each.price}
+                                            {each.name}: 
+                                            {each.type} - 
+                                            ${each.price}
                                         </div>
                                     )
                                 })}
@@ -36,10 +36,11 @@ function ClientsProjects(props) {
                         </div>
                     </div>
                 </div>
+                <Link to="/project">
+                    <button className="btn btn-primary delete btmleft" onClick={deleteProduct}>Delete</button>
+                </Link>
             </div>
-            <Link to="/project">
-                <button onClick={deleteProduct}>Delete Product</button>
-            </Link>
+
         </>
 
 

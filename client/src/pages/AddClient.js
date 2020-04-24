@@ -168,13 +168,6 @@ function AddClient(props) {
             </Link>
      
         </form>
-
-        <br></br>
-        <Link to="/Product">Temp link to client page</Link>
-        <br></br>
-        <Link to="/Project">Temp link to project page</Link>
-        <br></br>
-        <Link to="/Admin">Temp link to admin page</Link>
         
         </Container>
         

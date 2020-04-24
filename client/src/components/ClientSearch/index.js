@@ -5,20 +5,6 @@ function ClientSearch(props) {
     return (
 
         <div className="input-group mb-3">
-            <div className="input-group-prepend">
-                <button
-                    style={{ background: "dodgerblue", 
-                             padding: 10, 
-                             color: "#fff", 
-                             borderRadius: 5 }} 
-                    
-                    className="btn" 
-                    name="button"
-                    // onClick={props.handleClick}
-                    type="button">
-                        Search
-                </button>
-            </div>
             <input 
                 value={props.search}
                 onChange={props.handleSearchChange}
@@ -29,9 +15,16 @@ function ClientSearch(props) {
                 aria-label="Search" 
                 aria-describedby="basic-addon1"
             />
+            
+            <button 
+                className="btn search" 
+                name="button"
+                // onClick={props.handleClick}
+                type="button">
+                    Search
+            </button>
+                       
         </div>
-
-                  
 
     )
 };

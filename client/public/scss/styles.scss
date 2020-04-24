@@ -3,9 +3,19 @@
 // color vars
 $black: #000;
 $gray: #606060;
+$gold: #A88C5F;
+$lightgold: #DBB77C;
+$blue: #014985;
+$lightblue: #0373A3;
+$red: #820000;
+$lightred: #CB1611;
+$orange: #ca5f0a;
+// fonts
+$sans: 'Montserrat', sans-serif;
+$serif: 'Playfair Display', serif;
 
 
-// bid-pro styles
+/* GENERAL STYLES */
 
 body {
     padding: 0;
@@ -14,10 +24,67 @@ body {
     height: 100%;
 }
 
+h1 {
+    font-family: $serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 2.5em;
+    line-height: 1em;
+    text-align: center;
+    margin: 20px auto;
+}
+
+h2, h3 {
+    text-align: center;
+    font-family: $sans;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin: 30px auto 15px auto;
+}
+
+.alignLeft {
+    text-align: left;
+}
+
+p {
+    font-family: $sans;
+    font-size: 1.15em;
+}
+
+button {
+    background: linear-gradient(180deg, rgba(219,183,124,1) 0%, rgba(168,140,95,1) 100%) !important;
+    color: white; 
+    border: none !important;
+    margin: 0 auto;
+    display: block !important;
+    font-size: 1.15em !important;
+    padding: .5em 1.15em !important;
+    font-family: $sans;
+}
+
+.delete {
+    background: linear-gradient(180deg, $lightred 0%, $red 100%) !important;
+    color: white; 
+
+    &.delete:link, .delete:visited, .delete:hover {
+        color: white !important;
+    }
+}
+
+.btmleft {
+    margin: 10px auto;
+    display: block !important;
+    position: relative;
+}
+
+
 /* NAV */
 .navbar {
     background-color: #000 !important;
-    font-family: 'Montserrat', sans-serif;
+    font-family: $sans;
     border-radius: 0 !important;
     margin: 0;
 
@@ -46,14 +113,14 @@ body {
 .subNav {
     display: flex;
     justify-content: space-around;
-    background-color: $gray;
+    background-color: $blue; 
     padding: 10px;
     box-sizing: border-box;
     position: relative;
     top: 0;
 
     .subNavItem {
-        font-family: 'Montserrat', sans-serif;
+        font-family: $sans;
         color: white;
     }
 
@@ -72,16 +139,7 @@ body {
     }
 }
 
-button {
-    background: linear-gradient(180deg, rgba(219,183,124,1) 0%, rgba(168,140,95,1) 100%) !important;
-    color: white; 
-    border: none !important;
-    margin: 0 auto;
-    display: block !important;
-    font-size: 1.15em !important;
-    padding: .5em 1.15em !important;
-    font-family: 'Montserrat', sans-serif;
-}
+
 
 /* WRAPPER */
 .wrapper {
@@ -89,57 +147,184 @@ button {
     position: relative;
     width: 80%;
     margin: 80px auto;
+
+    .container {
+        width: 100% !important;
+    }
 }
 
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 2.5em;
-    line-height: 1em;
-    text-align: center;
-    margin: 20px auto;
+
+/* HOME PAGE */
+.homeSearch {
+    display: flex;
+    width: 100%;
+    margin: 0;
 }
 
-h2, h3 {
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 800;
-    margin: 30px auto 15px auto;
+.homeClients {
+    display: flex;
 }
 
-p {
-    font-family: 'Montserrat', sans-serif;
+.homeTopRight {
+    position: relative;
+    right: 0;
+    top: 0;
+    margin: 0 0 50px auto;
+
+    a:link, a:hover, a:visited {
+        color: white;
+    }
+}
+
+.search {
+    margin: 15px auto;
+    display: block !important;
+}
+
+.clientLinkRow {
+    padding: 10px 0;
+    margin: 10px 0;
+    border-bottom: 1px solid black;
+
+    .clientEmail {
+        font-size: 1em;
+        text-align: center;
+    }
+}
+
+/* CLIENT PAGE */
+.clientCard {
+    background-color: #eee;
+    padding: 1em;
+    box-sizing: border-box;
+    margin: 2em auto;
+}
+ul {
+    list-style-type: none;    
+}
+ul, li {
+    font-family: $sans;
     font-size: 1.15em;
+    line-height: 1.75em;
 }
 
 /* FORMS */
 form {
-    width: 90%;
+    width: 100%;
     display: block;
     margin: 0 auto;
 
     label {
         display: block;
-        font-family: 'Montserrat', sans-serif;
+        font-family: $sans;
         line-height: 1em;
         font-size: 1em;
         margin: 10px 0;
     }    
 }
 
+.input-group {
+    .form-control {
+        float: none;
+    }
+}
+
+
 /* ADMIN PAGE */
 .adminTable {
     background-color: #ccc;
     text-align: center;
     padding: 1em;
+    font-weight: 700;
 }
 
 .dbUsers {
     border-bottom: 1px solid black;
     padding: 0px 0px 20px 0;
+    word-break: break-all;
+}
+
+/* PROJECT PAGE */
+.productBox {
+
+    .clientProject {
+        background-color: #eee;
+        margin: 1em 0;
+        padding: 1em;
+        font-size: 1em;
+        line-height: 2em;
+    }
+}
+
+.projectList {
+    box-sizing: border-box;
+    display: flex;
+    margin: 20px;
+    font-size: 1.25em;
+    line-height: 1em;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+        margin: 0;
+    }
+
+    input {
+        width: 50%;
+    }
+}
+
+/* TABLET STYLES */ 
+@media only screen and (min-width: 770px )and (max-width: 1024px) { 
+
+}
+
+
+/* MOBILE STYLES */ 
+@media only screen and (max-width: 770px) { 
+    .logo {
+        width: 100%;
+    }
+    // navigation
+    .subNav {
+        flex-wrap: wrap;
+
+        .subNavItem {
+            width: 30%;
+            text-align: center;
+            line-height: 2em;
+        }
+    }
+    // home page
+    .homeTopRight {
+        margin: 0 auto;
+    }
+
+    .clientLinkRow {
+        .clientEmail {
+            width: 100%
+        }
+    }
+
+    // client page
+    .clientCard {
+        .projectList {
+            flex-wrap: wrap;
+
+            button {
+                margin: 10px auto;
+            }
+
+            input {
+                width: 100%;
+            }
+        }
+    }
+
+    ul, li {
+        font-size: 1em;
+        line-height: 1.75em;
+        margin-left: 0;
+        padding: 0;
+    }
 }

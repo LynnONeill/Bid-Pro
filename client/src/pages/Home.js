@@ -60,20 +60,19 @@ function Home(props) {
   return (
     <Wrapper>
       <Container fluid>
+        <h1>Welcome</h1>
         <div>
+        <button className="homeTopRight btn">
+          <Link to="/AddClient"><FaPlus /> Add Client</Link>
+        </button>
           <form>
+            <h2>Search Clients</h2>
             <Row>
               <Col>
                 <ClientSearch
                   handleSearchChange={handleSearchChange}
                 />
               </Col>
-            <div style={{ textAlign: "right" }}>
-              <button onClick={goToClient} style={{ background: "#6DAC64", padding: 10, color: "#fff", borderRadius: 5 }}>
-                {" "}
-                <FaPlus /> Client{" "}
-              </button>
-            </div>
             </Row>
             
             <label>

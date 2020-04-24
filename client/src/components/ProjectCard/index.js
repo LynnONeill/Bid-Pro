@@ -16,9 +16,9 @@ function ProjectCard(props) {
     console.log(props)
     return (
         <>
-            <div>
+            <div className="projectList">
                 <Link to="/project" className="clientLink" onClick={handleClick} data-value={user}>
-                    Project : {props.value.name}  Cost: ${props.value.__v} Created : {date.slice(5, 7)}-{date.slice(8, 10)}-{date.slice(0, 4)}
+                    <strong>Project: {props.value.name}</strong>  Cost: ${props.value.__v} Created: {date.slice(5, 7)}-{date.slice(8, 10)}-{date.slice(0, 4)}
                 </Link>
                 <button onClick={deleteProject}>Delete</button>
             </div>

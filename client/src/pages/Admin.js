@@ -116,22 +116,12 @@ function Admin() {
                     <Col>{users.email}</Col>
                     <Col>{users.password}</Col>
                     <Col>{users.isadmin.toString()}</Col>
-                    <Button type="button" value="delete" onClick={() => deleteUser(users.id)}>Delete</Button>
+                    <Button className="delete" type="button" value="delete" onClick={() => deleteUser(users.id)}>Delete</Button>
                 </Row>
             ))}
 
 
         </Container>
-
-        <Link to="/Login">Temp link back to Login page</Link>
-        <br></br>
-        <Link to="/Product">Temp link to client page</Link>
-        <br></br>
-        <Link to="/Home">Temp link to home page</Link>
-        <br></br>
-        <Link to="/Project">Temp link to project page</Link>
-        <br></br>
-        <Link to="/AddClient">Temp link to Add Client page</Link> 
 
         </Container>
         </div>
