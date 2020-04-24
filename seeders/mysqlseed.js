@@ -61,34 +61,23 @@ const Clients = [
         createdAt:new Date(), 
         updatedAt:new Date(), },
 ]
-// db.Customer.create({
-//     name:"Joey Tribiani",
-//      businessName: null,
-//       phoneNumber:333,
-//        email:"jjj@email.com",
-//        address:"ff", 
-//        addressTwo:null,
-//         city:"tucson",
-//          state:"az", 
-//          zip:85716, 
-//          notes:null, 
-//          createdAt:new Date(), 
-//          updatedAt:new Date(), 
-// });
+
 async function insertClients(){
     const createdClients = Clients.map( Client => db.Client.create(Client))
     await Promise.all(createdClients)
 };
 insertClients()
-// insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Joey Tribiani", null, "5555555555", "joey@test.com", "a", "b", "c", "d", 6, "f", NOW(), NOW() );
-// insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Rachel Green", null, "5555555555", "rachel@test.com",  "a", "b", "c", "d", 5, "f", NOW(), NOW());
-// insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Ross Geller", null, "5555555555", "ross@test.com",  "a", "b", "c", "d", 4, "f", NOW(), NOW());
-// insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Phoebe Buffay", null, "5555555555", "phoebe@test.com",  "a", "b", "c", "d", 3, "f", NOW(), NOW());
-// insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Chandler Bing", null, "5555555555", "chandler@test.com",  "a", "b", "c", "d", 2, "f", NOW(), NOW());
-// insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Monica Geller", null, "5555555555", "monica@test.com",  "a", "b", "c", "d", 1, "f", NOW(), NOW());
+
 
 // user database 
 const User = [
+    {
+        email: 'jhamilton72.jh@gmail.com',
+        password: 'james',
+        isadmin: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),       
+    },
     {
         email: 'lynnoneilaz@gmail.com',
         password: 'lynn',

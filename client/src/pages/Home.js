@@ -59,8 +59,13 @@ function Home(props) {
   return (
     <Wrapper>
       <Container fluid>
+        <h1>Welcome</h1>
         <div>
+        <button className="homeTopRight btn">
+          <Link to="/AddClient"><FaPlus /> Add Client</Link>
+        </button>
           <form>
+            <h2>Search Clients</h2>
             <Row>
               <Col>
                 <ClientSearch

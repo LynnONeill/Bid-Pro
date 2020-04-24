@@ -15,6 +15,15 @@ function ClientSearch(props) {
                 aria-label="Search" 
                 aria-describedby="basic-addon1"
             />
+            
+            <button 
+                className="btn search" 
+                name="button"
+                // onClick={props.handleClick}
+                type="button">
+                    Search
+            </button>
+                       
         </div>
     )
 };

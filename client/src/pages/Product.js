@@ -262,17 +262,14 @@ function Product() {
             })
     }
 
-
-
-
     return (
         <Wrapper>
             <Container>
                 <Row className="justify-content-md-center">
-                    <h1 className="text-center">Signature IronWorks</h1>
+                    <h1 className="text-center">Add A Product</h1>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs={8} md={8}>
+                    <Col xs={11} md={11}>
                         <QuoteContainer
                             productDrop={renderProductDrop(products)}
                             designDrop={renderFeatureDrop(features, "design")}

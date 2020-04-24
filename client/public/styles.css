@@ -7299,11 +7299,67 @@ td.visible-print {
     display: none !important;
   }
 }
+/* GENERAL STYLES */
 body {
   padding: 0;
   margin: 0;
   width: 100%;
   height: 100%;
+}
+
+h1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.5em;
+  line-height: 1em;
+  text-align: center;
+  margin: 20px auto;
+}
+
+h2, h3 {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  margin: 30px auto 15px auto;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.15em;
+}
+
+button {
+  background: linear-gradient(180deg, #dbb77c 0%, #a88c5f 100%) !important;
+  color: white;
+  border: none !important;
+  margin: 0 auto;
+  display: block !important;
+  font-size: 1.15em !important;
+  padding: 0.5em 1.15em !important;
+  font-family: "Montserrat", sans-serif;
+}
+
+.delete {
+  background: linear-gradient(180deg, #CB1611 0%, #820000 100%) !important;
+  color: white;
+}
+.delete.delete:link, .delete .delete:visited, .delete .delete:hover {
+  color: white !important;
+}
+
+.btmleft {
+  margin: 10px auto;
+  display: block !important;
+  position: relative;
 }
 
 /* NAV */
@@ -7336,7 +7392,7 @@ body {
 .subNav {
   display: flex;
   justify-content: space-around;
-  background-color: #606060;
+  background-color: #014985;
   padding: 10px;
   box-sizing: border-box;
   position: relative;
@@ -7359,17 +7415,6 @@ body {
   height: auto;
 }
 
-button {
-  background: linear-gradient(180deg, #dbb77c 0%, #a88c5f 100%) !important;
-  color: white;
-  border: none !important;
-  margin: 0 auto;
-  display: block !important;
-  font-size: 1.15em !important;
-  padding: 0.5em 1.15em !important;
-  font-family: "Montserrat", sans-serif;
-}
-
 /* WRAPPER */
 .wrapper {
   display: block;
@@ -7377,36 +7422,67 @@ button {
   width: 80%;
   margin: 80px auto;
 }
-
-h1 {
-  font-family: "Playfair Display", serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 2.5em;
-  line-height: 1em;
-  text-align: center;
-  margin: 20px auto;
+.wrapper .container {
+  width: 100% !important;
 }
 
-h2, h3 {
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.5em;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 800;
-  margin: 30px auto 15px auto;
+/* HOME PAGE */
+.homeSearch {
+  display: flex;
+  width: 100%;
+  margin: 0;
 }
 
-p {
+.homeClients {
+  display: flex;
+}
+
+.homeTopRight {
+  position: relative;
+  right: 0;
+  top: 0;
+  margin: 0 0 50px auto;
+}
+.homeTopRight a:link, .homeTopRight a:hover, .homeTopRight a:visited {
+  color: white;
+}
+
+.search {
+  margin: 15px auto;
+  display: block !important;
+}
+
+.clientLinkRow {
+  padding: 10px 0;
+  margin: 10px 0;
+  border-bottom: 1px solid black;
+}
+.clientLinkRow .clientEmail {
+  font-size: 1em;
+  text-align: center;
+}
+
+/* CLIENT PAGE */
+.clientCard {
+  background-color: #eee;
+  padding: 1em;
+  box-sizing: border-box;
+  margin: 2em auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul, li {
   font-family: "Montserrat", sans-serif;
   font-size: 1.15em;
+  line-height: 1.75em;
 }
 
 /* FORMS */
 form {
-  width: 90%;
+  width: 100%;
   display: block;
   margin: 0 auto;
 }
@@ -7418,16 +7494,89 @@ form label {
   margin: 10px 0;
 }
 
+.input-group .form-control {
+  float: none;
+}
+
 /* ADMIN PAGE */
 .adminTable {
   background-color: #ccc;
   text-align: center;
   padding: 1em;
+  font-weight: 700;
 }
 
 .dbUsers {
   border-bottom: 1px solid black;
   padding: 0px 0px 20px 0;
+  word-break: break-all;
+}
+
+/* PROJECT PAGE */
+.productBox .clientProject {
+  background-color: #eee;
+  margin: 1em 0;
+  padding: 1em;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+.projectList {
+  box-sizing: border-box;
+  display: flex;
+  margin: 20px;
+  font-size: 1.25em;
+  line-height: 1em;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.projectList button {
+  margin: 0;
+}
+.projectList input {
+  width: 50%;
+}
+
+/* TABLET STYLES */
+/* MOBILE STYLES */
+@media only screen and (max-width: 770px) {
+  .logo {
+    width: 100%;
+  }
+
+  .subNav {
+    flex-wrap: wrap;
+  }
+  .subNav .subNavItem {
+    width: 30%;
+    text-align: center;
+    line-height: 2em;
+  }
+
+  .homeTopRight {
+    margin: 0 auto;
+  }
+
+  .clientLinkRow .clientEmail {
+    width: 100%;
+  }
+
+  .clientCard .projectList {
+    flex-wrap: wrap;
+  }
+  .clientCard .projectList button {
+    margin: 10px auto;
+  }
+  .clientCard .projectList input {
+    width: 100%;
+  }
+
+  ul, li {
+    font-size: 1em;
+    line-height: 1.75em;
+    margin-left: 0;
+    padding: 0;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
