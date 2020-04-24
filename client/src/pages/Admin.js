@@ -123,16 +123,6 @@ function Admin() {
 
         </Container>
 
-        <Link to="/Login">Temp link back to Login page</Link>
-        <br></br>
-        <Link to="/Product">Temp link to client page</Link>
-        <br></br>
-        <Link to="/Home">Temp link to home page</Link>
-        <br></br>
-        <Link to="/Project">Temp link to project page</Link>
-        <br></br>
-        <Link to="/AddClient">Temp link to Add Client page</Link> 
-
         </Container>
         </div>
         </Wrapper>

@@ -12,8 +12,11 @@ import ClientList from "../components/ClientList";
 import ClientSearch from "../components/ClientSearch";
 
 function Home(props) {
+  const [permClients, setPermClients] = useState([])
   const [clients, setClients] = useState([]);
-  const [search, setSearch] =useState();
+
+
+
 
   useEffect(() => {
     // Api call to get product and feature data //
@@ -21,6 +24,7 @@ function Home(props) {
       .then((res) => {
         console.log(res);
         setClients(res.data);
+        setPermClients(res.data);
         
       })
       .catch((err) => console.log(err));
@@ -32,27 +36,22 @@ function Home(props) {
 
   function handleSearchChange(event) {
     console.log("search initiated");
-    const newSearch = event.target.value;
-    const lowerCaseSearch = newSearch.toLowerCase();
-    setSearch(lowerCaseSearch);
-    console.log(search);
-    if(search !=="") {
-      console.log("made it this far")
-      console.log(clients)
-      clients.forEach(clients => {
-        for(let i = 0; i < clients.length; i++) {
-          if(clients[i].name.toLowerCase() === search){
-          console.log("must have a match")
-          const filteredList = [];
-          filteredList.push(clients);
-          console.log(filteredList);
-          setClients(filteredList);
-          }
-        }
-        })
-    }
-    return;
+    const searchString = event.target.value.toLowerCase();
+    console.log(searchString)
+    let filteredClients = permClients.filter((client) => {
+      return (
+        client.name.toLowerCase().includes(searchString) || 
+        client.address.toLowerCase().includes(searchString) ||
+        client.city.toLowerCase().includes(searchString) ||
+        client.email.toLowerCase().includes(searchString) ||
+        client.phoneNumber.includes(searchString)
+      );
+    });
+    console.log(filteredClients)
+    setClients(filteredClients)
 }
+
+
 
 
 
@@ -66,14 +65,17 @@ function Home(props) {
               <Col>
                 <ClientSearch
                   handleSearchChange={handleSearchChange}
+                  // onSearchDelete={onSearchDelete}
                 />
               </Col>
-            <div style={{ textAlign: "right" }}>
-              <button onClick={goToClient} style={{ background: "#6DAC64", padding: 10, color: "#fff", borderRadius: 5 }}>
-                {" "}
-                <FaPlus /> Client{" "}
-              </button>
-            </div>
+              <Col>
+                <div style={{ textAlign: "right" }}>
+                  <button onClick={goToClient} style={{ background: "#6DAC64", padding: 10, color: "#fff", borderRadius: 5 }}>
+                    {" "}
+                    <FaPlus /> Client{" "}
+                  </button>
+                </div>
+            </Col>
             </Row>
             
             <label>

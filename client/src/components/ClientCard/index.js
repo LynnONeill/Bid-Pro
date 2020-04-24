@@ -10,6 +10,8 @@ function ClientCard() {
         ) : selectedClient.phoneNumber
     }
     return (
+
+
         <ul>
             {selectedClient.name === null || selectedClient.name ==="" ? "" : <li>{selectedClient.name}</li>}
             {selectedClient.businessName === null|| selectedClient.businessName === "" ? "" : <li>{selectedClient.businessName}</li>}

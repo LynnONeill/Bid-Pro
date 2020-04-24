@@ -245,7 +245,7 @@ module.exports = {
                 attachment = fs.readFileSync(pathToAttachment).toString("base64");
         
                 const msg = {
-                    to: "kodypbishop@gmail.com",
+                    to: clientObj.email,
                     from: process.env.FROM_EMAIL,
                     subject: 'Project Estimate',
                     text: 'We are proud to offer the following for your consideration',
