@@ -215,7 +215,10 @@ let featuresSeed = [
 
 db.SecDoor.deleteMany({})
     .then(() => db.SecDoor.collection.insertMany(secDoorSeed))
-    .then(() => db.Features.collection.insertMany(featuresSeed))
+
+    .then(() => db.Features.deleteMany({})
+    .then(() => db.Features.collection.insertMany(featuresSeed)))
+   
     .then(data => {
         console.log(data.result.n + " records inserted!");
         process.exit(0);
