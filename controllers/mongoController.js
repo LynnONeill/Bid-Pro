@@ -4,6 +4,7 @@ const convertFactory = require("electron-html-to");
 const fs = require("fs");
 require("dotenv").config();
 const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY.trim());
 
 module.exports = {
     findProducts: function (req, res) {
