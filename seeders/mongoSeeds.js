@@ -1,7 +1,8 @@
 let mongoose = require("mongoose");
 let db = require("../models/mongo_models");
+require("dotenv").config();
 
-mongoose.connect("mongodb://localhost/bidpro", {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useFindAndModify: false
 });

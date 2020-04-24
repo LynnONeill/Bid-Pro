@@ -125,9 +125,9 @@ module.exports = {
             })
     },
 
-    deleteProduct: function(req,res){
+    deleteProduct: function (req, res) {
         console.log(req.params.id)
-        MongoDB.ClientProduct.findOneAndDelete({_id:req.params.id})
+        MongoDB.ClientProduct.findOneAndDelete({ _id: req.params.id })
             .then(del => {
                 console.log(del)
                 res.json(del)
@@ -136,7 +136,7 @@ module.exports = {
                 res.status(404).json(err);
             });
     },
-    
+
     queryProducts: function (req, res) {
         console.log("queryProducts is firing");
         console.log(req.body);
@@ -154,7 +154,7 @@ module.exports = {
             projectID: req.body.projectID
         }
         let productArr = [];
-        MongoDB.ClientProduct.find({project_id:{id:clientObj.projectID}})
+        MongoDB.ClientProduct.find({ project_id: { id: clientObj.projectID } })
             .then(products => {
                 console.log("project details below")
                 console.log(products)
@@ -165,13 +165,13 @@ module.exports = {
                 console.log(products[0].product.name)
                 console.log(products[0].features)
 
-            // function to create html from product list //
-            function renderProducts(products) { 
-                let options =  products.features.map(feature => (
-                    `<div class="card-body w-100"><p class="card-text">${feature.name} ${feature.type} ${feature.price}.00.</p></div>`
+                // function to create html from product list //
+                function renderProducts(products) {
+                    let options = products.features.map(feature => (
+                        `<div class="card-body w-100"><p class="card-text">${feature.name} ${feature.type} ${feature.price}.00.</p></div>`
                     ))
-        
-                return (`<div class="card w-100">
+
+                    return (`<div class="card w-100">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6 font-weight-bold">${products.product.name}</div>
@@ -179,96 +179,96 @@ module.exports = {
                     </div>
                 </div>
                 ${options.join(" ")}`
-                )
-            } 
-             let productPrices = [];
-                for( let i = 0; i < products.length; i++) {
+                    )
+                }
+                let productPrices = [];
+                for (let i = 0; i < products.length; i++) {
                     productPrices.push(products[i].total.price)
                 }
                 let total = productPrices.reduce((a, b) => a + b, 0);
-                     
+
                 console.log("project total below");
                 console.log(total)
 
-            let sortProducts = productArr.map(renderProducts);
+                let sortProducts = productArr.map(renderProducts);
 
-            let updatedHtml = genHTML.genHTML(clientObj, total, sortProducts.join(' '));
-            createHTML("index.html", updatedHtml);
+                let updatedHtml = genHTML.genHTML(clientObj, total, sortProducts.join(' '));
+                createHTML("index.html", updatedHtml);
 
-            let conversion = convertFactory({
-                converterPath: convertFactory.converters.PDF,
-                allowLocalFileAccess: true
-            });
-            // console.log(updatedHtml);
-                conversion({ html: `${updatedHtml}`}, function (err, result) {
-                    if (err) return console.error(err);
-                    result.stream.pipe(fs.createWriteStream(`controllers\\${clientObj.name}.pdf`));
-                    console.log("it works?")
-                    conversion.kill();
-                    res.send("The estimate has been sent to the client!")
-                });
+                // let conversion = convertFactory({
+                //     converterPath: convertFactory.converters.PDF,
+                //     allowLocalFileAccess: true
+                // });
+                // // console.log(updatedHtml);
+                //     conversion({ html: `${updatedHtml}`}, function (err, result) {
+                //         if (err) return console.error(err);
+                //         result.stream.pipe(fs.createWriteStream(`controllers\\${clientObj.name}.pdf`));
+                //         console.log("it works?")
+                //         conversion.kill();
+                //         res.send("The estimate has been sent to the client!")
+                //     });
             })
             .catch(err => {
                 res.status(404).json(err);
             });
 
-            function createHTML(fileName, data) {
-                fs.writeFile(fileName, data, 'utf8', function (err) {
-                    if (err) {
-                        return console.log(err);
-                    }
-                    console.log("create file Success!")
-                })
-            }
-        },
+        function createHTML(fileName, data) {
+            fs.writeFile(fileName, data, 'utf8', function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log("create file Success!")
+                res.send("The estimate has been sent to the client!")
+            })
+        }
+    },
 
 
-            
-        sendPDF: function(req, res) {
-            console.log("sendPDF request has hit the server")
-            console.log(req.body.name);
-            let clientObj = {
-                name: req.body.name,
-                address: req.body.address,
-                city: req.body.city,
-                state: req.body.state,
-                zip: req.body.zip,
-                phone: req.body.phoneNumber,
-                email: req.body.email,
-                projectID: req.body.projectID
-            }
-                
-                sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    sendPDF: function (req, res) {
+        console.log("sendPDF request has hit the server")
+        console.log(req.body.name);
+        let clientObj = {
+            name: req.body.name,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            phone: req.body.phoneNumber,
+            email: req.body.email,
+            projectID: req.body.projectID
+        }
 
-                pathToAttachment = `${__dirname}\\${clientObj.name}.pdf`;
-        
-                attachment = fs.readFileSync(pathToAttachment).toString("base64");
-        
-                const msg = {
-                    to: clientObj.email,
-                    from: process.env.FROM_EMAIL,
-                    subject: 'Project Estimate',
-                    text: 'We are proud to offer the following for your consideration',
-                    html: '<strong>We are proud to offer the following for your consideration.</strong>',
-                    attachments: [
-                        {
-                          content: attachment,
-                          filename: `${clientObj.name}.pdf`,
-                          type: "application/pdf",
-                          disposition: "attachment"
-                        }
-                      ]
-                  }
-                sgMail
-                    .send(msg)
-                    .then(() => {}, error => {
-                    console.error(error);
-                    res.send("pdf sent")
-        
-                    if (error.response) {
-                        console.error(error.response.body)
-                    }
-                });
-            }
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+        pathToAttachment = `${__dirname}\\..\\index.html`;
+
+        attachment = fs.readFileSync(pathToAttachment).toString("base64");
+
+        const msg = {
+            to: clientObj.email,
+            from: process.env.FROM_EMAIL,
+            subject: 'Project Estimate',
+            text: 'We are proud to offer the following for your consideration',
+            html: '<strong>We are proud to offer the following for your consideration.</strong>',
+            attachments: [
+                {
+                    content: attachment,
+                    filename: `index.html`,
+                    type: "application/html",
+                    disposition: "attachment"
+                }
+            ]
+        }
+        sgMail
+            .send(msg)
+            .then(() => { }, error => {
+                console.error(error);
+                res.send("pdf sent")
+
+                if (error.response) {
+                    console.error(error.response.body)
+                }
+            });
+    }
 
 }
