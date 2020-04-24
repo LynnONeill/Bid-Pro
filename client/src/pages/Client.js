@@ -5,7 +5,6 @@ import ClientCard from "../components/ClientCard";
 import ProjectCard from "../components/ProjectCard";
 import Wrapper from '../components/Wrapper';
 import ClientContext from "../utils/GlobalState"
-import Row from "react-bootstrap/row";
 import API from "../utils/API";
 
 
@@ -47,7 +46,9 @@ function Clients() {
         <Wrapper>
             <Container fluid>
                 <div>
+
                     <h1>Client Details</h1>
+      
                     <ClientCard />
 
                     <div className="clientCard">

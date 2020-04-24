@@ -12,6 +12,7 @@ function ClientCard() {
     return (
         <div className="clientCard">
         <h2>Contact Information</h2>
+
         <ul>
             {selectedClient.name === null || selectedClient.name ==="" ? "" : <li><strong>Name:</strong> {selectedClient.name}</li>}
             {selectedClient.businessName === null|| selectedClient.businessName === "" ? "" : <li><strong>Business Name:</strong> {selectedClient.businessName}</li>}

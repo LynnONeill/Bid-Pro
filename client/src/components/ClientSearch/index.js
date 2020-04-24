@@ -7,11 +7,11 @@ function ClientSearch(props) {
         <div className="input-group mb-3">
             <input 
                 value={props.search}
-                onChange={props.handleSearchChange}
+                onKeyUp={props.handleSearchChange}
                 type="text" 
                 name="name"
                 className="form-control" 
-                placeholder="name" 
+                placeholder="search" 
                 aria-label="Search" 
                 aria-describedby="basic-addon1"
             />
@@ -25,7 +25,6 @@ function ClientSearch(props) {
             </button>
                        
         </div>
-
     )
 };
 
