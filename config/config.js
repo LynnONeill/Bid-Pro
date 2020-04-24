@@ -2,10 +2,10 @@ require('dotenv').config();
 
 module.exports = {
   "development": {
-    "username": process.env.DB_USERNAME,
-    "password": process.env.DB_PASSWORD,
-    "database": process.env.DB_DATABASE,
-    "host": process.env.DB_HOST,
+    "username": "root",
+    "password": "rootroot",
+    "database": "bid_pro",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
@@ -16,16 +16,11 @@ module.exports = {
     "dialect": "mysql"
   },
   "production": {
-    "username": process.env.DB_USERNAME,
-    "password": process.env.DB_PASSWORD,
-    "database": process.env.DB_DATABASE,
-    "host": process.env.DB_HOST,
+    "username": 'y9xsknin3ts5a24s',
+    "password": 'gqsfx0u7t88rc2vh',
+    "database": 'ci86rbkrjlxd5bzb',
+    "host": 'e764qqay0xlsc4cz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     "dialect": "mysql"
 },
 }
 
-// "username": "root",
-// "password": "rootroot",
-// "database": "bid_pro",
-// "host": "127.0.0.1",
-// "dialect": "mysql"
