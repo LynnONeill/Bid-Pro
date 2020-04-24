@@ -7,21 +7,15 @@ const Schema = mongoose.Schema;
 const ClientProductSchema = new Schema({
 
   project_id: {
-    type: String
+    id: String
   },
   product:
   {
     name: String,
     price: Number
   },
-  features: [
-    {
-      name: String,
-      type: String,
-      price: Number
-    },
-
-  ],
+  features: [],
+  
   total: {
     price: Number
   },

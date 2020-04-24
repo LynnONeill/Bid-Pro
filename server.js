@@ -1,7 +1,13 @@
 const express = require("express");
+let session = require('express-session');
 const mongoose = require("mongoose");
 const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
+let passport = require('./config/passport');
+
+// const genHtml = require("./createHTML.js");
+// const fs = require("fs");
+// const convertFactory = require("electron-html-to");
 
 const routes = require("./routes");
 const app = express();
@@ -9,27 +15,9 @@ const PORT = process.env.PORT || 3001;
 var db = require("./models/sql_models");
 
 
+
 // set up sendgrid ////
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-const msg = {
-  to: process.env.TO_EMAIL,
-  from: process.env.FROM_EMAIL,
-  subject: 'Testing email with SendGrid',
-  text: 'Testing 123',
-  html: '<strong>Is this thing working???</strong>',
-}
-
-
-// sgMail
-//   .send(msg)
-//   .then(() => {}, error => {
-//     console.error(error);
-
-//     if (error.response) {
-//       console.error(error.response.body)
-//     }
-//    });
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 
 
@@ -41,8 +29,16 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Add routes, both API and view
 app.use(routes);
+
+
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bidpro", {
   useNewUrlParser: true,

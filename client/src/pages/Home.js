@@ -2,20 +2,30 @@ import { Link } from "react-router-dom";
 import Container from "../components/Grid";
 import { Form, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox, Radio, Button } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Wrapper from '../components/Wrapper';
 import ClientContext from "../utils/GlobalState"
 import API from "../utils/API";
 import React, { useEffect, useState, useContext } from "react";
 import ClientList from "../components/ClientList";
+import ClientSearch from "../components/ClientSearch";
 
 function Home(props) {
+  const [permClients, setPermClients] = useState([])
   const [clients, setClients] = useState([]);
+
+
+
+
   useEffect(() => {
     // Api call to get product and feature data //
     API.getAllClients()
       .then((res) => {
         console.log(res);
         setClients(res.data);
+        setPermClients(res.data);
+        
       })
       .catch((err) => console.log(err));
   }, []);
@@ -24,35 +34,56 @@ function Home(props) {
     props.history.push("/AddClient");
   }
 
+  function handleSearchChange(event) {
+    console.log("search initiated");
+    const searchString = event.target.value.toLowerCase();
+    console.log(searchString)
+    let filteredClients = permClients.filter((client) => {
+      return (
+        client.name.toLowerCase().includes(searchString) || 
+        client.address.toLowerCase().includes(searchString) ||
+        client.city.toLowerCase().includes(searchString) ||
+        client.email.toLowerCase().includes(searchString) ||
+        client.phoneNumber.includes(searchString)
+      );
+    });
+    console.log(filteredClients)
+    setClients(filteredClients)
+}
+
+
+
+
+
+
   return (
     <Wrapper>
       <Container fluid>
         <div>
           <form>
-            <div style={{ textAlign: "right" }}>
-              <button onClick={goToClient} style={{ background: "#6DAC64", padding: 10, color: "#fff", borderRadius: 5 }}>
-                {" "}
-                <FaPlus /> Client{" "}
-              </button>
-            </div>
+            <Row>
+              <Col>
+                <ClientSearch
+                  handleSearchChange={handleSearchChange}
+                  // onSearchDelete={onSearchDelete}
+                />
+              </Col>
+              <Col>
+                <div style={{ textAlign: "right" }}>
+                  <button onClick={goToClient} style={{ background: "#6DAC64", padding: 10, color: "#fff", borderRadius: 5 }}>
+                    {" "}
+                    <FaPlus /> Client{" "}
+                  </button>
+                </div>
+            </Col>
+            </Row>
+            
             <label>
               {clients.map((client) => {
-                return <ClientList value={client} key={client.id} />;
+                return <ClientList value={client} key={client.id} setClients={setClients}/>;
               })}
             </label>
           </form>
-        </div>
-
-        <div>
-          <Link to="/Project">Temp link to project page</Link>
-          <br></br>
-          <Link to="/Client">Temp link to client page</Link>
-          <br></br>
-          <Link to="/Login">Temp link back to Login page</Link>
-          <br></br>
-          <Link to="/Product">Temp link to Product Page</Link>
-          <br></br>
-          <Link to="/AddClient">Temp link to Add Client page</Link>
         </div>
       </Container>
     </Wrapper>

@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import QuoteContainer from "../components/QuoteContainer";
 import API from "../utils/API";
 import Wrapper from '../components/Wrapper';
+import ClientContext from "../utils/GlobalState";
 
 
 function Product() {
 
     const [products, setProducts] = useState([]);
     const [features, setFeatures] = useState({});
-    const [currentProduct, setCurrentProduct] = useState({});
     const [selectedProduct, setSelectedProduct] = useState();
     const [selectedProductPX, setSelectedProductPX] = useState();
     const [selectedSize, setSelectedSize] = useState();
@@ -26,42 +27,48 @@ function Product() {
     const [totalPrice, setTotalPrice] = useState();
     const [defaultValue, setDefaultValue] = useState();
 
-    let clientNo = 123456;
+    const { selectedClient } = useContext(ClientContext);
+
+    console.log(selectedClient.projectID);
 
     let newProduct = {
 
+        project_id: {
+            id: selectedClient.projectID
+        },
+
         product:
-            {
-                name: {selectedProduct},
-                price: {selectedProductPX}
-            },
+        {
+            name: selectedProduct,
+            price: selectedProductPX
+        },
         features: [
             {
                 name: "design",
-                type: {selectedDesign},
-                price: {backingPrice}
+                type: selectedDesign,
+                price: designPrice
             },
             {
                 name: "backing",
-                type: {selectedBacking},
-                price: {backingPrice}
+                type: selectedBacking,
+                price: backingPrice
             },
             {
                 name: "finish",
-                type: {selectedFinish},
-                price: {finishPrice}
+                type: selectedFinish,
+                price: finishPrice
             },
             {
                 name: "hardware",
-                type: {selectedHardware},
-                price: {hardwarePrice},
+                type: selectedHardware,
+                price: hardwarePrice,
             }
         ],
         total: {
-            price: {totalPrice}
-        } 
+            price: totalPrice
+        },
     }
-   
+
     useEffect(() => {
         // Api call to get product and feature data //
         API.getProducts()
@@ -70,9 +77,9 @@ function Product() {
 
                 // Set State for products
                 setProducts(res.data)
-                    console.log(products)
+                console.log(products)
 
-            // Api call to get product feature data //
+                // Api call to get product feature data //
                 API.getFeatures()
                     .then(res => {
                         setFeatures(res.data);
@@ -80,13 +87,13 @@ function Product() {
             })
             .catch(err => console.log(err))
 
-            setSelectedProductPX(0);
-            setBackingPrice(0);
-            setDesignPrice(0);
-            setHardwarePrice(0);
-            setFinishPrice(0);
-            setTotalPrice(0);
-            setDefaultValue("Select")
+        setSelectedProductPX(0);
+        setBackingPrice(0);
+        setDesignPrice(0);
+        setHardwarePrice(0);
+        setFinishPrice(0);
+        setTotalPrice(0);
+        setDefaultValue("Select")
 
     }, []);
 
@@ -95,8 +102,9 @@ function Product() {
     console.log(selectedProduct);
     console.log(selectedProductPX);
     console.log(selectedSize);
-    
-    
+    console.log(backingPrice);
+
+
 
     // Function to pull product names/id's from products state and set to dropdown items //
     const renderProductDrop = (product) => {
@@ -104,82 +112,84 @@ function Product() {
         let selectValue = <option
             className="dropdown-item"
             value={defaultValue}
-            >
+        >
             {defaultValue + " Product"}
         </option>
-            if (product.length === 0){
-                ans = []
-            }else{
-                 ans =  product.map((product)=>{
-                        return <option
-                                key={product._id}
-                                className="dropdown-item"
-                                value={product.products[0].type}
-                                >
-                                {product.products[0].type}
-                                </option>
-                        })
-            }
-            ans.unshift(selectValue)
-            return ans;
+        if (product.length === 0) {
+            ans = []
+        } else {
+            ans = product.map((product) => {
+                return <option
+                    key={product._id}
+                    className="dropdown-item"
+                    value={product.products[0].type}
+                >
+                    {product.products[0].type}
+                </option>
+            })
         }
+        ans.unshift(selectValue)
+        return ans;
+    }
     // This function is called in JSX and will populate dropdown menus for feature options////   
     const renderFeatureDrop = (featureState, featureType) => {
         let ans = [];
         let selectValue = <option
             className="dropdown-item"
             value={defaultValue}
-            >
+        >
             {defaultValue + " " + featureType + " type"}
         </option>
-            if (featureState.length === 0) {
-                ans = ""
-            }else{
-               for ( let i = 0; i < featureState.length; i++) {
-                   if (featureState[i][featureType] && featureState[i][featureType].size === selectedSize) {
-                       console.log(featureType)
-                       ans.push( <option
-                               key={featureState[i]._id}
-                               className="dropdown-item"
-                               value={featureState[i][featureType].type}
-                               >
-                                {featureState[i][featureType].type}
-                               </option>)
-                   } 
-               }
-            }
-            ans.unshift(selectValue)
-            return ans;
-    }
-// Event listener for product dropdown = used to isolate base product name and price ////
-    const handleProductSelect = event => {
-        
-       let sizeSelected;
-       console.log("handleProductSelect is working")
-       let curProd = event.target.value;
-       console.log(curProd)
-       setSelectedProduct(event.target.value)
-
-        for ( let i = 0; i < products.length; i++) {
-         if (event.target.value === products[i].products[0].type) {
-             let curProdPX = products[i].products[0].price;
-             console.log(curProdPX);
-             setSelectedProductPX(curProdPX);
-             setTotalPrice(curProdPX + backingPrice + finishPrice + designPrice + hardwarePrice)
+        if (featureState.length === 0) {
+            ans = ""
+        } else {
+            for (let i = 0; i < featureState.length; i++) {
+                if (featureState[i][featureType] && featureState[i][featureType].size === selectedSize) {
+                    console.log(featureType)
+                    ans.push(<option
+                        key={featureState[i]._id}
+                        className="dropdown-item"
+                        value={featureState[i][featureType].type}
+                    >
+                        {featureState[i][featureType].type}
+                    </option>)
+                }
             }
         }
-            if (curProd === "Single Security Door") {
-                sizeSelected = "Single";
-                setSelectedSize(sizeSelected);
-                }
-            if (curProd === "Double Security Door" || curProd === "French Security Door") {
-                sizeSelected = "Double";
-                setSelectedSize(sizeSelected);
+        ans.unshift(selectValue)
+        return ans;
+    }
+    // Event listener for product dropdown = used to isolate base product name and price ////
+    const handleProductSelect = event => {
+
+        let sizeSelected;
+        console.log("handleProductSelect is working")
+        let curProd = event.target.value;
+        console.log(curProd)
+        setSelectedProduct(event.target.value)
+
+        for (let i = 0; i < products.length; i++) {
+            if (event.target.value === products[i].products[0].type) {
+                let curProdPX = products[i].products[0].price;
+                console.log(curProdPX);
+                setSelectedProductPX(curProdPX);
+                setTotalPrice(curProdPX + backingPrice + finishPrice + designPrice + hardwarePrice)
             }
+        }
+        if (curProd === "Single Security Door") {
+            sizeSelected = "Single";
+            setSelectedSize(sizeSelected);
+        }
+        if (curProd === "Double Security Door" || curProd === "French Security Door") {
+            sizeSelected = "Double";
+            setSelectedSize(sizeSelected);
+        }
     }
 
-// Event listener to handle selection of product features///////////////////////////////////
-    const handleFeatureSelect = function(event, type) {
+
+
+    // Event listener to handle selection of product features///////////////////////////////////
+    const handleFeatureSelect = function (event, type) {
         console.log(type);
         console.log("handleFeatureSelect is working!");
         let featureSelected = event.target.value;
@@ -188,33 +198,33 @@ function Product() {
 
         let featureTypeArray = []
         let featurePriceArray = [];
-        
+
         // This for loop will filter all of the options for the named features. ie all backings, all finishes, etc. ///
-        for( let i = 0; i < features.length; i++) {
-           if(features[i][type]) {
-               featureTypeArray.push(features[i][type]);
-               };
-            }
+        for (let i = 0; i < features.length; i++) {
+            if (features[i][type]) {
+                featureTypeArray.push(features[i][type]);
+            };
+        }
         console.log(featureTypeArray)
-        
+
         // for loop to determine if size is double or single and filter correct feature price ////////
         let featurePrice;
-        for(let j = 0; j < featureTypeArray.length; j++) {
-            if(featureTypeArray[j].type === featureSelected && selectedSize === "Double") {
+        for (let j = 0; j < featureTypeArray.length; j++) {
+            if (featureTypeArray[j].type === featureSelected && selectedSize === "Double") {
                 console.log(featureTypeArray[j]);
                 featurePriceArray.push(featureTypeArray[j].price)
                 console.log(featurePriceArray)
-                featurePrice = Math.max.apply(Math,featurePriceArray);
-                } else if (featureTypeArray[j].type === featureSelected && selectedSize === "Single") {
-                    console.log(featureTypeArray[j]);
-                    featurePriceArray.push(featureTypeArray[j].price)
-                    console.log(featurePriceArray)
-                    featurePrice = Math.min.apply(Math,featurePriceArray); 
-                }
-                setTotalPrice(selectedProductPX + backingPrice + finishPrice + designPrice + hardwarePrice)
-               }
+                featurePrice = Math.max.apply(Math, featurePriceArray);
+            } else if (featureTypeArray[j].type === featureSelected && selectedSize === "Single") {
+                console.log(featureTypeArray[j]);
+                featurePriceArray.push(featureTypeArray[j].price)
+                console.log(featurePriceArray)
+                featurePrice = Math.min.apply(Math, featurePriceArray);
+            }
+            setTotalPrice(selectedProductPX + backingPrice + finishPrice + designPrice + hardwarePrice)
+        }
         // Switch case used to determine which feature needs to be set ///
-        switch(type) {
+        switch (type) {
             case "backing":
                 console.log("backing triggered")
                 setBackingPrice(featurePrice);
@@ -239,57 +249,55 @@ function Product() {
         setTotalPrice(selectedProductPX + backingPrice + finishPrice + designPrice + hardwarePrice)
     };
 
-    
-let projectID = "5e9b176c1a7ea014b4e2403c";
-// Event listener to add new product to database ///
+
+    // Event listener to add new product to existing project ///
     const addProduct = event => {
         console.log("add product has been clicked!")
-        console.log(currentProduct)
+        console.log(newProduct)
 
 
-        API.addProduct(projectID, {newProduct})
-        .then(res => {
-            console.log(res.data)
-        })
-
-       
+        API.addProduct(newProduct)
+            .then(res => {
+                console.log(res.data)
+            })
     }
+
+
+
 
     return (
         <Wrapper>
-        <Container>
-            <Row className="justify-content-md-center">
-                <h1 className="text-center">Signature IronWorks</h1>
-            </Row>
+            <Container>
+                <Row className="justify-content-md-center">
+                    <h1 className="text-center">Signature IronWorks</h1>
+                </Row>
+                <Row className="justify-content-md-center">
+                    <Col xs={8} md={8}>
+                        <QuoteContainer
+                            productDrop={renderProductDrop(products)}
+                            designDrop={renderFeatureDrop(features, "design")}
+                            backingDrop={renderFeatureDrop(features, "backing")}
+                            finishDrop={renderFeatureDrop(features, "finish")}
+                            hardwareDrop={renderFeatureDrop(features, "hardware")}
+                            selectedProduct={selectedProduct}
+                            selectedProductPX={selectedProductPX}
+                            handleProductSelect={handleProductSelect}
+                            handleFeatureSelect={handleFeatureSelect}
+                            backingPrice={backingPrice}
+                            finishPrice={finishPrice}
+                            designPrice={designPrice}
+                            hardwarePrice={hardwarePrice}
+                            totalPrice={totalPrice}
+                            addProduct={addProduct}
 
-            <QuoteContainer 
-                productDrop={renderProductDrop(products)}
-                designDrop={renderFeatureDrop(features, "design")}
-                backingDrop={renderFeatureDrop(features, "backing")}
-                finishDrop={renderFeatureDrop(features, "finish")}
-                hardwareDrop={renderFeatureDrop(features, "hardware")}
-                selectedProduct={selectedProduct}
-                selectedProductPX={selectedProductPX}
-                handleProductSelect={handleProductSelect}
-                handleFeatureSelect={handleFeatureSelect}
-                backingPrice={backingPrice}
-                finishPrice={finishPrice}
-                designPrice={designPrice}
-                hardwarePrice={hardwarePrice}
-                totalPrice={totalPrice}
-                addProduct={addProduct}
-            />
+                        />
+                    </Col>
 
-            <div>
-                <Link to="/Login">Temp link back to Login page</Link>
-                <br></br>
-                <Link to="/Client">Temp link to client page</Link>
-                <br></br>
-                <Link to="/Home">Temp link to home page</Link>
-                <br></br>
-                <Link to="/Project">Temp link to project page</Link>
-            </div>
-        </Container>
+
+                </Row>
+
+
+            </Container>
 
         </Wrapper>
 
@@ -300,4 +308,4 @@ let projectID = "5e9b176c1a7ea014b4e2403c";
 export default Product;
 
 
-            
+

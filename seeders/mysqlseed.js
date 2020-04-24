@@ -86,3 +86,34 @@ insertClients()
 // insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Phoebe Buffay", null, "5555555555", "phoebe@test.com",  "a", "b", "c", "d", 3, "f", NOW(), NOW());
 // insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Chandler Bing", null, "5555555555", "chandler@test.com",  "a", "b", "c", "d", 2, "f", NOW(), NOW());
 // insert into customers ( name, businessName, phoneNumber, email, address, addressTwo, city, state, zip, notes, createdAt, updatedAt  ) values ("Monica Geller", null, "5555555555", "monica@test.com",  "a", "b", "c", "d", 1, "f", NOW(), NOW());
+
+// user database 
+const User = [
+    {
+        email: 'lynnoneilaz@gmail.com',
+        password: 'lynn',
+        isadmin: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),       
+    },
+    {
+        email: 'kodypbishop@gmail.com',
+        password: 'kody',
+        isadmin: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),         
+    },
+    {
+        email: 'jennanmiles@gmail.com',
+        password: 'jenna',
+        isadmin: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),          
+    },    
+ ]
+
+ async function insertUsers(){
+    const createdUsers = User.map( Users => db.User.create(Users))
+    await Promise.all(createdUsers)
+};
+insertUsers();

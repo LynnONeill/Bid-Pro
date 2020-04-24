@@ -1,45 +1,63 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import API from "../utils/API";
 import Wrapper from '../components/Wrapper';
-
+import AuthContext from '../utils/AuthContext';
 
 function Login() {
+
+
     
+    const history = useHistory();
+    const location = useLocation();
 
-    // function loadTest() {
-    //     API.test()
-    //       .then(res => 
-    //         console.log(res)
-    //       )
-    //       .catch(err => console.log(err));
-    //   };
-    //   loadTest();
+    const initialForm = {email: '', password: ''}
+    const [valUser, setValUser] = useState(initialForm);
+    const {isLoggedIn, handleAuth} = useContext(AuthContext);
 
-      function validateUser(email,password) {
-          console.log('click')
-          API.valUsers()
-          .then(function() {
-            
-            window.location.replace('/home')
-          }  
-        )
-        .catch(err => console.log(err))
+    // grab info from input
+    const loginData = event => {
+        const { name, value } = event.target
+        console.log(name)
+        console.log(value)
+        setValUser({ ...valUser, [name]: value })
+    }
+
+
+      function validateUser () {
+        console.log(valUser)
+        let { from } = location.state || { from: { pathname: "/" } };
+        handleAuth(valUser, () => {
+            history.push('/home')
+        })
       }
 
     return (
         <Wrapper>
         <div>
-          
-            <h1 className="text-center">Login Page</h1>
+            <div className="logo">
+                <img alt="Affordable Fence and Gates Logo" src="logo.png" />
+            </div>
+            <h1 className="text-center">Welcome</h1>
             <form>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Username</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                    <input 
+                    type="email" className="form-control"
+                    name="email"
+                    value={valUser.email}
+                    onChange={loginData}
+                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                    <input 
+                    type="password" 
+                    name="password"
+                    value={valUser.password}
+                    onChange={loginData}
+                    className="form-control" 
+                    id="exampleInputPassword1" placeholder="Password"/>
                 </div>
                
                 <button 
@@ -50,8 +68,6 @@ function Login() {
                 </button>
                
             </form>
-
-            <Link to="/Home">Temp link to homepage</Link>
            
         </div>
         </Wrapper>
