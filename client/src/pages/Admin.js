@@ -116,7 +116,7 @@ function Admin() {
                     <Col>{users.email}</Col>
                     <Col>{users.password}</Col>
                     <Col>{users.isadmin.toString()}</Col>
-                    <Button type="button" value="delete" onClick={() => deleteUser(users.id)}>Delete</Button>
+                    <Button className="delete" type="button" value="delete" onClick={() => deleteUser(users.id)}>Delete</Button>
                 </Row>
             ))}
 

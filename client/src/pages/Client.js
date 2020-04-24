@@ -42,35 +42,35 @@ function Clients() {
         }).catch(err => console.log(err))
     }
 
-  
-   
-
     return (
         <Wrapper>
             <Container fluid>
                 <div>
-                    <h1>Clients</h1>
+
+                    <h1>Client Details</h1>
+      
                     <ClientCard />
 
-                    {projects.map(project => {
-                        return (
-                            <ProjectCard
-                                value={project}
-                                project={getProjects}
-                                key={project._id}
-                            />
-                        )
-                    })}
-                    <form>
+                    <div className="clientCard">
+                        <h2>Project History</h2>
+                        {projects.map(project => {
+                            return (
+                                <ProjectCard
+                                    value={project}
+                                    project={getProjects}
+                                    key={project._id}
+                                />
+                            )
+                        })}
+                    </div>
 
-                        <input type="text" name="projectName" placeholder="New Project Name" value={name} onChange={handleProjectNameChange} />
+                    <form className="clientCard">
+                        <h2>Add New Project</h2>
+                        <div className="projectList">
+                            <input type="text" name="projectName" placeholder="New Project Name" value={name} onChange={handleProjectNameChange} />
 
-                        <button
-                            onClick={newProject}
-                        >
-                            Add New Project</button>
-
-
+                            <button onClick={newProject}>Add</button>
+                        </div>
                     </form>
                     <div>
 

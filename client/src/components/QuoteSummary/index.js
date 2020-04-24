@@ -8,9 +8,7 @@ function QuoteSummary({ queryProducts ,totalValue  }) {
                 <h5 className="card-title">Project Summary</h5>
                 <p className="card-text">Total Cost: ${totalValue}</p>
             </div>
-            <ul className="list-group list-group-flush">
-                <li className="list-group-item">product info to go here</li>
-            </ul>
+            
             <button
                 name="name"
                 type="button"
