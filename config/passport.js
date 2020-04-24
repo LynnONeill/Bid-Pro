@@ -1,6 +1,6 @@
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
-require("dotenv").config();
+
 
 var db = require("../models/sql_models");
 
@@ -14,10 +14,7 @@ passport.use(new LocalStrategy(
     // When a user tries to sign in this code runs
     console.log('hit')
     console.log(email)
-    console.log(process.env.DB_USERNAME);
-    console.log(process.env.DB_PASSWORD);
-    console.log(process.env.DB_DATABASE);
-    console.log(process.env.DB_HOST);
+  
     db.User.findOne({
       where: {
         email: email
