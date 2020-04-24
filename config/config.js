@@ -1,7 +1,9 @@
-{
+require('dotenv').config();
+
+module.exports = {
   "development": {
     "username": "root",
-    "password": "Jang0f3tt",
+    "password": "rootroot",
     "database": "bid_pro",
     "host": "127.0.0.1",
     "dialect": "mysql"
@@ -14,10 +16,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "",
-    "password": "",
-    "database": "",
-    "host": "",
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
     "dialect": "mysql"
-  }
+},
 }
