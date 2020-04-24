@@ -70,17 +70,16 @@ function Home(props) {
               <Col>
                 <ClientSearch
                   handleSearchChange={handleSearchChange}
-                  // onSearchDelete={onSearchDelete}
                 />
               </Col>
-              <Col>
+              {/* <Col>
                 <div style={{ textAlign: "right" }}>
                   <button onClick={goToClient} style={{ background: "#6DAC64", padding: 10, color: "#fff", borderRadius: 5 }}>
                     {" "}
                     <FaPlus /> Client{" "}
                   </button>
                 </div>
-            </Col>
+            </Col> */}
             </Row>
             
             <label>
