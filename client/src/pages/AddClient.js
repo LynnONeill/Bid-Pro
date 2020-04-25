@@ -5,6 +5,7 @@ import {Form, Col, Button} from "react-bootstrap";
 import Wrapper from '../components/Wrapper';
 import API from '../utils/API';
 import ClientContext from "../utils/GlobalState";
+import Navbar from '../components/Nav';
 
 function AddClient(props) {
 
@@ -43,6 +44,8 @@ function AddClient(props) {
       
 
     return(
+        <div>
+        <Navbar />
         <Wrapper>
         <Container>
         
@@ -170,8 +173,8 @@ function AddClient(props) {
         </form>
         
         </Container>
-        
         </Wrapper>
+        </div>
     );
 }
 

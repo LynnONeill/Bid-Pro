@@ -7424,6 +7424,8 @@ button {
 }
 .wrapper .container {
   width: 100% !important;
+  padding: 0;
+  margin: 0;
 }
 
 /* HOME PAGE */
@@ -7459,7 +7461,7 @@ button {
 }
 .clientLinkRow .clientEmail {
   font-size: 1em;
-  text-align: center;
+  text-align: right;
 }
 
 /* CLIENT PAGE */
@@ -7553,12 +7555,21 @@ form label {
     line-height: 2em;
   }
 
+  .wrapper {
+    margin: 50px auto;
+  }
+
   .homeTopRight {
     margin: 0 auto;
   }
 
+  .clientLinkRow {
+    line-height: 1.5em;
+    text-align: center;
+  }
   .clientLinkRow .clientEmail {
     width: 100%;
+    text-align: center;
   }
 
   .clientCard .projectList {
@@ -7576,6 +7587,19 @@ form label {
     line-height: 1.75em;
     margin-left: 0;
     padding: 0;
+  }
+
+  .form-group {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .col {
+    flex-basis: 0;
+    flex-grow: 5;
+    max-width: 100%;
+    width: 100%;
+    min-width: 100%;
   }
 }
 
