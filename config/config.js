@@ -1,4 +1,8 @@
-{
+require("dotenv").config();
+
+module.exports = {
+
+
   "development": {
     "username": "root",
     "password": "darkSalmon520!!!",
@@ -14,10 +18,12 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "y9xsknin3ts5a24s",
-    "password": "gqsfx0u7t88rc2vh",
-    "database": "ci86rbkrjlxd5bzb",
-    "host": "e764qqay0xlsc4cz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
     "dialect": "mysql"
+  }
 }
-}
+
+
