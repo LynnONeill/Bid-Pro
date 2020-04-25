@@ -179,7 +179,7 @@ module.exports = {
                     </div>
                 </div>
                 <div>
-                ${products.product.name}   Price: $${products.product.price}
+                &nbsp;${products.product.name}   Base Price: $${products.product.price}
                 </div>
                 ${options.join(" ")}`
                     )
