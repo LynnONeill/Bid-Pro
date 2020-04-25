@@ -241,11 +241,10 @@ module.exports = {
             projectID: req.body.projectID
         }
 
-        // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-        // pathToAttachment = `${__dirname}\\..\\index.html`;
+        pathToAttachment = `${__dirname}\\..\\index.html`;
 
-        // attachment = fs.readFileSync(pathToAttachment).toString("base64");
+        attachment = fs.readFileSync(pathToAttachment).toString("base64");
 
         const msg = {
             to: clientObj.email,
@@ -253,14 +252,14 @@ module.exports = {
             subject: 'Project Estimate',
             text: 'We are proud to offer the following for your consideration',
             html: '<strong>We are proud to offer the following for your consideration.</strong>',
-            // attachments: [
-            //     {
-            //         content: attachment,
-            //         filename: `index.html`,
-            //         type: "application/html",
-            //         disposition: "attachment"
-            //     }
-            // ]
+            attachments: [
+                {
+                    content: attachment,
+                    filename: `index.html`,
+                    type: "application/html",
+                    disposition: "attachment"
+                }
+            ]
         }
         sgMail
             .send(msg)
