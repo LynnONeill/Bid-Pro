@@ -65,7 +65,6 @@ function Home(props) {
               <Col>
                 <ClientSearch
                   handleSearchChange={handleSearchChange}
-                  // onSearchDelete={onSearchDelete}
                 />
               </Col>
             </Row>

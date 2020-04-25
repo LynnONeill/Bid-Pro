@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import QuoteSummary from "../components/QuoteSummary";
 import Wrapper from '../components/Wrapper';
+import ClientCard from '../components/ClientCard';
 import Navbar from '../components/Nav';
 
 
@@ -58,8 +59,10 @@ function Project(props) {
         <Navbar />
         <Wrapper>
         <Container>
-            <h1 className="text-center">Add a Project</h1>
+            
+            <h1 className="text-center">Project Details</h1>
             <div>
+            <ClientCard />
                 <Row>
                     <Col xs={12} md={7}>
                         <div className="productBox">
