@@ -26,7 +26,7 @@ function ClientList(props) {
         <Link to="/Client" className="clientLink" onClick={handleClick} data-value={user}>
             <div className="row clientLinkRow" style={{ marginTop: 10, }}>
 
-                <div className="col-6">
+                <div className="col-lg-6 col-sm-12">
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <div style={{ padding: 10, background: "dodgerblue", borderRadius: 5, marginRight: 10 }}> <FaEye style={{ color: "#fff" }}></FaEye> </div>
                         <div> <div> {props.value.businessName} - {props.value.name} </div>
@@ -34,9 +34,9 @@ function ClientList(props) {
                         </div>
                     </div>
                 </div>
-                <div className="col-4 clientEmail">
-                    <div style={{ textAlign: "right" }}>  {props.value.email} </div>
-                    <div style={{ textAlign: "right" }}> {props.value.phoneNumber}</div>
+                <div className="col-lg-4 clientEmail col-sm-12">
+                    <div>  {props.value.email} </div>
+                    <div> {props.value.phoneNumber}</div>
                 </div>
 
                 <button className="btn btn-primary delete" onClick={deleteClient}>Delete</button>

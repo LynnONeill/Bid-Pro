@@ -4,7 +4,7 @@ import Container from "../components/Grid";
 import {Form, Col, Button, Row, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import API from '../utils/API';
 import Wrapper from '../components/Wrapper';
-
+import Navbar from '../components/Nav';
 
 function Admin() {
     // grab users from db
@@ -57,8 +57,9 @@ function Admin() {
 
 
     return(
-        <Wrapper>
         <div>
+        <Navbar />
+        <Wrapper>
         <Container>
         
         <h1>Admin Page</h1>
@@ -122,10 +123,9 @@ function Admin() {
 
 
         </Container>
-
         </Container>
-        </div>
         </Wrapper>
+        </div>
     );
 }
 
