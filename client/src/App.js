@@ -9,7 +9,7 @@ import AddClient from "./pages/AddClient";
 import Admin from "./pages/Admin";
 import Project from "./pages/Project";
 import Product from "./pages/Product";
-import Navbar from "./components/Nav";
+//import Navbar from "./components/Nav";
 import ClientContext from "./utils/GlobalState";
 import AuthContext from './utils/AuthContext';
 import { NavItem } from 'react-bootstrap';
@@ -96,7 +96,6 @@ function App() {
       <div>
         <ClientContext.Provider value={{selectedClient,handleClick, pushClient }}>
           <AuthContext.Provider value={{isLoggedIn, handleAuth, handleLogout}}>
-          <Navbar />
         <Switch>
         <Route exact path={["/", "/login"]}>
             <Login />

@@ -139,8 +139,6 @@ button {
     }
 }
 
-
-
 /* WRAPPER */
 .wrapper {
     display: block;
@@ -150,6 +148,8 @@ button {
 
     .container {
         width: 100% !important;
+        padding: 0;
+        margin: 0;
     }
 }
 
@@ -188,7 +188,7 @@ button {
 
     .clientEmail {
         font-size: 1em;
-        text-align: center;
+        text-align: right;
     }
 }
 
@@ -295,16 +295,25 @@ form {
             line-height: 2em;
         }
     }
+
+    .wrapper {
+        margin: 50px auto;
+    }
     // home page
     .homeTopRight {
         margin: 0 auto;
     }
 
+
     .clientLinkRow {
+        line-height: 1.5em;
+        text-align: center;
         .clientEmail {
-            width: 100%
+            width: 100%;
+            text-align: center;
         }
     }
+      
 
     // client page
     .clientCard {
@@ -327,4 +336,17 @@ form {
         margin-left: 0;
         padding: 0;
     }
+
+    // admin page
+    .form-group {
+        width: 100%;
+        min-width: 100%;
+    }
+    .col {
+        flex-basis: 0;
+        flex-grow: 5;
+        max-width: 100%;
+        width: 100%;
+        min-width: 100%;
+    }    
 }

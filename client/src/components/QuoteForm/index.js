@@ -13,7 +13,7 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
     return (
         <form>
              <Row className="justify-content-md-center">
-                <Col xs={6} md={6}>
+                <Col xs={9} md={6}>
                     <QuoteProductDropDown
                         handleProductSelect={handleProductSelect}
                         productDrop={productDrop} 
@@ -26,7 +26,7 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={6} md={6}>
+                <Col xs={9} md={6}>
                     <QuoteFeatureDropDown
                         handleFeatureSelect={(e) =>handleFeatureSelect(e, "design")}
                         designDrop={designDrop}
@@ -40,7 +40,7 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={6} md={6}>
+                <Col xs={9} md={6}>
                     <QuoteFeatureDropDown
                         handleFeatureSelect={(e) =>handleFeatureSelect(e, "backing")}
                         backingDrop={backingDrop} 
@@ -54,7 +54,7 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={6} md={6}>
+                <Col xs={9} md={6}>
                     <QuoteFeatureDropDown
                         handleFeatureSelect={(e) =>handleFeatureSelect(e, "finish")}
                         finishDrop={finishDrop} 
@@ -67,7 +67,7 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={6} md={6}>
+                <Col xs={9} md={6}>
                     <QuoteFeatureDropDown
                         handleFeatureSelect={(e) =>handleFeatureSelect(e, "hardware")}
                         hardwareDrop={hardwareDrop} 
@@ -80,20 +80,19 @@ function QuoteForm({productDrop, designDrop, backingDrop, finishDrop, hardwareDr
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs={6
-                } md={6}>
+                <Col xs={9} md={6}>
                     <QuoteTotal 
                         totalPrice={totalPrice}
                     />
                 </Col>
             </Row>
-            <Row className="justify-content-md-center">
-                <Link to="/project">
+            
+                <Link className="" to="/project">
                 <QuoteSubmitBtn 
                     addProduct={addProduct}
                 />
                 </Link>
-            </Row>
+           
 
 
 

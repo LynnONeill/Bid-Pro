@@ -10,13 +10,11 @@ import API from "../utils/API";
 import React, { useEffect, useState, useContext } from "react";
 import ClientList from "../components/ClientList";
 import ClientSearch from "../components/ClientSearch";
+import Navbar from "../components/Nav";
 
 function Home(props) {
   const [permClients, setPermClients] = useState([])
   const [clients, setClients] = useState([]);
-
-
-
 
   useEffect(() => {
     // Api call to get product and feature data //
@@ -51,20 +49,17 @@ function Home(props) {
     setClients(filteredClients)
 }
 
-
-
-
-
-
   return (
+    <div>
+      <Navbar />
     <Wrapper>
       <Container fluid>
         <h1>Welcome</h1>
         <div>
-        <button className="homeTopRight btn">
-          <Link to="/AddClient"><FaPlus /> Add Client</Link>
-        </button>
           <form>
+            <button className="homeTopRight btn">
+                <Link to="/AddClient"><FaPlus /> Add Client</Link>
+            </button>
             <h2>Search Clients</h2>
             <Row>
               <Col>
@@ -72,14 +67,6 @@ function Home(props) {
                   handleSearchChange={handleSearchChange}
                 />
               </Col>
-              {/* <Col>
-                <div style={{ textAlign: "right" }}>
-                  <button onClick={goToClient} style={{ background: "#6DAC64", padding: 10, color: "#fff", borderRadius: 5 }}>
-                    {" "}
-                    <FaPlus /> Client{" "}
-                  </button>
-                </div>
-            </Col> */}
             </Row>
             
             <label>
@@ -91,6 +78,7 @@ function Home(props) {
         </div>
       </Container>
     </Wrapper>
+    </div>
   );
 }
 export default Home;

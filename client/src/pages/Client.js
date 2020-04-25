@@ -6,7 +6,7 @@ import ProjectCard from "../components/ProjectCard";
 import Wrapper from '../components/Wrapper';
 import ClientContext from "../utils/GlobalState"
 import API from "../utils/API";
-
+import Navbar from '../components/Nav';
 
 function Clients() {
 
@@ -43,6 +43,8 @@ function Clients() {
     }
 
     return (
+        <div>
+        <Navbar />
         <Wrapper>
             <Container fluid>
                 <div>
@@ -77,11 +79,8 @@ function Clients() {
                     </div>
                 </div>
         </Container>
-
         </Wrapper>
-
-
-
+        </div>
     );
 }
 
