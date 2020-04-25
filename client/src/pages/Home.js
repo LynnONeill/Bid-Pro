@@ -72,14 +72,6 @@ function Home(props) {
                   handleSearchChange={handleSearchChange}
                 />
               </Col>
-              {/* <Col>
-                <div style={{ textAlign: "right" }}>
-                  <button onClick={goToClient} style={{ background: "#6DAC64", padding: 10, color: "#fff", borderRadius: 5 }}>
-                    {" "}
-                    <FaPlus /> Client{" "}
-                  </button>
-                </div>
-            </Col> */}
             </Row>
             
             <label>
