@@ -5,7 +5,7 @@ module.exports = {
 
   "development": {
     "username": "root",
-    "password": "rootroot",
+    "password": "darkSalmon520!!!",
     "database": "bid_pro",
     "host": "127.0.0.1",
     "dialect": "mysql"

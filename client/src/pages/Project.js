@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import QuoteSummary from "../components/QuoteSummary";
 import Wrapper from '../components/Wrapper';
+import Navbar from '../components/Nav';
 import ClientCard from '../components/ClientCard';
 
 
@@ -54,6 +55,8 @@ function Project(props) {
     }
 
     return (
+        <div>
+        <Navbar />
         <Wrapper>
         <Container>
             
@@ -61,7 +64,7 @@ function Project(props) {
             <div>
             <ClientCard />
                 <Row>
-                    <Col xs={7} md={7}>
+                    <Col xs={12} md={7}>
                         <div className="productBox">
                             {projects.map(project => {
                                 return (
@@ -71,7 +74,7 @@ function Project(props) {
 
                         </div>
                     </Col>
-                    <Col xs={5} md={5}>
+                    <Col xs={12} md={5}>
                         <div>
                             <QuoteSummary
                                 queryProducts={queryProducts}
@@ -86,9 +89,8 @@ function Project(props) {
                 </button></Link>
 
         </Container >
-
         </Wrapper>
-
+        </div>
     );
 }
 

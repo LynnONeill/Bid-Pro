@@ -7,7 +7,7 @@ import QuoteContainer from "../components/QuoteContainer";
 import API from "../utils/API";
 import Wrapper from '../components/Wrapper';
 import ClientContext from "../utils/GlobalState";
-
+import Navbar from '../components/Nav';
 
 function Product() {
 
@@ -263,13 +263,15 @@ function Product() {
     }
 
     return (
+        <div>
+        <Navbar />
         <Wrapper>
             <Container>
                 <Row className="justify-content-md-center">
                     <h1 className="text-center">Add A Product</h1>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs={11} md={11}>
+                    <Col xs={12} md={11}>
                         <QuoteContainer
                             productDrop={renderProductDrop(products)}
                             designDrop={renderFeatureDrop(features, "design")}
@@ -289,16 +291,10 @@ function Product() {
 
                         />
                     </Col>
-
-
                 </Row>
-
-
             </Container>
-
         </Wrapper>
-
-
+        </div>
     );
 }
 
