@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import QuoteSummary from "../components/QuoteSummary";
 import Wrapper from '../components/Wrapper';
+import ClientCard from '../components/ClientCard';
 import Navbar from '../components/Nav';
 import ClientCard from '../components/ClientCard';
 
