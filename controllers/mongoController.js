@@ -242,7 +242,7 @@ module.exports = {
         }
 
 
-        pathToAttachment = `${__dirname}\\..\\index.html`;
+        pathToAttachment = `${__dirname}\/..\/index.html`;
 
         attachment = fs.readFileSync(pathToAttachment).toString("base64");
 
