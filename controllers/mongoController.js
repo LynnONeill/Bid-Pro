@@ -168,7 +168,7 @@ module.exports = {
                 // function to create html from product list //
                 function renderProducts(products) {
                     let options = products.features.map(feature => (
-                        `<div class="card-body w-100"><p class="card-text">${feature.name} ${feature.type} ${feature.price}.00.</p></div>`
+                        `<div class="card-body w-100"><p class="card-text">${feature.name}: ${feature.type}    Price: $${feature.price}.00.</p></div>`
                     ))
 
                     return (`<div class="card w-100">
@@ -177,6 +177,9 @@ module.exports = {
                         <div class="col-md-6 font-weight-bold">${products.product.name}</div>
                         <div class="col-md-6 text-right font-weight-bold">$${products.total.price}.00</div>
                     </div>
+                </div>
+                <div>
+                ${products.product.name}   Price: $${products.product.price}
                 </div>
                 ${options.join(" ")}`
                     )
