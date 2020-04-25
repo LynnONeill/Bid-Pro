@@ -10,7 +10,6 @@ import QuoteSummary from "../components/QuoteSummary";
 import Wrapper from '../components/Wrapper';
 import ClientCard from '../components/ClientCard';
 import Navbar from '../components/Nav';
-import ClientCard from '../components/ClientCard';
 
 
 function Project(props) {
