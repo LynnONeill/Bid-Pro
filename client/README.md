@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bid-Pro
 
-## Available Scripts
+https://bid-pro.herokuapp.com/
 
-In the project directory, you can run:
+login using:  bidpro@mail.com   password: bidpro
 
-### `npm start`
+## Introduction:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project is a web-based application created to specifically target business trades that manufacture custom-built products.  Bid-Pro is designed to be used by a sales team to produce comprehensive price quotes of products with various option and feature combinations.  In it's current state, it has been tailored to assist in the creation of estimates for a company that manufactures custom-built security doors.  Future development will allow businesses to use this application to create their own product base including upgrades, applicable options and respective pricing.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Upon launching this application, the user is greeted with a login page.  Due to the nature of this application the user must be provided with a login and password from their employer.  Users are not permitted to create their own.  For the purpose of viewing this application, please use the login credentials provided above.
+A successful login will redirect to the home page which is populated with a list of all current clients.  The user can choose to add a new client, delete an existing client or click on a listed client.  Selecting an existing client will render the client's contact information as well as a list of projects which have already been created and an option to create new projects.  The user can give a neame to the new project, and click the "add" button to create a new project.  This project will appear under project history and the user can select this project to create the price quote for one or more products.   The product page is where the products and their respective features are selected.  Selection of each feature will render the the price upgrade for that product and the total cost will be updated below.  Adding the product will update the project data and the quote can then be emailed to the client for review.
 
-### `npm test`
+## Technology:
+This website utilizes:
+    * React
+    * SendGrid/mail
+    * Axios
+    * Passport
+    * Bcrypt
+    * Bootstrap-Sass
+    * Electron-html-to
+    * Electron-prebuilt
+    * Express
+    * MongoDB
+    * Mongoose
+    * Mysql
+    * Sequelize
+    * Bootstrap
+    * HTML
+    * Javascript
+    * Node.js
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Credits
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project was created by the following collaborators:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Kody Bishop, Jenna Miles, James Hamilton, and Lynn O'Neill
