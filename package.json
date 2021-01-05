@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^7.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
     "bootstrap-sass": "^3.4.1",
